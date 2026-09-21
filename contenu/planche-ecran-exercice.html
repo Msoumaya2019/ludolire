@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ludo'Lire — planche de validation : l'écran « S'entraîner »</title>
+<style>
+  /* =====================================================================
+     LES JETONS, RECOPIÉS DU THÈME — theme.ts
+
+     Chaque valeur de cette planche vient de là, et porte le nom du jeton.
+     Une planche qui inventerait une teinte ferait approuver une intention
+     que l'écran livré ne porte pas.
+     ===================================================================== */
+  :root {
+    --couleurs-fond: #FBF7F0;
+    --couleurs-surface: #FFFFFF;
+    --couleurs-encre: #1B2330;
+    --couleurs-encre-douce: #5A6472;
+    --couleurs-bleu: #2554D6;
+    --couleurs-bleu-pale: #E8EEFC;
+    --couleurs-vert: #2E9E6B;
+    --couleurs-rouge: #D2604A;
+    --couleurs-trait: #E7E0D5;
+    --couleurs-jaune: #F2C14E;
+
+    --espace-xs: 4px;
+    --espace-sm: 8px;
+    --espace-md: 16px;
+    --espace-lg: 24px;
+    --espace-xl: 32px;
+    --espace-xxl: 48px;
+
+    --rayon-carte: 20px;
+    --rayon-pastille: 999px;
+    --rayon-bouton: 16px;
+
+    --taille-heros: 40px;
+    --taille-titre: 28px;
+    --taille-carte: 22px;
+    --taille-bouton: 20px;
+    --taille-courant: 18px;
+    --taille-lecture: 30px;
+    --taille-legende: 15px;
+
+    /* Ces deux teintes ne sont PAS dans theme.ts : elles sont écrites dans
+       app/exercice.tsx (carteReussie, carteRatee). La planche les montre telles
+       quelles, et le signale — une valeur de thème qui vit dans un écran est un
+       écart, pas une nuance. */
+    --ecran-carte-reussie-fond: #E4F5EC;
+    --ecran-carte-ratee-fond: #FBEAE6;
+
+    /* La page de la planche elle-même — hors application. */
+    --planche-fond: #EFECE5;
+    --planche-encre: #22262E;
+    --planche-trait: #D6D1C6;
+
+    --police: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: var(--espace-xl) var(--espace-lg) var(--espace-xxl);
+    background: var(--planche-fond);
+    color: var(--planche-encre);
+    font-family: var(--police);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .page { max-width: 1180px; margin: 0 auto; }
+
+  h1 { font-size: 26px; margin: 0 0 var(--espace-sm); letter-spacing: -0.01em; }
+  h2 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--planche-encre); opacity: 0.6;
+    margin: var(--espace-xl) 0 var(--espace-md);
+  }
+  p { margin: 0 0 var(--espace-sm); }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.92em;
+    background: rgba(34, 38, 46, 0.07);
+    padding: 1px 5px;
+    border-radius: 4px;
+  }
+
+  .chapeau {
+    border-left: 3px solid var(--couleurs-bleu);
+    padding: var(--espace-sm) 0 var(--espace-sm) var(--espace-md);
+    margin: var(--espace-md) 0 var(--espace-lg);
+  }
+  .chapeau p { margin: 0 0 var(--espace-xs); }
+
+  .encadre {
+    background: var(--couleurs-surface);
+    border: 1px solid var(--planche-trait);
+    border-radius: 12px;
+    padding: var(--espace-md);
+    margin: var(--espace-md) 0;
+  }
+  .encadre h3 { font-size: 14px; margin: 0 0 var(--espace-xs); }
+  .encadre ul { margin: var(--espace-xs) 0 0; padding-left: 20px; }
+  .encadre li { margin-bottom: var(--espace-xs); }
+
+  .grille {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espace-xl);
+    align-items: flex-start;
+  }
+
+  .cadre { width: 392px; }
+  .cadre > .etiquette {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: var(--espace-sm);
+  }
+  .cadre > .etiquette span {
+    display: block;
+    font-weight: 400;
+    opacity: 0.7;
+    font-size: 12px;
+  }
+
+  /* =====================================================================
+     LE CHROME — la seule différence réelle entre les deux plateformes.
+     Le design, lui, est le même : l'application est écrite une fois.
+     ===================================================================== */
+  .telephone {
+    position: relative;
+    background: var(--couleurs-fond);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(20, 24, 32, 0.16);
+  }
+  .iphone {
+    width: 390px; height: 844px;
+    border-radius: 44px;
+    border: 10px solid #14181F;
+  }
+  .android {
+    width: 412px; height: 844px;
+    border-radius: 24px;
+    border: 8px solid #14181F;
+  }
+
+  .encoche {
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+    width: 118px; height: 30px; border-radius: var(--rayon-pastille);
+    background: #14181F; z-index: 3;
+  }
+  .perforation {
+    position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    width: 12px; height: 12px; border-radius: var(--rayon-pastille);
+    background: #14181F; z-index: 3;
+  }
+
+  .barre-etat {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--espace-lg);
+    font-size: 13px; font-weight: 600; color: var(--couleurs-encre);
+  }
+  .iphone .barre-etat { height: 50px; padding-top: 14px; }
+  .android .barre-etat { height: 34px; padding-top: 4px; font-size: 12px; }
+  .icones { display: flex; gap: 5px; align-items: center; }
+  .icone { height: 10px; border-radius: 2px; background: var(--couleurs-encre); opacity: 0.75; }
+  .icone.reseau { width: 15px; }
+  .icone.wifi { width: 13px; }
+  .icone.batterie { width: 22px; }
+
+  .barre-geste {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--couleurs-fond); z-index: 2;
+  }
+  .iphone .barre-geste { height: 34px; }
+  .android .barre-geste { height: 26px; }
+  .poignee {
+    width: 134px; height: 5px; border-radius: var(--rayon-pastille);
+    background: var(--couleurs-encre); opacity: 0.28;
+  }
+  .android .poignee { width: 108px; height: 4px; }
+
+  /* =====================================================================
+     L'EN-TÊTE DE PILE — tel que _layout.tsx le décrit.
+     ===================================================================== */
+  .entete-pile {
+    display: flex; align-items: center;
+    height: 46px;
+    padding: 0 var(--espace-sm);
+    background: var(--couleurs-fond);
+  }
+  .retour { color: var(--couleurs-bleu); font-size: var(--taille-bouton); }
+  .titre-pile {
+    flex: 1; text-align: center;
+    font-size: var(--taille-bouton); font-weight: 600;
+    color: var(--couleurs-encre);
+    margin-right: 44px;
+  }
+
+  .ecran {
+    position: absolute; inset: 0;
+    padding-bottom: 34px;
+    overflow: hidden;
+  }
+
+  /* =====================================================================
+     L'ÉCRAN « S'ENTRAÎNER » — les styles viennent de app/exercice.tsx.
+     ===================================================================== */
+  .contenu { padding: var(--espace-lg); }
+  .compteur {
+    font-size: var(--taille-legende); color: var(--couleurs-encre-douce);
+    text-align: center;
+  }
+  .consigne {
+    font-size: var(--taille-bouton); color: var(--couleurs-bleu);
+    font-weight: 700; text-align: center; margin-top: var(--espace-md);
+  }
+  .texte {
+    background: var(--couleurs-surface);
+    border-radius: var(--rayon-carte);
+    padding: var(--espace-md);
+    margin-top: var(--espace-lg);
+  }
+  .texte-ligne {
+    font-size: var(--taille-courant); line-height: 32px;
+    color: var(--couleurs-encre);
+  }
+  .question {
+    font-size: var(--taille-carte); font-weight: 700;
+    color: var(--couleurs-encre); text-align: center;
+    margin-top: var(--espace-lg);
+  }
+  .cartes {
+    display: flex; justify-content: center; flex-wrap: wrap;
+    gap: var(--espace-md); margin-top: var(--espace-lg);
+  }
+  .carte {
+    min-width: 140px; max-width: 320px;
+    padding: var(--espace-md) var(--espace-lg);
+    border-radius: var(--rayon-bouton);
+    background: var(--couleurs-surface);
+    border: 2px solid var(--couleurs-trait);
+    text-align: center;
+  }
+  .carte-texte {
+    font-size: var(--taille-courant); font-weight: 700;
+    color: var(--couleurs-encre);
+  }
+  .carte-reussie {
+    border-color: var(--couleurs-vert);
+    background: var(--ecran-carte-reussie-fond);
+  }
+  .carte-ratee {
+    border-color: var(--couleurs-rouge);
+    background: var(--ecran-carte-ratee-fond);
+  }
+  .bravo {
+    font-size: var(--taille-courant); color: var(--couleurs-vert);
+    font-weight: 700; text-align: center; margin-top: var(--espace-lg);
+  }
+  .preuve {
+    font-size: var(--taille-legende); color: var(--couleurs-encre-douce);
+    text-align: center; margin-top: var(--espace-sm); font-style: italic;
+  }
+  .encore {
+    font-size: var(--taille-courant); color: var(--couleurs-rouge);
+    text-align: center; margin-top: var(--espace-lg);
+  }
+  .bouton {
+    display: block; width: max-content; margin: var(--espace-xl) auto 0;
+    background: var(--couleurs-bleu);
+    padding: var(--espace-md) var(--espace-xl);
+    border-radius: var(--rayon-bouton);
+  }
+  .bouton-texte { color: var(--couleurs-surface); font-size: var(--taille-bouton); font-weight: 700; }
+  .note {
+    margin-top: var(--espace-xl);
+    font-size: var(--taille-legende); color: var(--couleurs-encre-douce);
+    text-align: center; line-height: 22px;
+  }
+  .fin-titre {
+    font-size: var(--taille-titre); font-weight: 800;
+    color: var(--couleurs-vert); text-align: center;
+  }
+  .fin-texte {
+    font-size: var(--taille-courant); color: var(--couleurs-encre-douce);
+    text-align: center;
+  }
+  .centre-bas { padding-top: 260px; }
+
+  /* =====================================================================
+     L'ÉCRAN DU NIVEAU — les styles viennent de app/niveau.tsx.
+     ===================================================================== */
+  .entete-niveau {
+    background: var(--couleurs-bleu);
+    padding: var(--espace-lg);
+  }
+  .entete-nom { font-size: var(--taille-titre); font-weight: 800; color: var(--couleurs-surface); }
+  .entete-sous {
+    font-size: var(--taille-legende); color: var(--couleurs-surface);
+    opacity: 0.9; margin-top: var(--espace-xs);
+  }
+  .section { margin-top: var(--espace-lg); padding: 0 var(--espace-lg); }
+  .section-titre {
+    font-size: var(--taille-legende); font-weight: 700;
+    color: var(--couleurs-encre-douce);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: var(--espace-sm);
+  }
+  .bloc {
+    background: var(--couleurs-surface);
+    border-radius: var(--rayon-carte);
+    overflow: hidden;
+  }
+  .ligne {
+    display: flex; align-items: center;
+    padding: var(--espace-md);
+    border-bottom: 1px solid var(--couleurs-trait);
+  }
+  .ligne-titre {
+    flex: 1; font-size: var(--taille-courant);
+    color: var(--couleurs-encre); font-weight: 600;
+  }
+  .ligne-detail {
+    font-size: var(--taille-legende); color: var(--couleurs-encre-douce);
+    margin-right: var(--espace-sm);
+  }
+  .chevron { font-size: var(--taille-carte); color: var(--couleurs-bleu); font-weight: 700; }
+  .raison { padding: var(--espace-md); border-bottom: 1px solid var(--couleurs-trait); }
+  .raison-titre {
+    font-size: var(--taille-courant); color: var(--couleurs-encre); font-weight: 600;
+  }
+  .raison-detail {
+    font-size: var(--taille-legende); color: var(--couleurs-encre-douce);
+    margin-top: var(--espace-xs); line-height: 21px;
+  }
+  .coupe {
+    position: absolute; left: 0; right: 0; bottom: 34px; height: 56px;
+    background: linear-gradient(to bottom, rgba(251, 247, 240, 0), var(--couleurs-fond));
+    z-index: 2;
+  }
+
+  table { border-collapse: collapse; width: 100%; margin: var(--espace-sm) 0; }
+  th, td {
+    text-align: left; padding: 6px 10px;
+    border-bottom: 1px solid var(--planche-trait);
+    font-size: 13px;
+  }
+  th { font-weight: 600; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+  footer { margin-top: var(--espace-xxl); font-size: 13px; opacity: 0.75; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Ludo'Lire — l'écran « S'entraîner »</h1>
+  <p>Planche de validation pour la relecture. Application 0.1.0, contenu <code>66eedb20c496334b</code>.</p>
+
+  <div class="chapeau">
+    <p><strong>Ce qui existe déjà</strong> — tout ce qui est dessiné ci-dessous est <em>livré</em>. Les six cadres montrent l'écran <code>app/exercice.tsx</code> et les nouvelles sections de <code>app/niveau.tsx</code>, tels qu'ils sont dans le dépôt.</p>
+    <p><strong>Ce qui est proposé</strong> — rien. Cette planche ne propose aucune modification : elle sert à relire ce qui est là. Une correction demandée se reportera dans le code, puis dans cette planche.</p>
+    <p><strong>D'où viennent les valeurs</strong> — toutes de <code>theme.ts</code> : couleurs, espacements (4 · 8 · 16 · 24 · 32 · 48), rayons (20 · 16 · 999) et tailles (40 · 28 · 22 · 20 · 18 · 30 · 15). Les noms des variables CSS sont ceux des jetons.</p>
+  </div>
+
+  <div class="encadre">
+    <h3>Ce que cette planche ne montre pas</h3>
+    <ul>
+      <li>Les états de chargement et les erreurs — il n'y en a pas : le contenu est embarqué, et rien ne peut échouer à l'ouverture.</li>
+      <li>Le défilement. Un cadre montre le haut de l'écran ; le contenu qui dépasse est coupé, avec un dégradé qui le signale.</li>
+      <li>Le toucher. Un doigt, une vibration, un appui long ne se dessinent pas.</li>
+      <li>Les textes longs sont <strong>abrégés</strong> là où c'est signalé par « … » — jamais réécrits.</li>
+      <li>L'ordre des cartes est celui de la <strong>première</strong> partie. « Recommencer » le change : mesuré sur les 12 questions, la bonne carte tombe 5 / 5 / 2 en positions 1 / 2 / 3 à la première partie, et 3 / 3 / 6 à la deuxième.</li>
+    </ul>
+  </div>
+
+  <h2>L'exercice E10 — « De quoi parle le texte ? » (unité 5)</h2>
+
+  <div class="grille">
+
+    <!-- ============================ CADRE 1 ============================ -->
+    <div class="cadre">
+      <div class="etiquette">
+        État initial — iPhone
+        <span>La première carte est la bonne : c'est une permutation possible, et la mesure sur les 42 items du jeu donne 14 / 14 / 14.</span>
+      </div>
+      <div class="telephone iphone">
+        <div class="encoche"></div>
+        <div class="ecran">
+          <div class="barre-etat">
+            <span>9:41</span>
+            <span class="icones">
+              <span class="icone reseau"></span>
+              <span class="icone wifi"></span>
+              <span class="icone batterie"></span>
+            </span>
+          </div>
+          <div class="entete-pile">
+            <span class="retour">‹ Retour</span>
+            <span class="titre-pile">CE1 · s'entraîner</span>
+          </div>
+          <div class="contenu">
+            <div class="compteur">exercice 1 sur 11</div>
+            <div class="consigne">Touche le résumé qui dit ce que raconte le texte.</div>
+            <div class="texte">
+              <div class="texte-ligne">Le chat a une souris.</div>
+              <div class="texte-ligne">La souris a une noix.</div>
+              <div class="texte-ligne">Le chat a la noix.</div>
+              <div class="texte-ligne">La souris rit.</div>
+              <div class="texte-ligne">Le chat a ri aussi.</div>
+              <div class="texte-ligne">La souris a sa noix.</div>
+            </div>
+            <div class="question">Quel résumé dit ce que raconte le texte ?</div>
+            <div class="cartes">
+              <div class="carte"><div class="carte-texte">Le chat prend la noix, et la souris rit.</div></div>
+              <div class="carte"><div class="carte-texte">Le chat a une souris, et la souris a un chat.</div></div>
+              <div class="carte"><div class="carte-texte">La souris prend la noix, et le chat rit.</div></div>
+            </div>
+            <div class="note">Le son n'est pas encore enregistré : la consigne se lit. L'exercice se joue en lisant.</div>
+          </div>
+        </div>
+        <div class="coupe"></div>
+        <div class="barre-geste"><div class="poignee"></div></div>
+      </div>
+    </div>
+
+    <!-- ============================ CADRE 2 ============================ -->
+    <div class="cadre">
+      <div class="etiquette">
+        État initial — Android
+        <span>Le même écran. Seul le chrome change : perforation au lieu d'encoche, barre de gestes plus courte, coins moins arrondis.</span>
+      </div>
+      <div class="telephone android">
+        <div class="perforation"></div>
+        <div class="ecran">
+          <div class="barre-etat">
+            <span>9:41</span>
+            <span class="icones">
+              <span class="icone reseau"></span>
+              <span class="icone wifi"></span>
+              <span class="icone batterie"></span>
+            </span>
+          </div>
+          <div class="entete-pile">
+            <span class="retour">‹ Retour</span>
+            <span class="titre-pile">CE1 · s'entraîner</span>
+          </div>
+          <div class="contenu">
+            <div class="compteur">exercice 1 sur 11</div>
+            <div class="consigne">Touche le résumé qui dit ce que raconte le texte.</div>
+            <div class="texte">
+              <div class="texte-ligne">Le chat a une souris.</div>
+              <div class="texte-ligne">La souris a une noix.</div>
+              <div class="texte-ligne">Le chat a la noix.</div>
+              <div class="texte-ligne">La souris rit.</div>
+              <div class="texte-ligne">Le chat a ri aussi.</div>
+              <div class="texte-ligne">La souris a sa noix.</div>
+            </div>
+            <div class="question">Quel résumé dit ce que raconte le texte ?</div>
+            <div class="cartes">
+              <div class="carte"><div class="carte-texte">Le chat prend la noix, et la souris rit.</div></div>
+              <div class="carte"><div class="carte-texte">Le chat a une souris, et la souris a un chat.</div></div>
+              <div class="carte"><div class="carte-texte">La souris prend la noix, et le chat rit.</div></div>
+            </div>
+            <div class="note">Le son n'est pas encore enregistré : la consigne se lit. L'exercice se joue en lisant.</div>
+          </div>
+        </div>
+        <div class="coupe"></div>
+        <div class="barre-geste"><div class="poignee"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Les trois retours de l'écran</h2>
+
+  <div class="grille">
+
+    <!-- ============================ CADRE 3 ============================ -->
+    <div class="cadre">
+      <div class="etiquette">
+        Mauvaise réponse
+        <span>La carte touchée est bordée de rouge doux, et l'écran invite à réessayer. Aucune carte n'est retirée : l'enfant peut changer d'avis autant de fois qu'il veut.</span>
+      </div>
+      <div class="telephone iphone">
+        <div class="encoche"></div>
+        <div class="ecran">
+          <div class="barre-etat">
+            <span>9:41</span>
+            <span class="icones">
+              <span class="icone reseau"></span>
+              <span class="icone wifi"></span>
+              <span class="icone batterie"></span>
+            </span>
+          </div>
+          <div class="entete-pile">
+            <span class="retour">‹ Retour</span>
+            <span class="titre-pile">CE1 · s'entraîner</span>
+          </div>
+          <div class="contenu">
+            <div class="compteur">exercice 1 sur 11</div>
+            <div class="consigne">Touche le résumé qui dit ce que raconte le texte.</div>
+            <div class="texte">
+              <div class="texte-ligne">Le chat a une souris.</div>
+              <div class="texte-ligne">La souris a une noix.</div>
+              <div class="texte-ligne">Le chat a la noix.</div>
+              <div class="texte-ligne">La souris rit.</div>
+              <div class="texte-ligne">Le chat a ri aussi.</div>
+              <div class="texte-ligne">La souris a sa noix.</div>
+            </div>
+            <div class="question">Quel résumé dit ce que raconte le texte ?</div>
+            <div class="cartes">
+              <div class="carte"><div class="carte-texte">Le chat prend la noix, et la souris rit.</div></div>
+              <div class="carte carte-ratee"><div class="carte-texte">Le chat a une souris, et la souris a un chat.</div></div>
+              <div class="carte"><div class="carte-texte">La souris prend la noix, et le chat rit.</div></div>
+            </div>
+            <div class="encore">Non, ce n'est pas celle-là. Essaie encore.</div>
+          </div>
+        </div>
+        <div class="coupe"></div>
+        <div class="barre-geste"><div class="poignee"></div></div>
+      </div>
+    </div>
+
+    <!-- ============================ CADRE 4 ============================ -->
+    <div class="cadre">
+      <div class="etiquette">
+        Bonne réponse
+        <span>La carte est bordée de vert, et la phrase du texte qui justifie la réponse s'affiche entre guillemets — c'est elle que l'enfant peut retrouver dans ce qu'il vient de lire.</span>
+      </div>
+      <div class="telephone iphone">
+        <div class="encoche"></div>
+        <div class="ecran">
+          <div class="barre-etat">
+            <span>9:41</span>
+            <span class="icones">
+              <span class="icone reseau"></span>
+              <span class="icone wifi"></span>
+              <span class="icone batterie"></span>
+            </span>
+          </div>
+          <div class="entete-pile">
+            <span class="retour">‹ Retour</span>
+            <span class="titre-pile">CE1 · s'entraîner</span>
+          </div>
+          <div class="contenu">
+            <div class="compteur">exercice 1 sur 11</div>
+            <div class="consigne">Touche le résumé qui dit ce que raconte le texte.</div>
+            <div class="texte">
+              <div class="texte-ligne">Le chat a une souris.</div>
+              <div class="texte-ligne">La souris a une noix.</div>
+              <div class="texte-ligne">Le chat a la noix.</div>
+              <div class="texte-ligne">La souris rit.</div>
+              <div class="texte-ligne">Le chat a ri aussi.</div>
+              <div class="texte-ligne">La souris a sa noix.</div>
+            </div>
+            <div class="question">Quel résumé dit ce que raconte le texte ?</div>
+            <div class="cartes">
+              <div class="carte carte-reussie"><div class="carte-texte">Le chat prend la noix, et la souris rit.</div></div>
+              <div class="carte"><div class="carte-texte">Le chat a une souris, et la souris a un chat.</div></div>
+              <div class="carte"><div class="carte-texte">La souris prend la noix, et le chat rit.</div></div>
+            </div>
+            <div class="bravo">Bravo, c'est la bonne réponse.</div>
+            <div class="preuve">« Le chat a la noix. »</div>
+            <div class="bouton"><div class="bouton-texte">Exercice suivant</div></div>
+          </div>
+        </div>
+        <div class="coupe"></div>
+        <div class="barre-geste"><div class="poignee"></div></div>
+      </div>
+    </div>
+
+    <!-- ============================ CADRE 5 ============================ -->
+    <div class="cadre">
+      <div class="etiquette">
+        Fin de séance
+        <span>Les 11 exercices s'enchaînent. « Recommencer » reprend au premier, et change l'ordre des cartes de chaque question.</span>
+      </div>
+      <div class="telephone iphone">
+        <div class="encoche"></div>
+        <div class="ecran">
+          <div class="barre-etat">
+            <span>9:41</span>
+            <span class="icones">
+              <span class="icone reseau"></span>
+              <span class="icone wifi"></span>
+              <span class="icone batterie"></span>
+            </span>
+          </div>
+          <div class="entete-pile">
+            <span class="retour">‹ Retour</span>
+            <span class="titre-pile">CE1 · s'entraîner</span>
+          </div>
+          <div class="contenu centre-bas">
+            <div class="fin-titre">Terminé !</div>
+            <div class="fin-texte">11 exercices faits.</div>
+            <div class="bouton"><div class="bouton-texte">Recommencer</div></div>
+          </div>
+        </div>
+        <div class="barre-geste"><div class="poignee"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Ce que l'écran du niveau dit du manque</h2>
+
+  <div class="grille">
+
+    <!-- ============================ CADRE 6 ============================ -->
+    <div class="cadre">
+      <div class="etiquette">
+        Écran du CE1 — nouvelles sections
+        <span>Les exercices rendus, puis ce qui est écrit et pas jouable, puis ce qui est déclaré jouable sans être rendu. Le texte de la dernière section est abrégé : dans l'application, il fait 686 signes.</span>
+      </div>
+      <div class="telephone iphone">
+        <div class="encoche"></div>
+        <div class="ecran">
+          <div class="barre-etat">
+            <span>9:41</span>
+            <span class="icones">
+              <span class="icone reseau"></span>
+              <span class="icone wifi"></span>
+              <span class="icone batterie"></span>
+            </span>
+          </div>
+          <div class="entete-pile">
+            <span class="retour">‹ Retour</span>
+            <span class="titre-pile">CE1</span>
+          </div>
+          <div class="entete-niveau">
+            <div class="entete-nom">Cours élémentaire 1re année</div>
+            <div class="entete-sous">Décoder, comprendre, lire tout seul</div>
+          </div>
+          <div class="section">
+            <div class="section-titre">S'entraîner</div>
+            <div class="bloc">
+              <div class="ligne">
+                <span class="ligne-titre">De quoi parle le texte ?</span>
+                <span class="ligne-detail">unité 5</span>
+                <span class="chevron">›</span>
+              </div>
+              <div class="ligne">
+                <span class="ligne-titre">Ce qu'elle ressent</span>
+                <span class="ligne-detail">unité 15</span>
+                <span class="chevron">›</span>
+              </div>
+              <div class="ligne">
+                <span class="ligne-titre">Le chat est-il là ?</span>
+                <span class="ligne-detail">unité 23</span>
+                <span class="chevron">›</span>
+              </div>
+              <div class="ligne">
+                <span class="ligne-titre">Que veut dire potion ?</span>
+                <span class="ligne-detail">unité 24</span>
+                <span class="chevron">›</span>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-titre">Écrit, pas encore jouable</div>
+            <div class="bloc">
+              <div class="raison">
+                <div class="raison-titre">2 exercices · apparier_graphies</div>
+                <div class="raison-detail">le geste demande de former des paires successives ; l'application ne sait pas encore tenir une sélection en deux temps</div>
+              </div>
+              <div class="raison">
+                <div class="raison-titre">4 exercices · ecouter_et_choisir</div>
+                <div class="raison-detail">le geste commence par « écouter le mot dit par la voix » : aucun son n'est enregistré</div>
+              </div>
+              <div class="raison">
+                <div class="raison-titre">5 exercices · trier_graphies</div>
+                <div class="raison-detail">la forme « ranger chaque mot dans une colonne » n'est pas écrite : elle demande un glisser-déposer, une interaction qui n'existe pas encore dans l'application</div>
+              </div>
+            </div>
+          </div>
+          <div class="section">
+            <div class="section-titre">Déclaré jouable, non rendu</div>
+            <div class="bloc">
+              <div class="raison">
+                <div class="raison-titre">E11</div>
+                <div class="raison-detail">la banque déclare cet exercice jouable, et sa mécanique est rendue — mais ses items n'ont jamais été écrits. Son champ <code>serie</code> décrit ce qu'il faudrait faire (« le texte affiché en entier », « une question, trois titres ») là où les autres exercices portent leurs <code>questions</code>. …</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="coupe"></div>
+        <div class="barre-geste"><div class="poignee"></div></div>
+      </div>
+    </div>
+
+    <div class="cadre panneau" style="width: 460px">
+      <div class="etiquette">
+        Ce que le niveau ne peut pas montrer
+        <span>Les sections « Lire » (23 textes), « Jouer » (le mot à trous) et « Ce qu'on apprend » (42 étapes) existent aussi, au-dessus et en dessous. Cette planche ne montre que ce qui est nouveau.</span>
+      </div>
+
+      <div class="encadre">
+        <h3>Les trois sections, et ce qu'elles engagent</h3>
+        <ul>
+          <li><strong>S'entraîner</strong> — 11 exercices, chacun avec un chevron : le chevron promet un écran, et il existe (<code>/exercice</code>).</li>
+          <li><strong>Écrit, pas encore jouable</strong> — 20 mécaniques du CE1, groupées, avec leur nombre d'exercices et leur raison. <em>Aucun chevron</em> : ces lignes ne promettent rien. C'est une décision, pas un oubli de style.</li>
+          <li><strong>Déclaré jouable, non rendu</strong> — 3 exercices que la banque dit jouables et que l'application ne rend pas : E11 (ses items n'ont jamais été écrits), E21 et E55 (leurs cartes sont des titres, et l'écran n'affiche jamais un titre).</li>
+        </ul>
+      </div>
+
+      <div class="encadre">
+        <h3>Ce qu'un relecteur doit regarder en premier</h3>
+        <ul>
+          <li>La consigne s'affiche-t-elle sans qu'on ait besoin du son ? C'est la condition qui a fait écarter <em>tous</em> les exercices de la GS.</li>
+          <li>Les trois résumés sont-ils <strong>discriminants</strong> ? Deux d'entre eux doivent pouvoir se confondre à la lecture rapide — sinon l'exercice se gagne sans lire le texte.</li>
+          <li>La phrase de preuve se retrouve-t-elle bien dans le texte affiché ? Les 12 questions du contenu ont été mesurées sur ce point, mais aucune machine ne juge si la preuve est <em>la bonne</em>.</li>
+          <li>Le ton des retours : « Non, ce n'est pas celle-là. Essaie encore. » — jamais de rouge vif, jamais de compte à rebours.</li>
+        </ul>
+      </div>
+
+      <div class="encadre">
+        <h3>Le compte, et où il est tenu</h3>
+        <table>
+          <tr><th>Ce qui est compté</th><th>Combien</th></tr>
+          <tr><td>Exercices écrits dans les deux banques</td><td>107</td></tr>
+          <tr><td>Déclarés jouables par les banques</td><td>95</td></tr>
+          <tr><td>Rendus par l'application</td><td>11</td></tr>
+          <tr><td>Déclarés en exception, avec leur raison</td><td>3</td></tr>
+          <tr><td>Écrits, comptés, non rendus</td><td>81</td></tr>
+        </table>
+        <p style="margin-top: 8px; font-size: 13px">Ces chiffres ne sont pas recopiés à la main : <code>outils/verifier-formes.py</code> les recalcule à chaque exécution, et <code>outils/tester-formes.py</code> refuse qu'ils changent sans qu'on le sache.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Planche produite le 21 septembre 2026 pour la relecture de l'application Ludo'Lire 0.1.0. Aucune dépendance externe : elle s'ouvre hors ligne. Les libellés, les tailles et les couleurs sont ceux du code, et l'ordre des cartes est calculé par <code>melange.ts</code> — il n'est pas écrit à la main.</p>
+  </footer>
+
+</div>
+</body>
+</html>

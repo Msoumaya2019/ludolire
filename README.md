@@ -34,6 +34,7 @@ contenu/                les textes de lecture et les documents du projet
   textes/                 les textes de la GS
   textes-ce1/             les textes du CE1
   textes-courts-ce1/      les textes courts du CE1
+  planche-ecran-exercice.html   la planche de relecture de l'écran « S'entraîner »
 outils/                 les corpus (JSON) et les contrôles (Python)
   *.json                  les corpus : mots, progressions, exercices, images
   formes-exercices.json   la DÉCISION : quelle interaction rend chaque mécanique
@@ -176,6 +177,12 @@ voie normale reste le magasin.
   réponse se donne en touchant une carte. Après une bonne réponse, la phrase du
   texte qui la prouve est montrée ;
 - **parcourir** la progression du programme, étape par étape.
+
+Pour relire l'écran « S'entraîner » sans installer l'application,
+`contenu/planche-ecran-exercice.html` le montre dans ses six états, sur iPhone et
+sur Android, avec les valeurs du thème et l'ordre des cartes **calculé par
+`melange.ts`**. La planche s'ouvre hors ligne et ne dépend d'aucun fichier
+extérieur.
 
 **Elle ne fait pas encore :**
 
