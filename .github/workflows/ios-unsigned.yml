@@ -167,8 +167,8 @@ jobs:
 
           echo "Le contenu embarqué est à jour."
 
-      - name: Vérifier le contenu et le code
-        # LES TROIS CONTRÔLES DOIVENT TOUJOURS TOURNER.
+      - name: Vérifier le contenu, les routes et le code
+        # LES CINQ CONTRÔLES DOIVENT TOUJOURS TOURNER.
         #
         # Un `run:` multiligne est exécuté par `bash -e` : la première commande
         # qui échoue termine le script, et les suivantes ne s'exécutent jamais.
@@ -180,11 +180,17 @@ jobs:
         # `|| code=1` et non `|| true` : il faut que le pas échoue à la fin.
         # `exit "$code"` en dernière ligne : sous `bash -e`, c'est la dernière
         # commande du script qui fixe le code de sortie.
+        #
+        # `routes:verifier` figure ici parce que le typage des routes ne garde
+        # rien dans cette chaîne : les types sont écrits par `expo prebuild`,
+        # qui tourne APRÈS ce pas. Le contrôle lit `app/` sur le disque et ne
+        # dépend d'aucune génération.
         run: |
           set -euo pipefail
 
           code=0
           npm run check:workflows || code=1
+          npm run routes:verifier || code=1
           npm run contenu:verifier || code=1
           npm run typecheck || code=1
           npm test || code=1

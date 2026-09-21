@@ -69,14 +69,15 @@ installée, quel contenu elle embarque réellement.
 npm run verify
 ```
 
-Cette commande enchaîne quatre contrôles :
+Cette commande enchaîne cinq contrôles :
 
 | Contrôle | Ce qu'il vérifie |
 | --- | --- |
 | `check:workflows` | que les flux de travail GitHub sont bien formés, avant de les pousser |
+| `routes:verifier` | que chaque navigation mène à un écran qui existe, et que chaque écran est déclaré |
 | `contenu:verifier` | que le contenu embarqué est cohérent et que son empreinte correspond |
 | `typecheck` | que le TypeScript compile |
-| `test` | les deux bancs — 40 cas : le contrôle du contenu (23, dont 20 falsifications) et le contrôle des flux (17, dont 11 mutations) |
+| `test` | les quatre bancs — 59 cas : le contenu (23, dont 20 falsifications), les flux (17, dont 11 mutations), le mélange des cartes (8, dont 4 implémentations fausses) et les routes (11, dont un faux positif) |
 
 Le lanceur est appelé avec un **motif explicite** — `node --test
 "tests/*.test.mjs"` — et non sans argument. Sans argument, Node découvre les
@@ -86,6 +87,12 @@ d'appartenance à des paquets, plus un fichier de test d'un paquet. Le banc
 passait de 40 à 277 cas, dont 201 en échec — tous imputables à des paquets
 tiers. **Un contrôle qui ramasse ce qu'il n'a pas désigné ne dit rien de ce
 qu'on lui demande de garder.**
+
+Le banc du mélange importe `melange.ts` directement : Node 22 détache les types
+et exécute le TypeScript sans transpileur. C'est la raison pour laquelle le
+mélange vit dans son propre module plutôt que dans l'écran — `app/jeu.tsx`
+importe React Native, donc un banc ne peut pas le charger, donc **rien** ne
+vérifiait que le mélange déplace réellement la bonne carte.
 
 Côté corpus, les contrôles du projet sont en Python :
 

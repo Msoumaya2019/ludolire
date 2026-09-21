@@ -12,9 +12,19 @@
  * Le corpus déclare les cartes dans l'ordre « la bonne, puis les intruses ».
  * C'est le bon ordre pour un fichier, et le pire pour un jeu : l'enfant qui
  * touche toujours la première carte gagne sans lire, et il apprend cela en
- * trois items. L'application mélange donc, et le mélange est calculé à partir
- * de l'identifiant de l'item — donc reproductible, ce qui permet de rejouer
- * exactement la même partie quand on cherche un défaut.
+ * trois items.
+ *
+ * Le mélange lui-même vit dans `melange.ts`, et non ici, pour une raison
+ * mesurable : cet écran importe React Native, donc un banc ne peut pas le
+ * charger, donc **rien** ne pouvait vérifier que le mélange déplace réellement
+ * la bonne carte. La règle est dans le module, le banc la tient.
+ *
+ * L'écran, lui, tient le numéro de PARTIE. La graine dépend de l'item et de la
+ * partie : la première partie se rejoue à l'identique — utile pour retrouver un
+ * défaut signalé par un parent —, mais les suivantes changent d'ordre. Sans
+ * cela l'ordre serait figé pour toujours, et l'enfant qui touche « Recommencer »
+ * retrouverait la disposition qu'il vient de mémoriser : il gagnerait sans lire
+ * au troisième passage, ce que le mélange existe précisément pour empêcher.
  *
  * POURQUOI LA BONNE RÉPONSE N'EST PAS DANS LE CONTENU
  * ---------------------------------------------------
@@ -29,26 +39,8 @@ import { useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { niveau as chercherNiveau, type ItemJeu } from '../contenu-app';
+import { graine, melanger } from '../melange';
 import { couleurs, espace, rayon, taille } from '../theme';
-
-/** Un mélange reproductible : même item, même ordre — mais jamais l'ordre du fichier. */
-function melanger(cartes: string[], graine: string): string[] {
-  let h = 2166136261;
-  for (let i = 0; i < graine.length; i += 1) {
-    h ^= graine.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  const melange = [...cartes];
-  for (let i = melange.length - 1; i > 0; i -= 1) {
-    h = Math.imul(h ^ (h >>> 15), 2246822507);
-    const j = Math.abs(h) % (i + 1);
-    const a = melange[i] as string;
-    const b = melange[j] as string;
-    melange[i] = b;
-    melange[j] = a;
-  }
-  return melange;
-}
 
 export default function EcranJeu(): JSX.Element {
   const { niveau: idNiveau } = useLocalSearchParams<{ niveau?: string }>();
@@ -56,13 +48,14 @@ export default function EcranJeu(): JSX.Element {
   const items: ItemJeu[] = n?.jeu_syllabes ?? [];
 
   const [index, setIndex] = useState(0);
+  const [partie, setPartie] = useState(0);
   const [posee, setPosee] = useState<string | null>(null);
   const [fini, setFini] = useState(false);
 
   const item = items[index];
   const cartes = useMemo(
-    () => (item ? melanger(item.cartes, item.id) : []),
-    [item]
+    () => (item ? melanger(item.cartes, graine(item.id, partie)) : []),
+    [item, partie]
   );
 
   if (!n || items.length === 0) {
@@ -87,6 +80,10 @@ export default function EcranJeu(): JSX.Element {
           accessibilityRole="button"
           onPress={() => {
             setIndex(0);
+            // Une nouvelle partie change l'ordre des cartes. Sans cela, l'enfant
+            // qui recommence retrouve la disposition qu'il vient de mémoriser,
+            // et il gagne sans lire — le jeu s'annulerait lui-même.
+            setPartie((p) => p + 1);
             setPosee(null);
             setFini(false);
           }}
