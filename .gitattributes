@@ -1,0 +1,16 @@
+# Normalisation des fins de ligne.
+#
+# Sans ce fichier, Git convertit les fins de ligne en CRLF à l'extraction sous
+# Windows. Le projet entier est en LF, et les contrôles du projet comptent les
+# octets CR pour vérifier qu'aucun n'est apparu : un clone sous Windows ferait
+# échouer ces contrôles sur des fichiers que personne n'a touchés.
+* text=auto eol=lf
+
+# Les binaires ne subissent aucune conversion : la leur appliquer corromprait
+# les images.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.ttf binary
+*.otf binary

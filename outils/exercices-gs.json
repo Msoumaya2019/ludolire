@@ -1,0 +1,2213 @@
+{
+  "meta": {
+    "titre": "Exercices de la tranche GS",
+    "version": "0.2.0",
+    "date": "2026-09-21",
+    "role": "Banque d'exercices de la tranche GS : un exercice par unité de progression au minimum, chacun avec sa consigne orale et son geste de réponse.",
+    "source_progression": "outils/progression-gs.json — les 45 unités. Aucune unité n'est laissée sans exercice : une unité sans exercice est un objectif qu'on annonce et qu'on n'entraîne pas. Le champ `production` de chaque unité dit si son objectif demande à l'enfant de produire ce que la machine ne peut pas entendre.",
+    "source_consignes": "outils/corpus-gs.json — les consignes sont enregistrées une fois et réutilisées. Un exercice ne porte pas le texte de sa consigne, il porte son slug.",
+    "source_mots": "outils/mots-gs.json — un exercice n'emploie que des mots de ce corpus, et n'affiche en image que ceux qui sont illustrés dans outils/images-gs.json.",
+    "regle_de_contenu": "Un exercice de GS n'emploie que des mots connus de l'enfant à l'oral, et que des phonèmes déjà travaillés. Au CP la règle protège le décodage ; ici elle protège le découpage : on ne peut pas compter les syllabes d'un mot qu'on n'a jamais dit.",
+    "regle_du_geste": "Toute consigne se donne par la voix, toute réponse se donne par le geste. C'est la conséquence directe de l'absence de micro, et c'est la contrainte qui a produit la liste des mécaniques.",
+    "ce_que_la_banque_ne_regle_pas": "Elle ne règle ni l'habillage graphique, ni l'ordre des exercices dans une séance, ni la difficulté relative de deux exercices. Elle dit ce que chaque unité demande à l'enfant, avec quel matériel, et ce que l'application peut vérifier — ou pas.",
+    "les_deux_champs_de_production": "`substitution` ne vaut que pour un exercice hors app : il nomme le jumeau réceptif qui vérifie ce que la machine ne peut pas juger, ou écrit « aucune » quand il n'en existe pas. `inversion` dit ce que le geste reprend quand l'unité porte un objectif de production : la voix nomme et l'enfant touche, ou la voix dit le mot transformé et l'enfant en ordonne les syllabes. Les deux sont nuls quand ils ne s'appliquent pas — un champ vide se lit, un champ absent se cherche."
+  },
+  "mecaniques": [
+    {
+      "id": "localiser_son",
+      "libelle": "Localiser un son dans l'espace",
+      "ce_que_l_enfant_fait": "toucher la zone de l'écran d'où le son est venu",
+      "ce_que_l_application_fait": "joue un son depuis un point de l'écran, puis un autre depuis un autre point",
+      "verdict": "app"
+    },
+    {
+      "id": "lever_main",
+      "libelle": "Signaler une cible dans une suite",
+      "ce_que_l_enfant_fait": "toucher un bouton à chaque fois que la cible revient",
+      "ce_que_l_application_fait": "énonce une suite et enregistre les appuis, avec leur position dans la suite",
+      "verdict": "app"
+    },
+    {
+      "id": "apparier_sons",
+      "libelle": "Apparier deux sons identiques",
+      "ce_que_l_enfant_fait": "toucher deux boîtes qui font le même son",
+      "ce_que_l_application_fait": "remplit six boîtes de trois sons joués deux fois chacun, dans un ordre tiré",
+      "verdict": "app"
+    },
+    {
+      "id": "poser_jeton",
+      "libelle": "Poser un jeton",
+      "ce_que_l_enfant_fait": "pose un jeton sur une image, ou sur une position, quand il entend la cible",
+      "ce_que_l_application_fait": "joue la suite et enregistre la position de chaque jeton",
+      "verdict": "app"
+    },
+    {
+      "id": "frapper_syllabes",
+      "libelle": "Frapper les syllabes",
+      "ce_que_l_enfant_fait": "touche un tambour une fois par syllabe, en disant le mot",
+      "ce_que_l_application_fait": "fait entendre le mot, puis compare le nombre de frappes au nombre de syllabes",
+      "verdict": "app"
+    },
+    {
+      "id": "suivre_voix",
+      "libelle": "Suivre la voix du doigt",
+      "ce_que_l_enfant_fait": "suit du doigt une courbe qui monte et descend",
+      "ce_que_l_application_fait": "joue une intonation et vérifie que le doigt l'a suivie, sans juger la voix",
+      "verdict": "app"
+    },
+    {
+      "id": "designer_image",
+      "libelle": "Désigner l'image d'un mot",
+      "ce_que_l_enfant_fait": "touche l'image du mot entendu parmi deux à quatre images",
+      "ce_que_l_application_fait": "dit un mot et enregistre l'image touchée",
+      "verdict": "app"
+    },
+    {
+      "id": "trier_images",
+      "libelle": "Trier des images",
+      "ce_que_l_enfant_fait": "glisse des images dans deux colonnes",
+      "ce_que_l_application_fait": "fait entendre chaque mot et vérifie le rangement",
+      "verdict": "app"
+    },
+    {
+      "id": "ranger_longueur",
+      "libelle": "Ranger du plus court au plus long",
+      "ce_que_l_enfant_fait": "ordonne des images selon le nombre de syllabes",
+      "ce_que_l_application_fait": "fait entendre les mots, un par un, et vérifie l'ordre",
+      "verdict": "app"
+    },
+    {
+      "id": "remettre_ordre",
+      "libelle": "Remettre une suite dans l'ordre",
+      "ce_que_l_enfant_fait": "replace des images dans l'ordre où elles ont été entendues",
+      "ce_que_l_application_fait": "énonce une suite, la cache, puis vérifie l'ordre",
+      "verdict": "app"
+    },
+    {
+      "id": "apparier_rime",
+      "libelle": "Apparier deux images qui riment",
+      "ce_que_l_enfant_fait": "touche les deux images dont les mots riment",
+      "ce_que_l_application_fait": "dit les mots et vérifie la paire",
+      "verdict": "app"
+    },
+    {
+      "id": "trouver_intrus",
+      "libelle": "Trouver l'intrus à l'initiale",
+      "ce_que_l_enfant_fait": "touche l'image dont le mot ne commence pas comme les autres",
+      "ce_que_l_application_fait": "dit les mots et vérifie l'intrus",
+      "verdict": "app"
+    },
+    {
+      "id": "position_son",
+      "libelle": "Situer un son dans le mot",
+      "ce_que_l_enfant_fait": "pose un jeton au début ou à la fin du mot",
+      "ce_que_l_application_fait": "dit le mot et vérifie la position",
+      "verdict": "app"
+    },
+    {
+      "id": "toucher_lettre",
+      "libelle": "Toucher une lettre",
+      "ce_que_l_enfant_fait": "touche la lettre qui fait le son entendu, ou dont le nom a été dit",
+      "ce_que_l_application_fait": "produit le son ou le nom, et vérifie la lettre touchée",
+      "verdict": "app"
+    },
+    {
+      "id": "apparier_graphies",
+      "libelle": "Apparier les écritures d'une même lettre",
+      "ce_que_l_enfant_fait": "assemble la capitale, la scripte et la cursive d'une même lettre",
+      "ce_que_l_application_fait": "vérifie l'assemblage, sans nommer la lettre",
+      "verdict": "app"
+    },
+    {
+      "id": "toucher_lettres_ordre",
+      "libelle": "Toucher les lettres dans l'ordre",
+      "ce_que_l_enfant_fait": "touche les lettres d'un mot dans l'ordre où elles ont été dites",
+      "ce_que_l_application_fait": "dit les noms de lettres un par un et vérifie l'ordre des appuis",
+      "verdict": "app"
+    },
+    {
+      "id": "deplacer_lettres",
+      "libelle": "Déplacer des lettres",
+      "ce_que_l_enfant_fait": "place des lettres pour composer un mot entendu",
+      "ce_que_l_application_fait": "dit le mot, puis vérifie la composition",
+      "verdict": "app"
+    },
+    {
+      "id": "composer_syllabes",
+      "libelle": "Composer un mot avec des cartes-syllabes",
+      "ce_que_l_enfant_fait": "glisse des cartes-syllabes dans l'ordre entendu",
+      "ce_que_l_application_fait": "dit le mot — ou le mot transformé — puis vérifie l'ordre des cartes",
+      "verdict": "app"
+    },
+    {
+      "id": "repeter_modele",
+      "libelle": "Répéter après le modèle",
+      "ce_que_l_enfant_fait": "répète ce que la voix vient de dire",
+      "ce_que_l_application_fait": "donne le modèle, et s'arrête là",
+      "verdict": "hors app"
+    },
+    {
+      "id": "jeu_syllabes",
+      "libelle": "Le mot à trous",
+      "ce_que_l_enfant_fait": "choisit la carte-syllabe manquante et la pose dans le mot",
+      "ce_que_l_application_fait": "fait entendre le mot reconstitué ; c'est le retour, et il ne dépend pas d'un score",
+      "verdict": "app"
+    }
+  ],
+  "exercices": [
+    {
+      "id": "E01",
+      "unite": 1,
+      "mecanique": "localiser_son",
+      "titre": "D'où vient le son ?",
+      "consigne": "touche_zone_son",
+      "geste": "toucher le coin de l'écran d'où le son est venu",
+      "serie": [
+        "/a/ depuis le coin haut-gauche",
+        "/ʃ/ depuis le coin bas-droit",
+        "/m/ depuis le coin haut-droit",
+        "/f/ depuis le coin bas-gauche"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/a/",
+        "/ʃ/",
+        "/m/",
+        "/f/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "localiser un son dans l'espace, et tenir son attention sur une source",
+      "ne_verifie_pas": "la reconnaissance du phonème lui-même — l'exercice ne demande que de savoir d'où vient le son"
+    },
+    {
+      "id": "E02",
+      "unite": 2,
+      "mecanique": "lever_main",
+      "titre": "Le son qui revient",
+      "consigne": "leve_main_son",
+      "geste": "toucher le bouton à chaque retour du son cible",
+      "serie": [
+        "suite de sept phonèmes où /a/ revient trois fois",
+        "puis une suite où /ʃ/ revient trois fois"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/a/",
+        "/ʃ/",
+        "/i/",
+        "/m/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "reconnaître un phonème connu dans une suite, et attendre",
+      "ne_verifie_pas": "la discrimination entre deux phonèmes proches — c'est l'objet de E03 et de E16"
+    },
+    {
+      "id": "E03",
+      "unite": 3,
+      "mecanique": "apparier_sons",
+      "titre": "Les deux boîtes jumelles",
+      "consigne": "apparie_meme_son",
+      "geste": "toucher deux boîtes qui font le même son",
+      "serie": [
+        "six boîtes : /m/, /f/, /ʃ/ joués deux fois chacun, dans un ordre tiré"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/m/",
+        "/f/",
+        "/ʃ/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande aussi de REPRODUIRE les sons. L'appariement n'en garde que la comparaison : deux boîtes qui font le même son se reconnaissent sans être imitées. Reproduire se vérifie à l'oreille d'un adulte, et c'est l'objet de l'unité 5, déclarée hors app.",
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "comparer deux sons et les garder en mémoire le temps de la comparaison",
+      "ne_verifie_pas": "ce que l'enfant se dit pour les distinguer"
+    },
+    {
+      "id": "E04",
+      "unite": 4,
+      "mecanique": "poser_jeton",
+      "titre": "Pose le jeton quand tu entends",
+      "consigne": "pose_jeton_sur_image",
+      "geste": "poser un jeton sur l'image du mot quand la cible est entendue",
+      "serie": [
+        "trois images : chat, rat, sac",
+        "la voix dit les mots un par un, /a/ en cible"
+      ],
+      "mots": [
+        "chat",
+        "rat",
+        "sac"
+      ],
+      "affiches": [
+        "chat",
+        "rat",
+        "sac"
+      ],
+      "phonemes": [
+        "/a/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "repérer une occurrence dans une suite, sur un support montré",
+      "ne_verifie_pas": "la position du son dans le mot — poser un jeton dit « je l'ai entendu », pas « je sais où »"
+    },
+    {
+      "id": "E05",
+      "unite": 5,
+      "mecanique": "repeter_modele",
+      "titre": "Répète le son",
+      "consigne": "repete_apres_moi",
+      "geste": "aucun geste de réponse : l'enfant répète",
+      "serie": [
+        "/m/, /f/, /ʃ/, /l/, /ʁ/, /s/"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/m/",
+        "/f/",
+        "/ʃ/",
+        "/l/",
+        "/ʁ/",
+        "/s/"
+      ],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "le jumeau réceptif est E04 : la voix dit le mot porteur, l'enfant touche son image. Il vérifie la reconnaissance du son, jamais sa production.",
+      "inversion": null,
+      "pourquoi_hors_app": "l'application ne peut pas entendre. Reproduire un son se vérifie à l'oreille d'un adulte, et le palier de sortie le déclare déjà hors app.",
+      "duree_s": 30,
+      "entraine": "produire le son après un modèle",
+      "ne_verifie_pas": "tout. Cette unité est une étape de production : l'application donne le modèle et passe."
+    },
+    {
+      "id": "E06",
+      "unite": 6,
+      "mecanique": "suivre_voix",
+      "titre": "La sirène",
+      "consigne": "suis_voix_doigt",
+      "geste": "suivre du doigt une courbe qui monte et descend",
+      "serie": [
+        "sirène montante sur /a/",
+        "sirène descendante sur /a/",
+        "sirène montante puis descendante sur /ɔ/"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/a/",
+        "/ɔ/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de REPRODUIRE l'intonation. Le doigt suit le contour sur une courbe : c'est la perception du contour qui est vérifiée, jamais la gorge. Reproduire une voix qui monte et descend se vérifie à l'oreille d'un adulte.",
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "suivre une intonation, et faire le lien entre la voix et un tracé",
+      "ne_verifie_pas": "la justesse de la voix de l'enfant : le doigt est jugé, pas la gorge"
+    },
+    {
+      "id": "E07",
+      "unite": 7,
+      "mecanique": "designer_image",
+      "titre": "Le mot que tu entends",
+      "consigne": "montre_image_mot",
+      "geste": "toucher l'image du mot entendu parmi deux",
+      "serie": [
+        "chat / rat",
+        "rat / chat, dans l'ordre inverse"
+      ],
+      "mots": [
+        "chat",
+        "rat"
+      ],
+      "affiches": [
+        "chat",
+        "rat"
+      ],
+      "phonemes": [
+        "/ʃ/",
+        "/ʁ/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "percevoir qu'un seul son sépare deux mots",
+      "ne_verifie_pas": "le nombre de paires disponibles : voir `besoins`, l'unité n'en a qu'une illustrée",
+      "besoin_id": "B07"
+    },
+    {
+      "id": "E08",
+      "unite": 8,
+      "mecanique": "frapper_syllabes",
+      "titre": "Une tape par syllabe",
+      "consigne": "frappe_syllabes",
+      "geste": "toucher le tambour une fois par syllabe, en disant le mot",
+      "serie": [
+        "papa (2)",
+        "dodo (2)",
+        "café (2)",
+        "moto (2)",
+        "loup (1)",
+        "chat (1)"
+      ],
+      "mots": [
+        "papa",
+        "dodo",
+        "café",
+        "moto",
+        "loup",
+        "chat"
+      ],
+      "affiches": [
+        "papa",
+        "dodo",
+        "café",
+        "moto",
+        "loup",
+        "chat"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de scander SON PRÉNOM. L'application ne connaît aucun prénom et n'en demandera jamais : l'exercice tourne sur les mots du corpus, qui sont connus de l'enfant à l'oral.",
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "découper un mot en syllabes, avec un geste qui compte",
+      "ne_verifie_pas": "la prononciation du mot pendant la frappe"
+    },
+    {
+      "id": "E09",
+      "unite": 9,
+      "mecanique": "frapper_syllabes",
+      "titre": "Une tape par syllabe, mots longs",
+      "consigne": "frappe_syllabes",
+      "geste": "toucher le tambour une fois par syllabe",
+      "serie": [
+        "banane (3)",
+        "tomate (3)",
+        "ananas (3)",
+        "valise (3)",
+        "chocolat (3)",
+        "crocodile (4)"
+      ],
+      "mots": [
+        "banane",
+        "tomate",
+        "ananas",
+        "valise",
+        "chocolat",
+        "crocodile"
+      ],
+      "affiches": [
+        "banane",
+        "tomate",
+        "ananas",
+        "valise",
+        "chocolat",
+        "crocodile"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "tenir le découpage sur des mots de trois et quatre syllabes",
+      "ne_verifie_pas": "l'endroit exact où l'enfant place la coupe — une coupe orale n'est pas une coupe écrite"
+    },
+    {
+      "id": "E10",
+      "unite": 10,
+      "mecanique": "frapper_syllabes",
+      "titre": "Scander le mot entendu",
+      "consigne": "frappe_syllabes",
+      "geste": "toucher le tambour une fois par syllabe, sans voir l'image",
+      "serie": [
+        "six mots tirés du corpus, entendus scandés puis entiers"
+      ],
+      "mots": [
+        "banane",
+        "tomate",
+        "maison",
+        "bateau",
+        "éléphant",
+        "parapluie"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "découper à l'oreille seule, sans support",
+      "ne_verifie_pas": "ce que l'enfant fait des mots de plus de quatre syllabes : le corpus n'en contient pas"
+    },
+    {
+      "id": "E11",
+      "unite": 11,
+      "mecanique": "poser_jeton",
+      "titre": "Combien de syllabes ?",
+      "consigne": "pose_jeton_syllabe",
+      "geste": "poser un jeton par syllabe, puis valider",
+      "serie": [
+        "loup (1)",
+        "papa (2)",
+        "banane (3)",
+        "crocodile (4)",
+        "tomate (3)",
+        "chocolat (3)"
+      ],
+      "mots": [
+        "loup",
+        "papa",
+        "banane",
+        "crocodile",
+        "tomate",
+        "chocolat"
+      ],
+      "affiches": [
+        "loup",
+        "papa",
+        "banane",
+        "crocodile",
+        "tomate",
+        "chocolat"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "dénombrer les syllabes d'un mot familier, sans support écrit",
+      "ne_verifie_pas": "la correspondance entre le jeton et la syllabe : l'exercice compte, il ne nomme pas"
+    },
+    {
+      "id": "E12",
+      "unite": 12,
+      "mecanique": "ranger_longueur",
+      "titre": "Du plus court au plus long",
+      "consigne": "range_court_long",
+      "geste": "ordonner des images selon le nombre de syllabes",
+      "serie": [
+        "loup (1)",
+        "papa (2)",
+        "banane (3)",
+        "crocodile (4)"
+      ],
+      "mots": [
+        "loup",
+        "papa",
+        "banane",
+        "crocodile"
+      ],
+      "affiches": [
+        "loup",
+        "papa",
+        "banane",
+        "crocodile"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "comparer des mots selon leur longueur orale",
+      "ne_verifie_pas": "que l'enfant distingue longueur orale et longueur écrite — l'exercice ne montre aucun mot écrit, c'est délibéré"
+    },
+    {
+      "id": "E13",
+      "unite": 13,
+      "mecanique": "lever_main",
+      "titre": "La syllabe qui revient",
+      "consigne": "leve_main_son",
+      "geste": "toucher le bouton à chaque retour de la syllabe cible",
+      "serie": [
+        "MA, FA, PA, MA, SA, MA",
+        "puis BA, DA, BA, LA, BA"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "isoler une syllabe et l'attendre dans une suite",
+      "ne_verifie_pas": "l'écriture de la syllabe — à la GS la syllabe s'entend, elle ne se lit pas",
+      "besoin_id": "B13"
+    },
+    {
+      "id": "E14",
+      "unite": 14,
+      "mecanique": "composer_syllabes",
+      "titre": "Le mot à l'envers",
+      "consigne": "compose_syllabes",
+      "geste": "glisser les cartes-syllabes dans l'ordre entendu",
+      "serie": [
+        "va-lise entendu li-va",
+        "pa-pa entendu pa-pa",
+        "ba-na-ne entendu ne-ba-na"
+      ],
+      "mots": [
+        "valise",
+        "papa",
+        "banane"
+      ],
+      "affiches": [
+        "valise",
+        "papa",
+        "banane"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de DIRE le mot transformé. Le geste le remplace : l'enfant pose les syllabes dans l'ordre qu'il a entendu, et l'application vérifie l'ordre. C'est la permutation qui est vérifiée, pas la diction.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "manipuler l'ordre des syllabes d'un mot",
+      "ne_verifie_pas": "que l'enfant entende que le résultat n'est plus un mot",
+      "besoin_id": "B14a"
+    },
+    {
+      "id": "E15",
+      "unite": 15,
+      "mecanique": "repeter_modele",
+      "titre": "La comptine",
+      "consigne": null,
+      "geste": "aucun geste de réponse : la comptine se dit à plusieurs",
+      "serie": [],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "aucune. Une comptine n'est pas un exercice individuel : elle s'apprend en groupe, avec un adulte qui la dit et la reprend. L'application n'a rien à y faire, et le dire vaut mieux que d'inventer un équivalent qui n'en serait pas un.",
+      "inversion": null,
+      "pourquoi_hors_app": "l'unité demande de dire une comptine avec le groupe. Ni l'apprentissage, ni la récitation ne passent par un écran, et l'application ne peut pas entendre.",
+      "duree_s": 0,
+      "entraine": "rien dans l'application",
+      "ne_verifie_pas": "tout. Cette unité est déclarée hors app, et elle est comptée comme telle."
+    },
+    {
+      "id": "E16",
+      "unite": 16,
+      "mecanique": "trier_images",
+      "titre": "Les nasales",
+      "consigne": "trie_images_son",
+      "geste": "glisser chaque image dans la colonne de la nasale entendue",
+      "serie": [
+        "colonne /ɔ̃/ : mouton, bonbon, maison, avion",
+        "colonne /ɑ̃/ : canard, ananas, éléphant, banane"
+      ],
+      "mots": [
+        "mouton",
+        "bonbon",
+        "maison",
+        "avion",
+        "canard",
+        "ananas",
+        "éléphant",
+        "banane"
+      ],
+      "affiches": [
+        "mouton",
+        "bonbon",
+        "maison",
+        "avion",
+        "canard",
+        "ananas",
+        "éléphant",
+        "banane"
+      ],
+      "phonemes": [
+        "/ɔ̃/",
+        "/ɑ̃/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de PRODUIRE les nasales. Le tri n'en garde que la distinction : ranger mouton avec bonbon se fait sans prononcer. Produire correctement se vérifie à l'oreille d'un adulte.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "distinguer deux nasales proches",
+      "ne_verifie_pas": "la prononciation des nasales, qui est un objectif de production déclaré hors app"
+    },
+    {
+      "id": "E17",
+      "unite": 17,
+      "mecanique": "repeter_modele",
+      "titre": "Les couples de consonnes",
+      "consigne": "repete_apres_moi",
+      "geste": "aucun geste de réponse : l'enfant répète la paire",
+      "serie": [
+        "t / k",
+        "f / s",
+        "m / n"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/t/",
+        "/k/",
+        "/f/",
+        "/s/",
+        "/m/",
+        "/n/"
+      ],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "le jumeau réceptif est E16 : la voix dit le mot, l'enfant le range par la nasale entendue. Il vérifie la discrimination, pas l'articulation.",
+      "inversion": null,
+      "pourquoi_hors_app": "articuler distinctement deux consonnes proches se vérifie à l'oreille d'un adulte. C'est la première des trois réussites du palier de sortie déclarées hors app.",
+      "duree_s": 30,
+      "entraine": "articuler",
+      "ne_verifie_pas": "tout."
+    },
+    {
+      "id": "E18",
+      "unite": 18,
+      "mecanique": "designer_image",
+      "titre": "Le mot entendu, paires distinctives",
+      "consigne": "montre_image_mot",
+      "geste": "toucher l'image du mot entendu parmi deux",
+      "serie": [
+        "chat / rat",
+        "rat / chat, dans l'ordre inverse"
+      ],
+      "mots": [
+        "chat",
+        "rat"
+      ],
+      "affiches": [
+        "chat",
+        "rat"
+      ],
+      "phonemes": [
+        "/ʃ/",
+        "/ʁ/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de PRONONCER les paires distinctives. Toucher l'image du mot entendu vérifie qu'elles sont DISTINGUÉES à l'écoute, et non qu'elles sont dites distinctement. La diction reste un objectif, et il est hors app.",
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "discriminer deux mots qui ne diffèrent que par un son",
+      "ne_verifie_pas": "les paires du programme : voir `besoins`"
+    },
+    {
+      "id": "E19",
+      "unite": 19,
+      "mecanique": "repeter_modele",
+      "titre": "Les couples f/v, s/z, p/b, t/d, k/g",
+      "consigne": "repete_apres_moi",
+      "geste": "aucun geste de réponse : l'enfant répète la paire",
+      "serie": [
+        "f / v",
+        "s / z",
+        "p / b",
+        "t / d",
+        "k / g"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/f/",
+        "/v/",
+        "/s/",
+        "/z/",
+        "/p/",
+        "/b/",
+        "/t/",
+        "/d/",
+        "/k/",
+        "/g/"
+      ],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "le jumeau réceptif est E20 : la voix dit le mot, l'enfant touche son image. La paire entendue est la même ; c'est la réponse qui change de nature.",
+      "inversion": null,
+      "pourquoi_hors_app": "l'articulation d'un couple de consonnes proches ne s'entend pas par la machine.",
+      "duree_s": 30,
+      "entraine": "articuler un couple de consonnes proches",
+      "ne_verifie_pas": "tout."
+    },
+    {
+      "id": "E20",
+      "unite": 20,
+      "mecanique": "designer_image",
+      "titre": "Paires distinctives, deuxième série",
+      "consigne": "montre_image_mot",
+      "geste": "toucher l'image du mot entendu parmi deux",
+      "serie": [
+        "chat / rat",
+        "cerise / valise"
+      ],
+      "mots": [
+        "chat",
+        "rat",
+        "cerise",
+        "valise"
+      ],
+      "affiches": [
+        "chat",
+        "rat",
+        "cerise",
+        "valise"
+      ],
+      "phonemes": [
+        "/ʃ/",
+        "/ʁ/",
+        "/s/",
+        "/v/",
+        "/l/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "même inversion que E18, sur une deuxième série. La discrimination est vérifiée par le geste ; la prononciation des paires reste un objectif hors app.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "discriminer des mots proches sur deux positions",
+      "ne_verifie_pas": "les paires ville/fil, dessert/désert, poison/poisson, pépé/bébé, doigt/toit, gare/car, boule/poule : voir `besoins`",
+      "besoin_id": "B20"
+    },
+    {
+      "id": "E21",
+      "unite": 21,
+      "mecanique": null,
+      "titre": "L'étiquette du prénom",
+      "consigne": null,
+      "geste": "aucun",
+      "serie": [],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "aucune, et c'est une décision de produit, pas un manque technique : reconnaître son étiquette suppose que l'application connaisse le prénom de l'enfant. Or elle ne collecte rien (§ 7 de la note de cadrage). L'équivalent le plus proche — retrouver un mot connu parmi d'autres par sa première lettre — est l'objet de E22.",
+      "inversion": null,
+      "pourquoi_hors_app": "l'unité repose sur le prénom de l'enfant. Aucun prénom n'est demandé, stocké ni transmis, et cette unité ne justifie pas d'ouvrir une collecte.",
+      "duree_s": 0,
+      "entraine": "rien dans l'application",
+      "ne_verifie_pas": "tout."
+    },
+    {
+      "id": "E22",
+      "unite": 22,
+      "mecanique": "toucher_lettre",
+      "titre": "La première lettre",
+      "consigne": "touche_lettre_nom",
+      "geste": "toucher la lettre dont le nom vient d'être dit",
+      "serie": [
+        "les lettres de papa : p, a",
+        "les lettres de loup : l, o, u, p",
+        "les lettres de chat : c, h, a, t"
+      ],
+      "mots": [
+        "papa",
+        "loup",
+        "chat"
+      ],
+      "affiches": [
+        "papa",
+        "loup",
+        "chat"
+      ],
+      "phonemes": [],
+      "lettres": [
+        "p",
+        "a",
+        "l",
+        "o",
+        "u",
+        "c",
+        "h",
+        "t"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de NOMMER la lettre désignée. Le geste inverse la charge : la voix dit le nom, l'enfant touche la lettre. Nommer reste un objectif, mais il est déclaré hors app.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "reconnaître une lettre à son nom",
+      "ne_verifie_pas": "la capacité à nommer la lettre soi-même, qui est l'objectif de production de l'unité"
+    },
+    {
+      "id": "E23",
+      "unite": 23,
+      "mecanique": "toucher_lettre",
+      "titre": "Les lettres d'un mot connu",
+      "consigne": "touche_lettre_nom",
+      "geste": "toucher la lettre dont le nom vient d'être dit, dans un mot affiché",
+      "serie": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur"
+      ],
+      "mots": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur"
+      ],
+      "affiches": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur"
+      ],
+      "phonemes": [],
+      "lettres": [
+        "l",
+        "o",
+        "u",
+        "p",
+        "c",
+        "h",
+        "a",
+        "t",
+        "r",
+        "s",
+        "i",
+        "n",
+        "e",
+        "z",
+        "m",
+        "f"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "même inversion que E22 : la voix nomme, l'enfant touche. Le programme demande de nommer quelques lettres de mots connus ; l'application vérifie la reconnaissance.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "repérer une lettre dans un mot écrit",
+      "ne_verifie_pas": "la nomination"
+    },
+    {
+      "id": "E24",
+      "unite": 24,
+      "mecanique": "apparier_graphies",
+      "titre": "La même lettre, deux écritures",
+      "consigne": "apparie_graphies",
+      "geste": "assemble la capitale et la scripte minuscule d'une même lettre",
+      "serie": [
+        "a, m, l, t, s, o"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [
+        "a",
+        "m",
+        "l",
+        "t",
+        "s",
+        "o"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "reconnaître une lettre sous deux écritures",
+      "ne_verifie_pas": "l'écriture de la lettre — l'exercice fait reconnaître, pas tracer"
+    },
+    {
+      "id": "E25",
+      "unite": 25,
+      "mecanique": "toucher_lettres_ordre",
+      "titre": "Épeler un mot connu",
+      "consigne": "touche_lettres_ordre",
+      "geste": "toucher les lettres dans l'ordre où elles sont dites",
+      "serie": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur"
+      ],
+      "mots": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur"
+      ],
+      "affiches": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur"
+      ],
+      "phonemes": [],
+      "lettres": [
+        "l",
+        "o",
+        "u",
+        "p",
+        "c",
+        "h",
+        "a",
+        "t",
+        "r",
+        "s",
+        "i",
+        "n",
+        "e",
+        "z",
+        "m",
+        "f"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de DIRE les lettres dans l'ordre afin qu'un tiers puisse composer le mot. Le geste fait composer directement : l'enfant touche les lettres dans l'ordre entendu, et l'application vérifie la suite.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "tenir l'ordre des lettres d'un mot connu",
+      "ne_verifie_pas": "la diction des noms de lettres"
+    },
+    {
+      "id": "E26",
+      "unite": 26,
+      "mecanique": "deplacer_lettres",
+      "titre": "Composer le mot",
+      "consigne": "deplace_lettres",
+      "geste": "déplacer les lettres pour composer le mot entendu",
+      "serie": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main"
+      ],
+      "mots": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [
+        "l",
+        "o",
+        "u",
+        "p",
+        "c",
+        "h",
+        "a",
+        "t",
+        "r",
+        "s",
+        "i",
+        "n",
+        "e",
+        "z",
+        "m"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "composer un mot connu lettre après lettre",
+      "ne_verifie_pas": "que le mot composé soit lu : à la GS, il est reconnu comme une suite de lettres, pas déchiffré"
+    },
+    {
+      "id": "E27",
+      "unite": 27,
+      "mecanique": "toucher_lettre",
+      "titre": "La lettre qui fait le son",
+      "consigne": "touche_lettre_son",
+      "geste": "toucher la lettre qui fait le son entendu",
+      "serie": [
+        "a, i, o, u, e, é"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/a/",
+        "/i/",
+        "/o/",
+        "/y/",
+        "/ə/",
+        "/e/"
+      ],
+      "lettres": [
+        "a",
+        "i",
+        "o",
+        "u",
+        "e",
+        "é"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande d'UTILISER le nom des lettres — donc de le dire. La charge est inversée : l'application fait entendre le son, l'enfant touche la lettre qui l'écrit. Dire le nom reste un objectif, vérifié ailleurs par reconnaissance (E22, E42).",
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "faire le lien entre un son et la lettre qui l'écrit",
+      "ne_verifie_pas": "le cas de `e`, dont la valeur dépend de la position : l'exercice ne le présente qu'en position stable"
+    },
+    {
+      "id": "E28",
+      "unite": 28,
+      "mecanique": "remettre_ordre",
+      "titre": "La suite dans l'ordre",
+      "consigne": "remets_ordre_images",
+      "geste": "remettre trois images dans l'ordre entendu",
+      "serie": [
+        "loup, chat, rat",
+        "rat, loup, chat",
+        "chat, rat, loup"
+      ],
+      "mots": [
+        "loup",
+        "chat",
+        "rat"
+      ],
+      "affiches": [
+        "loup",
+        "chat",
+        "rat"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "garder en mémoire une suite de sons et la restituer",
+      "ne_verifie_pas": "la mémoire à long terme : la suite est courte, et l'exercice mesure la mémoire de travail, pas l'apprentissage"
+    },
+    {
+      "id": "E29",
+      "unite": 29,
+      "mecanique": "trier_images",
+      "titre": "Les nasales, deuxième série",
+      "consigne": "trie_images_son",
+      "geste": "glisser chaque image dans la colonne du son entendu",
+      "serie": [
+        "colonne /ɔ̃/ : bonbon, mouton",
+        "colonne /ɛ̃/ : lapin, main"
+      ],
+      "mots": [
+        "bonbon",
+        "mouton",
+        "lapin",
+        "main"
+      ],
+      "affiches": [
+        "bonbon",
+        "mouton",
+        "lapin",
+        "main"
+      ],
+      "phonemes": [
+        "/ɔ̃/",
+        "/ɛ̃/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "distinguer /ɔ̃/ et /ɛ̃/",
+      "ne_verifie_pas": "le troisième terme du programme, /œ̃/, qui n'a aucun mot porteur illustré : voir `besoins`",
+      "besoin_id": "B29"
+    },
+    {
+      "id": "E30",
+      "unite": 30,
+      "mecanique": "designer_image",
+      "titre": "Les mots qui se ressemblent",
+      "consigne": "montre_image_mot",
+      "geste": "toucher l'image du mot entendu parmi quatre",
+      "serie": [
+        "chat, rat, sac, loup — la voix dit l'un des quatre"
+      ],
+      "mots": [
+        "chat",
+        "rat",
+        "sac",
+        "loup"
+      ],
+      "affiches": [
+        "chat",
+        "rat",
+        "sac",
+        "loup"
+      ],
+      "phonemes": [
+        "/ʃ/",
+        "/ʁ/",
+        "/s/",
+        "/l/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "discriminer dans un choix de quatre, et non de deux",
+      "ne_verifie_pas": "la série du programme — poule, boule, roule, moule, coule, foule — dont aucun mot n'est illustré : voir `besoins`",
+      "besoin_id": "B30"
+    },
+    {
+      "id": "E31",
+      "unite": 31,
+      "mecanique": "remettre_ordre",
+      "titre": "Trois, quatre, cinq sons",
+      "consigne": "remets_ordre_images",
+      "geste": "remettre les images dans l'ordre entendu",
+      "serie": [
+        "suites de trois, puis quatre, puis cinq images tirées du corpus illustré"
+      ],
+      "mots": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez"
+      ],
+      "affiches": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "augmenter la mémoire auditive en allongeant la suite",
+      "ne_verifie_pas": "la concentration, qui n'est pas mesurable par la réussite d'un exercice"
+    },
+    {
+      "id": "E32",
+      "unite": 32,
+      "mecanique": "composer_syllabes",
+      "titre": "Le mot-valise",
+      "consigne": "compose_syllabes",
+      "geste": "poser les deux cartes-syllabes dans l'ordre entendu",
+      "serie": [
+        "mou-ton + cha-peau → mou-cha",
+        "ba-na-ne + ton → ba-ton"
+      ],
+      "mots": [
+        "mouton",
+        "chocolat",
+        "banane"
+      ],
+      "affiches": [
+        "mouton",
+        "chocolat",
+        "banane"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de DIRE le pseudo-mot obtenu. Un pseudo-mot n'a pas d'image : le geste ne peut donc pas être « toucher l'image ». Il est « poser les syllabes dans l'ordre », et c'est l'ordre qui est vérifié.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "fusionner l'attaque d'un mot et la fin d'un autre",
+      "ne_verifie_pas": "la diction du pseudo-mot"
+    },
+    {
+      "id": "E33",
+      "unite": 33,
+      "mecanique": "composer_syllabes",
+      "titre": "Supprimer, inverser, remplacer",
+      "consigne": "compose_syllabes",
+      "geste": "poser les cartes-syllabes dans l'ordre entendu",
+      "serie": [
+        "valise → lise",
+        "banane → nane",
+        "tomate → mate",
+        "papa → pa"
+      ],
+      "mots": [
+        "valise",
+        "banane",
+        "tomate",
+        "papa"
+      ],
+      "affiches": [
+        "valise",
+        "banane",
+        "tomate",
+        "papa"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "même inversion que E32 : l'application dit le mot transformé, l'enfant compose, l'ordre est vérifié.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "manipuler les syllabes d'un mot — supprimer, inverser",
+      "ne_verifie_pas": "que le résultat entendu soit reconnu comme un mot ou non"
+    },
+    {
+      "id": "E34",
+      "unite": 34,
+      "mecanique": "apparier_rime",
+      "titre": "Les deux qui riment",
+      "consigne": "apparie_qui_rime",
+      "geste": "toucher les deux images dont les mots riment",
+      "serie": [
+        "bateau / gâteau",
+        "maison / mouton",
+        "cerise / valise"
+      ],
+      "mots": [
+        "bateau",
+        "gâteau",
+        "maison",
+        "mouton",
+        "cerise",
+        "valise"
+      ],
+      "affiches": [
+        "bateau",
+        "gâteau",
+        "maison",
+        "mouton",
+        "cerise",
+        "valise"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de REPÉRER et de PRODUIRE une rime. L'appariement entraîne le repérage ; produire une rime se vérifie à l'oreille d'un adulte, seul juge de deux mots qui riment.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "entendre une rime et apparier deux mots qui la partagent",
+      "ne_verifie_pas": "la production d'une rime — l'unité la demande, et l'application ne peut pas l'entendre"
+    },
+    {
+      "id": "E35",
+      "unite": 35,
+      "mecanique": "lever_main",
+      "titre": "Le son /f/",
+      "consigne": "leve_main_son",
+      "geste": "toucher le bouton quand /f/ est entendu",
+      "serie": [
+        "fleur, café, téléphone, éléphant, girafe",
+        "puis les mêmes avec /v/ en cible"
+      ],
+      "mots": [
+        "fleur",
+        "café",
+        "téléphone",
+        "éléphant",
+        "girafe"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/f/",
+        "/v/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "trouver un phonème cible dans une liste de mots",
+      "ne_verifie_pas": "la position du /f/ dans le mot — l'unité ne demande que de l'entendre"
+    },
+    {
+      "id": "E36",
+      "unite": 36,
+      "mecanique": "trouver_intrus",
+      "titre": "L'intrus à l'initiale",
+      "consigne": "trouve_intrus",
+      "geste": "toucher l'image dont le mot ne commence pas comme les autres",
+      "serie": [
+        "sac, soleil, cerise — intrus : chat",
+        "loup, lit, lune — intrus : rat"
+      ],
+      "mots": [
+        "sac",
+        "soleil",
+        "cerise",
+        "chat",
+        "loup",
+        "lit",
+        "lune",
+        "rat"
+      ],
+      "affiches": [
+        "sac",
+        "soleil",
+        "cerise",
+        "chat",
+        "loup",
+        "lit",
+        "lune",
+        "rat"
+      ],
+      "phonemes": [
+        "/s/",
+        "/ʃ/",
+        "/l/",
+        "/ʁ/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "isoler l'attaque d'un mot et repérer celle qui diffère",
+      "ne_verifie_pas": "la raison du choix : l'enfant peut tomber juste par élimination sur une autre propriété"
+    },
+    {
+      "id": "E37",
+      "unite": 37,
+      "mecanique": "position_son",
+      "titre": "Au début ou à la fin",
+      "consigne": "debut_ou_fin",
+      "geste": "poser le jeton au début ou à la fin du mot affiché",
+      "serie": [
+        "/l/ au début : loup, lune, lapin, lit",
+        "/l/ à la fin : cheval, soleil"
+      ],
+      "mots": [
+        "loup",
+        "lune",
+        "lapin",
+        "lit",
+        "cheval",
+        "soleil"
+      ],
+      "affiches": [
+        "loup",
+        "lune",
+        "lapin",
+        "lit",
+        "cheval",
+        "soleil"
+      ],
+      "phonemes": [
+        "/l/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "localiser un phonème dans un mot, au début ou à la fin",
+      "ne_verifie_pas": "la position médiane, qui n'est pas demandée à la GS"
+    },
+    {
+      "id": "E38",
+      "unite": 38,
+      "mecanique": "repeter_modele",
+      "titre": "Les couples ch/s, ch/j, ch/z",
+      "consigne": "repete_apres_moi",
+      "geste": "aucun geste de réponse : l'enfant répète la paire",
+      "serie": [
+        "ch / s",
+        "ch / j",
+        "ch / z"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/ʃ/",
+        "/s/",
+        "/ʒ/",
+        "/z/"
+      ],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "le jumeau réceptif est E36 : la voix dit trois mots, l'enfant touche l'intrus à l'initiale. C'est la même discrimination, jugée par le geste.",
+      "inversion": null,
+      "pourquoi_hors_app": "c'est la deuxième réussite du palier de sortie déclarée hors app — il faut entendre la prononciation.",
+      "duree_s": 30,
+      "entraine": "articuler les couples proches de la GS",
+      "ne_verifie_pas": "tout."
+    },
+    {
+      "id": "E39",
+      "unite": 39,
+      "mecanique": "repeter_modele",
+      "titre": "Les doubles consonnes",
+      "consigne": "repete_apres_moi",
+      "geste": "aucun geste de réponse : l'enfant répète après le modèle",
+      "serie": [
+        "br de zèbre",
+        "cr de crocodile",
+        "bl de cartable",
+        "pl de parapluie"
+      ],
+      "mots": [
+        "zèbre",
+        "crocodile",
+        "cartable",
+        "parapluie"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "aucune substitution possible : la difficulté EST dans l'enchaînement de deux consonnes, et aucune image ne l'attrape. L'application donne le modèle, l'enfant répète, un adulte juge.",
+      "inversion": null,
+      "pourquoi_hors_app": "c'est la troisième réussite du palier de sortie déclarée hors app.",
+      "duree_s": 30,
+      "entraine": "articuler une double consonne",
+      "ne_verifie_pas": "tout."
+    },
+    {
+      "id": "E40",
+      "unite": 40,
+      "mecanique": "toucher_lettre",
+      "titre": "Toutes les lettres d'un mot, trois écritures",
+      "consigne": "touche_lettre_nom",
+      "geste": "toucher la lettre dont le nom est dit, dans la graphie demandée",
+      "serie": [
+        "loup en capitale, en scripte, en cursive",
+        "fleur en capitale, en scripte, en cursive"
+      ],
+      "mots": [
+        "loup",
+        "fleur"
+      ],
+      "affiches": [
+        "loup",
+        "fleur"
+      ],
+      "phonemes": [],
+      "lettres": [
+        "l",
+        "o",
+        "u",
+        "p",
+        "f",
+        "e",
+        "r"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "la voix nomme la lettre et la graphie, l'enfant touche. Nommer soi-même reste hors app.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "reconnaître toutes les lettres d'un mot dans les trois graphies",
+      "ne_verifie_pas": "la nomination — c'est la première réussite du palier de sortie, et elle est vérifiée dans l'app par reconnaissance, pas par diction"
+    },
+    {
+      "id": "E41",
+      "unite": 41,
+      "mecanique": "apparier_graphies",
+      "titre": "Les trois écritures",
+      "consigne": "apparie_graphies",
+      "geste": "assembler capitale, scripte et cursive d'une même lettre",
+      "serie": [
+        "a, m, l, t, s, o, e, r"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [
+        "a",
+        "m",
+        "l",
+        "t",
+        "s",
+        "o",
+        "e",
+        "r"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "apparier les trois graphies d'une même lettre",
+      "ne_verifie_pas": "le tracé de la cursive"
+    },
+    {
+      "id": "E42",
+      "unite": 42,
+      "mecanique": "toucher_lettre",
+      "titre": "Les vingt-six lettres",
+      "consigne": "touche_lettre_nom",
+      "geste": "toucher la lettre dont le nom vient d'être dit",
+      "serie": [
+        "les vingt-six lettres, par séries de six"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "la voix dit le nom, l'enfant touche la lettre. C'est la deuxième réussite du palier de sortie : « connaître le nom des lettres » se vérifie dans l'app par reconnaissance ; le dire de mémoire est une autre habileté.",
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "connaître le nom des vingt-six lettres",
+      "ne_verifie_pas": "la récitation de l'alphabet dans l'ordre, qui n'est demandée par aucun attendu"
+    },
+    {
+      "id": "E43",
+      "unite": 43,
+      "mecanique": "toucher_lettres_ordre",
+      "titre": "Épeler pour faire écrire",
+      "consigne": "touche_lettres_ordre",
+      "geste": "toucher les lettres dans l'ordre dit",
+      "serie": [
+        "les mots d'une syllabe du corpus",
+        "puis deux mots de deux syllabes"
+      ],
+      "mots": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur",
+        "papa",
+        "maman"
+      ],
+      "affiches": [
+        "loup",
+        "chat",
+        "rat",
+        "sac",
+        "lit",
+        "nez",
+        "main",
+        "fleur",
+        "papa",
+        "maman"
+      ],
+      "phonemes": [],
+      "lettres": [
+        "l",
+        "o",
+        "u",
+        "p",
+        "c",
+        "h",
+        "a",
+        "t",
+        "r",
+        "s",
+        "i",
+        "n",
+        "e",
+        "z",
+        "m",
+        "f"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "même inversion que E25, sur un mot plus long.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "épeler un mot connu afin qu'un tiers puisse l'écrire",
+      "ne_verifie_pas": "la diction des lettres"
+    },
+    {
+      "id": "E44",
+      "unite": 44,
+      "mecanique": "toucher_lettre",
+      "titre": "Prolonger le son, trouver la lettre",
+      "consigne": "touche_lettre_son",
+      "geste": "toucher la lettre qui fait le son prolongé entendu",
+      "serie": [
+        "voyelles : a, i, o, u, e, é",
+        "fricatives : s, r, f, v, j, ch",
+        "liquide : l"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/a/",
+        "/i/",
+        "/o/",
+        "/y/",
+        "/ə/",
+        "/e/",
+        "/s/",
+        "/ʁ/",
+        "/f/",
+        "/v/",
+        "/ʒ/",
+        "/ʃ/",
+        "/l/"
+      ],
+      "lettres": [
+        "a",
+        "i",
+        "o",
+        "u",
+        "e",
+        "é",
+        "s",
+        "r",
+        "f",
+        "v",
+        "j",
+        "l"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de PROLONGER le phonème avec la main pour retrouver la lettre. Le geste est conservé — le doigt suit la ligne — mais la voix est celle de l'application : prolonger soi-même reste un objectif hors app.",
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "faire le lien entre un phonème qu'on peut tenir et la lettre qui l'écrit",
+      "ne_verifie_pas": "les occlusives, qui ne se prolongent pas et que le programme exclut explicitement"
+    },
+    {
+      "id": "E45",
+      "unite": 45,
+      "mecanique": "toucher_lettre",
+      "titre": "La valeur sonore des lettres",
+      "consigne": "touche_lettre_son",
+      "geste": "toucher la lettre qui fait le son entendu",
+      "serie": [
+        "toutes les lettres, hormis les six occlusives",
+        "puis les lettres de la série `ch`, `ou`, `on`, `an`"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [
+        "/a/",
+        "/i/",
+        "/o/",
+        "/y/",
+        "/ə/",
+        "/e/",
+        "/ɛ/",
+        "/ø/",
+        "/œ/",
+        "/f/",
+        "/v/",
+        "/s/",
+        "/z/",
+        "/ʃ/",
+        "/ʒ/",
+        "/m/",
+        "/n/",
+        "/ɲ/",
+        "/l/",
+        "/ʁ/"
+      ],
+      "lettres": [
+        "a",
+        "i",
+        "o",
+        "u",
+        "e",
+        "é",
+        "è",
+        "f",
+        "v",
+        "s",
+        "z",
+        "m",
+        "n",
+        "l",
+        "r",
+        "j",
+        "c",
+        "g"
+      ],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "connaître la valeur sonore des lettres",
+      "ne_verifie_pas": "les six occlusives, exclues par le programme lui-même — et c'est la troisième réussite vérifiée dans l'app, annoncée au palier de sortie"
+    },
+    {
+      "id": "E46",
+      "unite": 11,
+      "mecanique": "jeu_syllabes",
+      "titre": "Le mot à trous, mots courts",
+      "consigne": "carte_manquante",
+      "geste": "glisser la carte-syllabe manquante dans le trou",
+      "serie": [
+        "les quinze items oraux du jeu dont le mot compte une ou deux syllabes",
+        "le nombre de cases est le nombre de syllabes, et c'est ce nombre que l'exercice fait compter"
+      ],
+      "mots": [
+        "avion",
+        "bonbon",
+        "café",
+        "canard",
+        "cheval",
+        "gâteau",
+        "jupe",
+        "lapin",
+        "maison",
+        "mouton",
+        "papa",
+        "pomme",
+        "soleil",
+        "vélo",
+        "zèbre"
+      ],
+      "affiches": [
+        "avion",
+        "bonbon",
+        "café",
+        "canard",
+        "cheval",
+        "gâteau",
+        "jupe",
+        "lapin",
+        "maison",
+        "mouton",
+        "papa",
+        "pomme",
+        "soleil",
+        "vélo",
+        "zèbre"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "compter les syllabes d'un mot court, sur un support qui en montre le nombre",
+      "ne_verifie_pas": "la diction du mot reconstitué — l'application le fait entendre et l'enfant juge",
+      "source": "outils/jeu-syllabes.json"
+    },
+    {
+      "id": "E47",
+      "unite": 13,
+      "mecanique": "jeu_syllabes",
+      "titre": "Le mot à trous, discrimination de la syllabe",
+      "consigne": "carte_manquante",
+      "geste": "glisser la carte-syllabe manquante dans le trou",
+      "serie": [
+        "les trente items oraux du jeu, dont les deux intruses sont des syllabes voisines de la syllabe cachée"
+      ],
+      "mots": [
+        "banane",
+        "tomate",
+        "papa",
+        "vélo",
+        "café",
+        "gâteau",
+        "jupe",
+        "pomme",
+        "zèbre",
+        "lapin",
+        "maison",
+        "canard",
+        "mouton",
+        "cheval",
+        "bonbon",
+        "avion",
+        "soleil",
+        "valise",
+        "cerise",
+        "girafe",
+        "koala",
+        "pyjama",
+        "cartable",
+        "chocolat",
+        "éléphant",
+        "parapluie",
+        "crocodile",
+        "téléphone",
+        "école",
+        "ananas"
+      ],
+      "affiches": [
+        "banane",
+        "tomate",
+        "papa",
+        "vélo",
+        "café",
+        "gâteau",
+        "jupe",
+        "pomme",
+        "zèbre",
+        "lapin",
+        "maison",
+        "canard",
+        "mouton",
+        "cheval",
+        "bonbon",
+        "avion",
+        "soleil",
+        "valise",
+        "cerise",
+        "girafe",
+        "koala",
+        "pyjama",
+        "cartable",
+        "chocolat",
+        "éléphant",
+        "parapluie",
+        "crocodile",
+        "téléphone",
+        "école",
+        "ananas"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "discriminer une syllabe parmi ses voisines — c'est la mécanique même du jeu",
+      "ne_verifie_pas": "la prononciation de la paire : le jeu entraîne la discrimination, pas la production",
+      "source": "outils/jeu-syllabes.json"
+    },
+    {
+      "id": "E48",
+      "unite": 14,
+      "mecanique": "jeu_syllabes",
+      "titre": "Le mot à trous, manipuler une syllabe",
+      "consigne": "carte_manquante",
+      "geste": "glisser la carte-syllabe manquante dans le trou",
+      "serie": [
+        "les items du jeu dont le mot compte trois syllabes et plus : le trou y porte sur une syllabe qu'il faut retrouver, donc ajouter au mot amputé"
+      ],
+      "mots": [
+        "banane",
+        "tomate",
+        "ananas",
+        "cerise",
+        "girafe",
+        "koala",
+        "pyjama",
+        "valise",
+        "école",
+        "cartable",
+        "chocolat",
+        "éléphant",
+        "parapluie",
+        "crocodile",
+        "téléphone"
+      ],
+      "affiches": [
+        "banane",
+        "tomate",
+        "ananas",
+        "cerise",
+        "girafe",
+        "koala",
+        "pyjama",
+        "valise",
+        "école",
+        "cartable",
+        "chocolat",
+        "éléphant",
+        "parapluie",
+        "crocodile",
+        "téléphone"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande de DIRE le mot manipulé. Le jeu fait poser la syllabe manquante, et c'est l'application qui dit le mot reconstitué : l'enfant juge à l'oreille au lieu de prononcer.",
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "restituer une syllabe manquante — ajouter, au sens du programme",
+      "ne_verifie_pas": "les autres manipulations de l'unité — supprimer, permuter, inverser — que le jeu ne demande pas. E33 les couvre.",
+      "source": "outils/jeu-syllabes.json",
+      "besoin_id": "B14b"
+    },
+    {
+      "id": "E49",
+      "unite": 30,
+      "mecanique": "jeu_syllabes",
+      "titre": "Le mot à trous, voisines consonantiques",
+      "consigne": "carte_manquante",
+      "geste": "glisser la carte-syllabe manquante dans le trou",
+      "serie": [
+        "les items dont les deux intruses sont consonantiques — elles ne diffèrent de la syllabe cachée que par la consonne d'attaque"
+      ],
+      "mots": [
+        "banane",
+        "mouton",
+        "lapin",
+        "bonbon",
+        "maison",
+        "canard",
+        "cheval",
+        "avion",
+        "valise",
+        "girafe",
+        "cartable",
+        "chocolat",
+        "téléphone",
+        "ananas"
+      ],
+      "affiches": [
+        "banane",
+        "mouton",
+        "lapin",
+        "bonbon",
+        "maison",
+        "canard",
+        "cheval",
+        "avion",
+        "valise",
+        "girafe",
+        "cartable",
+        "chocolat",
+        "téléphone",
+        "ananas"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "discriminer deux syllabes qui ne diffèrent que par leur consonne d'attaque",
+      "ne_verifie_pas": "la discrimination entre mots entiers — c'est E30, sur les images",
+      "source": "outils/jeu-syllabes.json"
+    },
+    {
+      "id": "E50",
+      "unite": 33,
+      "mecanique": "jeu_syllabes",
+      "titre": "Le mot à trous, syllabe médiane et finale",
+      "consigne": "carte_manquante",
+      "geste": "glisser la carte-syllabe manquante dans le trou",
+      "serie": [
+        "les items du jeu dont le trou porte sur une syllabe médiane ou finale — la position où la manipulation se voit"
+      ],
+      "mots": [
+        "banane",
+        "tomate",
+        "ananas",
+        "cerise",
+        "girafe",
+        "valise",
+        "cartable",
+        "crocodile",
+        "téléphone",
+        "parapluie"
+      ],
+      "affiches": [
+        "banane",
+        "tomate",
+        "ananas",
+        "cerise",
+        "girafe",
+        "valise",
+        "cartable",
+        "crocodile",
+        "téléphone",
+        "parapluie"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "le programme demande d'ajouter, de supprimer, de remplacer, d'inverser et de fusionner les syllabes. Le jeu n'en fait qu'une — ajouter — et il la fait sans prononcer : la syllabe se pose, le mot se dit par l'application. Les quatre autres manipulations sont entraînées par E33, sur des cartes.",
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "repérer où manque la syllabe, et la remettre à sa place",
+      "ne_verifie_pas": "l'inversion et la substitution, que E33 entraîne sur des cartes",
+      "source": "outils/jeu-syllabes.json"
+    }
+  ],
+  "corrections": [
+    {
+      "objet": "outils/jeu-syllabes.json — le champ `sert` des trente items oraux",
+      "defaut": "Les items oraux déclaraient servir les unités 17, 19 et 38, dont les objectifs sont d'ARTICULER des couples de consonnes proches. Or le jeu ne demande jamais de prononcer : il demande de choisir une syllabe parmi des voisines. Le champ avait été rempli en appariant les PAIRES du jeu aux paires citées par ces unités, et non en comparant les objectifs.",
+      "correction": "Les trente items oraux servent désormais l'unité 13, dont l'objectif est de discriminer une syllabe cible. Le jeu sert en outre les unités 11, 14, 30 et 33, déclarées sur la mécanique (`mecanique.sert_les_unites`), et les exercices E46 à E50 les couvrent.",
+      "pourquoi_c_est_grave": "Un item rattaché à une unité qui ne l'entraîne pas ne se voit pas à la lecture : le tableau a l'air rempli. C'est le mode d'échec le plus coûteux d'un inventaire — il fait croire qu'une unité est outillée quand elle ne l'est pas."
+    },
+    {
+      "objet": "outils/exercices-gs.json — la consolidation des besoins déclarés par les exercices",
+      "defaut": "Les sept besoins déclarés ont été consolidés en dédoublonnant par UNITÉ. Or une unité peut manquer de deux choses différentes : l'unité 14 manque à la fois des mots transformés (E14) et des variantes du jeu (E48). Le besoin de E48 a été absorbé par celui de E14 — six entrées pour sept besoins déclarés, et la liste avait l'air complète.",
+      "correction": "Chaque besoin consolidé porte un identifiant, et l'exercice ne porte plus le texte de son besoin mais sa référence (`besoin_id`), comme il porte le slug de sa consigne plutôt que son texte. Deux entrées pour l'unité 14 : B14a et B14b. Le contrôle vérifie l'accord dans les deux sens.",
+      "pourquoi_c_est_grave": "Un dédoublonnage par unité est un aplatissement : il fait disparaître les besoins multiples d'une même unité, et rien dans la liste ne le signale. Même mode d'échec que le champ `sert` du jeu — une table pleine qui cache un trou."
+    },
+    {
+      "objet": "outils/exercices-gs.json — le champ `substitution`",
+      "defaut": "Le champ portait deux choses différentes. Sur un exercice hors app, il nommait le jumeau réceptif qui vérifie ce que la machine ne peut pas juger. Sur un exercice jugé par l'app, il expliquait quelle charge le geste reprend quand le programme demande une production. Onze exercices relevaient du second sens, aucun du premier — mais rien dans le nom ne le disait, et un contrôle qui aurait exigé `substitution` sur tout exercice hors app aurait été satisfait par un texte parlant d'autre chose.",
+      "correction": "Deux champs. `substitution` ne vaut que pour un exercice hors app : le jumeau réceptif, ou « aucune ». `inversion` dit ce que le geste reprend quand l'unité porte un objectif de production. Les unités de production sont déclarées dans la progression (champ `production`), et le contrôle exige qu'un exercice jugé par l'app couvrant une telle unité déclare son `inversion`.",
+      "pourquoi_c_est_grave": "Un champ à deux sens ne se voit pas : chaque valeur, lue seule, est plausible. C'est le même piège que le champ `sert`, et il se referme deux fois — une fois sur la donnée, une fois sur le contrôle censé la garder."
+    },
+    {
+      "objet": "outils/exercices-gs.json — le matériel de E46 (« Le mot à trous, mots courts »)",
+      "defaut": "L'exercice est adossé au jeu de syllabes et annonçait treize mots. Cinq seulement sont l'objet d'un item du jeu ; les huit autres — loup, chat, rat, sac, lit, nez, main, fleur — venaient du corpus GS. La liste avait été remplie en prenant « les mots courts du corpus » au lieu de « les items courts du jeu », et elle avait l'air juste parce que tous ces mots sont effectivement courts.",
+      "correction": "Le matériel est celui des items ORAL du jeu dont le mot compte une ou deux syllabes : quinze mots, tous illustrés. Le contrôle vérifie désormais que tout mot d'un exercice adossé au jeu est l'objet d'un item de ce jeu.",
+      "pourquoi_c_est_grave": "Un matériel plausible n'est pas un matériel disponible. L'exercice aurait demandé à l'application de montrer huit mots qu'elle n'a pas dans cette banque, et le défaut ne se voit qu'en croisant deux fichiers — jamais en relisant celui-ci."
+    },
+    {
+      "objet": "outils/progression-gs.json — le champ `production` des unités 14, 32 et 33",
+      "defaut": "Ces trois unités avaient été déclarées sans objectif de production, au motif que la manipulation des syllabes est vérifiée par un geste. Le raisonnement s'arrêtait à la vérification : le programme demande aussi de DIRE le mot transformé, et le geste ne le dit pas. Le contrôle l'a signalé par l'autre bout — trois exercices déclaraient une inversion sur une unité censée ne pas en avoir besoin. C'est le texte des exercices qui avait raison.",
+      "correction": "Les unités 14, 32 et 33 passent à `production: true`, et les deux exercices adossés au jeu qui les couvrent — E48 et E50 — déclarent leur inversion.",
+      "pourquoi_c_est_grave": "Un axe rempli au jugement ne se falsifie pas tout seul. Ici il a été pris en défaut par un accord entre deux fichiers, et c'est le seul genre de contrôle qui pouvait le voir : relire la liste des unités de production ne montre rien, puisqu'elle a l'air d'une liste."
+    }
+  ],
+  "besoins": [
+    {
+      "id": "B07",
+      "unite": 7,
+      "manque": "des paires distinctives illustrées",
+      "detail": "Le programme nomme cour/tour, cube/tube, cassé/café, pouce/pouf, nain/main. Sur les 44 mots illustrés, une seule paire ne diffère que par un son : chat/rat.",
+      "bloque": false
+    },
+    {
+      "id": "B13",
+      "unite": 13,
+      "manque": "les syllabes isolées, enregistrées",
+      "detail": "L'unité fait discriminer une syllabe cible dans une suite énoncée. Le corpus contient les mots et leur version scandée, mais aucune syllabe isolée : la famille `syl_` reste à créer, une trentaine de fichiers.",
+      "bloque": true
+    },
+    {
+      "id": "B14a",
+      "unite": 14,
+      "manque": "les mots transformés, enregistrés",
+      "detail": "L'unité fait manipuler l'ordre des syllabes. La voix doit pouvoir dire le mot transformé — li-va, ne-ba-na — et le corpus ne contient que les mots du corpus, entiers ou scandés. Même famille que le besoin de l'unité 13 : des formes qui ne sont pas des mots du corpus.",
+      "bloque": true
+    },
+    {
+      "id": "B14b",
+      "unite": 14,
+      "manque": "les variantes du jeu pour les autres manipulations de l'unité",
+      "detail": "L'unité demande d'ajouter, de supprimer, de permuter et d'inverser les syllabes. Le jeu ne fait qu'ajouter une syllabe manquante : les quatre autres manipulations n'ont aucun item. E33 les entraîne sur des cartes-syllabes, mais sans le retour sonore qui fait la force du jeu — l'enfant y compose sans entendre le résultat.",
+      "bloque": false
+    },
+    {
+      "id": "B20",
+      "unite": 20,
+      "manque": "les paires distinctives de la GS, illustrées",
+      "detail": "ville/fil, dessert/désert, poison/poisson, pépé/bébé, doigt/toit, gare/car, boule/poule. Deux paires seulement sont disponibles dans le corpus illustré.",
+      "bloque": false
+    },
+    {
+      "id": "B29",
+      "unite": 29,
+      "manque": "un mot porteur de /œ̃/, illustré",
+      "detail": "Le programme cite on, en, un. `brun` est enregistré comme mot porteur du phonème mais n'a pas d'image : la colonne /œ̃/ ne peut pas exister.",
+      "bloque": false
+    },
+    {
+      "id": "B30",
+      "unite": 30,
+      "manque": "la série poule / boule / roule / moule / coule / foule",
+      "detail": "Six mots qui ne diffèrent que par l'attaque. Aucun n'est dans le corpus GS. C'est la série que le programme donne en exemple, et la plus efficace de la tranche : elle mérite six images.",
+      "bloque": false
+    }
+  ]
+}

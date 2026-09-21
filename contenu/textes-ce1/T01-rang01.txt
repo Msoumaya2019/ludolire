@@ -1,0 +1,9 @@
+# rang: 1
+# Le chat
+
+Le chat a une souris.
+La souris a une noix.
+Le chat a la noix.
+La souris rit.
+Le chat a ri aussi.
+La souris a sa noix.

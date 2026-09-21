@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "titre": "Progression de la tranche GS — préparer l'entrée dans l'écrit",
+    "version": "0.3.0",
+    "date": "2026-09-21",
+    "source_programme": "BO n° 41 du 31 octobre 2024, programme d'enseignement pour le développement et la structuration du langage oral et écrit du cycle 1 (arrêté du 22 octobre 2024, application rentrée 2025-2026)",
+    "source_extraction": "Le tableau publié organise ses attendus en trois colonnes d'âge. Il a été relevé en extrayant le PDF en mode « layout » (colonnes préservées). L'extraction en texte plat aplatit les trois colonnes et fait perdre l'attribution : la version 0.1.0 de cette table s'y était fiée et avait promu en « GS » des objectifs qui sont « à partir de 4 ans ».",
+    "statut": "proposition à valider — l'attribution aux colonnes d'âge est relevée du programme ; le découpage en périodes et l'ordre sont notre choix",
+    "nature_de_la_tranche": "La GS n'a rien à décoder. La progression n'est pas graphémique mais phonologique, et la sortie n'est pas un texte lu mais des habiletés installées.",
+    "organisation_officielle": "Le programme organise ses attendus par âge, en trois colonnes : « Avant 4 ans », « À partir de 4 ans », « À partir de 5 ans ». Il ne les organise pas par période. Le champ `colonne` de chaque unité porte l'attribution réelle ; le découpage en cinq périodes est notre traduction.",
+    "lecture_des_paliers": "Palier « préparatoire » = colonnes « Avant 4 ans » et « À partir de 4 ans ». Palier « GS » = colonne « À partir de 5 ans ». Le préparatoire n'est pas du hors-sujet : c'est le chemin de rattrapage d'un enfant que le diagnostic place en dessous du niveau GS.",
+    "principe_d_entree": "Aucune consigne écrite. Un enfant de cinq ans ne lit pas. Toute consigne est orale et toute réponse est iconographique ou gestuelle.",
+    "principe_de_contenu": "Le corpus de mots employé dans les exercices doit être connu de l'enfant à l'oral. C'est l'équivalent GS de la règle de déchiffrabilité du CP : un mot que l'enfant ne connaît pas ne peut pas être découpé en syllabes.",
+    "ce_qui_n_est_pas_de_la_tranche": "La manipulation des phonèmes (fusionner, supprimer, substituer) n'est pas exigée à la colonne « À partir de 5 ans » : celle-ci ne demande la manipulation que sur les SYLLABES, et se limite à localiser et trouver un phonème. Manipuler des phonèmes est un objectif du CP.",
+    "lecture_de_la_production": "Le champ `production` d'une unite dit si son objectif demande a l'enfant de produire quelque chose que l'application ne peut pas entendre : prononcer, articuler, reproduire, nommer, dire. Ce n'est pas la meme chose que « objectif oral » — frapper les syllabes est oral et n'est pas une production, parce que le geste est l'objectif lui-meme. C'est l'axe qui commande le verdict des exercices : une unite de production couverte par un exercice jugeable par l'app doit declarer ce qui remplace la production (`inversion`), et une unite de production non couverte doit declarer pourquoi (`pourquoi_hors_app`)."
+  },
+
+  "domaines": [
+{ "id": "AUD", "libelle": "Écouter, identifier, discriminer et reproduire des sons" },
+{ "id": "SYL", "libelle": "Manipuler les syllabes orales" },
+{ "id": "AR", "libelle": "Attaques, rimes et assonances" },
+{ "id": "PHO", "libelle": "Phonèmes" },
+{ "id": "LET", "libelle": "Connaître le nom des lettres" },
+{ "id": "ART", "libelle": "Articulation" },
+{ "id": "ALP", "libelle": "Principe alphabétique — le son des lettres" }
+  ],
+
+  "unites": [
+{ "rang": 1, "periode": 1, "domaine": "AUD", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Discriminer et identifier des sons familiers, localiser la source", "exemples": "retrouver d'où vient le bruit", "action": "toucher la zone d'où vient le son", "production": false },
+{ "rang": 2, "periode": 1, "domaine": "AUD", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Reconnaître les sons de la langue les plus fréquents dans une suite", "exemples": "repérer un son connu dans une suite énoncée", "action": "lever la main quand le son connu revient", "production": false },
+{ "rang": 3, "periode": 1, "domaine": "AUD", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Comparer, apparier et reproduire des sons", "exemples": "deux boîtes identiques parmi quatre", "action": "apparier deux boîtes identiques", "production": true },
+{ "rang": 4, "periode": 1, "domaine": "AUD", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Discriminer et identifier les sons de la langue, les localiser dans une suite", "exemples": "placer un jeton sur l'image quand on entend le son", "action": "placer un jeton sur l'image", "production": false },
+{ "rang": 5, "periode": 1, "domaine": "AUD", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Reproduire des sons", "exemples": "onomatopées", "action": "imiter le son entendu", "production": true },
+{ "rang": 6, "periode": 1, "domaine": "AUD", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Reproduire des intonations", "exemples": "sirènes vocales ascendantes et descendantes", "action": "suivre la sirène avec la main, de bas en haut", "production": true },
+{ "rang": 7, "periode": 1, "domaine": "AUD", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Commencer à percevoir les distinctions entre des mots proches phonologiquement", "exemples": "deux mots qui ne diffèrent que par un son", "action": "désigner l'image du mot entendu", "production": false },
+{ "rang": 8, "periode": 1, "domaine": "SYL", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Prononcer son prénom, puis une comptine, en scandant les syllabes", "exemples": "son prénom", "action": "frapper dans ses mains en disant son prénom", "production": true },
+{ "rang": 9, "periode": 1, "domaine": "SYL", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Frapper les syllabes d'un mot", "exemples": "dans ses mains, sur ses cuisses, avec un instrument", "action": "frapper les syllabes sur ses cuisses", "production": false },
+
+{ "rang": 10, "periode": 2, "domaine": "SYL", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Scander les syllabes d'un mot", "exemples": "ba-na-ne", "action": "frapper une fois par syllabe", "production": false },
+{ "rang": 11, "periode": 2, "domaine": "SYL", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Dénombrer les syllabes de mots familiers, à l'oral et sans support écrit", "exemples": "ba-na-ne vaut trois", "action": "poser un jeton par syllabe", "production": false },
+{ "rang": 12, "periode": 2, "domaine": "SYL", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Comparer les mots selon le nombre de syllabes et les classer", "exemples": "un mot plus long qu'un autre, à l'oral et sans écrit", "action": "ranger du plus court au plus long", "production": false },
+{ "rang": 13, "periode": 2, "domaine": "SYL", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Discriminer une syllabe cible dans une suite de syllabes énoncées", "exemples": "MA puis FA puis PA puis MA puis SA", "action": "lever la main quand la syllabe cible revient", "production": false },
+{ "rang": 14, "periode": 2, "domaine": "SYL", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Ajouter, supprimer, permuter, répéter, fusionner, substituer les syllabes d'un mot dit à l'oral", "exemples": "RI-VE devient VE-RI", "action": "dire le mot transformé", "production": true },
+{ "rang": 15, "periode": 2, "domaine": "SYL", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Dire des comptines courtes comprenant des phonèmes proches", "exemples": "une comptine apprise en classe", "action": "réciter la comptine avec le groupe", "production": true },
+{ "rang": 16, "periode": 2, "domaine": "PHO", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Distinguer et produire correctement les nasales", "exemples": "é/in, a/an, o/on", "action": "trier des images selon la nasale entendue", "production": true },
+{ "rang": 17, "periode": 2, "domaine": "ART", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Articuler distinctement des couples de consonnes proches", "exemples": "t/k, f/s, m/n", "action": "répéter la paire après le modèle", "production": true },
+{ "rang": 18, "periode": 2, "domaine": "ART", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Prononcer correctement des paires distinctives", "exemples": "cour/tour, cube/tube, cassé/café, pouce/pouf, nain/main", "action": "désigner l'image du mot entendu", "production": true },
+
+{ "rang": 19, "periode": 3, "domaine": "ART", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Articuler distinctement des couples de consonnes proches", "exemples": "f/v, s/z, p/b, t/d, k/g", "action": "répéter la paire après le modèle", "production": true },
+{ "rang": 20, "periode": 3, "domaine": "ART", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Prononcer correctement des paires distinctives et des mots à phonèmes proches", "exemples": "ville/fil, dessert/désert, poison/poisson, pépé/bébé, doigt/toit, gare/car, boule/poule", "action": "désigner l'image du mot entendu", "production": true },
+{ "rang": 21, "periode": 3, "domaine": "LET", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Retrouver l'étiquette de son prénom écrit en capitales parmi d'autres", "exemples": "en prenant des indices sur les lettres", "action": "toucher son étiquette", "production": false },
+{ "rang": 22, "periode": 3, "domaine": "LET", "palier": "préparatoire", "colonne": "Avant 4 ans", "objectif": "Reconnaître et nommer certaines lettres de son prénom écrit en capitales", "exemples": "la première lettre de son prénom", "action": "nommer la lettre désignée", "production": true },
+{ "rang": 23, "periode": 3, "domaine": "LET", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Nommer les lettres de son prénom et quelques lettres de mots connus", "exemples": "le professeur nomme systématiquement les lettres", "action": "nommer la lettre désignée", "production": true },
+{ "rang": 24, "periode": 3, "domaine": "LET", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Connaître la correspondance entre les lettres scriptes majuscules et minuscules et les lettres cursives minuscules", "exemples": "la même lettre dans deux écritures", "action": "apparier deux étiquettes de la même lettre", "production": false },
+{ "rang": 25, "periode": 3, "domaine": "LET", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Épeler son prénom ou un mot connu afin qu'un tiers puisse le composer", "exemples": "dire les lettres dans l'ordre", "action": "dire les lettres dans l'ordre", "production": true },
+{ "rang": 26, "periode": 3, "domaine": "LET", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Composer un mot connu en commençant par la première lettre et en respectant l'ordre des lettres", "exemples": "même graphie, puis graphies différentes", "action": "déplacer les lettres dans l'ordre", "production": false },
+{ "rang": 27, "periode": 3, "domaine": "ALP", "palier": "préparatoire", "colonne": "À partir de 4 ans", "objectif": "Utiliser le nom de quelques lettres connues pour représenter les sons entendus", "exemples": "les voyelles", "action": "toucher la lettre qui fait le son entendu", "production": true },
+
+{ "rang": 28, "periode": 4, "domaine": "AUD", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Discriminer et identifier les sons de la langue, les localiser dans une suite et les mémoriser", "exemples": "retrouver l'ordre des sons entendus", "action": "refaire la suite d'images dans l'ordre", "production": false },
+{ "rang": 29, "periode": 4, "domaine": "AUD", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Différencier les sons proches", "exemples": "on, en, un", "action": "trier des images selon le son entendu", "production": false },
+{ "rang": 30, "periode": 4, "domaine": "AUD", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Discriminer et identifier les mots auditivement proches", "exemples": "poule/boule/roule/moule/coule/foule", "action": "désigner l'image du mot entendu", "production": false },
+{ "rang": 31, "periode": 4, "domaine": "AUD", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Augmenter sa mémoire auditive et sa capacité de concentration", "exemples": "redire une suite de trois sons dans l'ordre", "action": "refaire la suite dans l'ordre", "production": false },
+{ "rang": 32, "periode": 4, "domaine": "SYL", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Fusionner les syllabes d'attaque et la syllabe finale de deux mots pour obtenir un pseudo-mot", "exemples": "POISSON + SOURIS donnent POIRIS", "action": "dire le pseudo-mot obtenu", "production": true },
+{ "rang": 33, "periode": 4, "domaine": "SYL", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Supprimer, ajouter, remplacer, inverser, substituer, fusionner les syllabes d'un mot", "exemples": "RI-VE devient VE-RI", "action": "dire le mot transformé", "production": true },
+{ "rang": 34, "periode": 4, "domaine": "AR", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Repérer et produire des rimes et des assonances", "exemples": "bateau et gâteau", "action": "apparier deux images qui riment", "production": true },
+{ "rang": 35, "periode": 4, "domaine": "PHO", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Trouver un phonème cible dans une liste de mots", "exemples": "le son /f/", "action": "lever la main quand on entend /f/", "production": false },
+{ "rang": 36, "periode": 4, "domaine": "PHO", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Trouver l'intrus à l'initiale", "exemples": "sac, Sacha, cartable", "action": "désigner l'intrus", "production": false },
+
+{ "rang": 37, "periode": 5, "domaine": "PHO", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Localiser un phonème dans un mot", "exemples": "début ou fin de mot", "action": "placer un jeton au début ou à la fin", "production": false },
+{ "rang": 38, "periode": 5, "domaine": "ART", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Prononcer correctement des couples de consonnes proches", "exemples": "ch/s, ch/j, ch/z", "action": "répéter la paire après le modèle", "production": true },
+{ "rang": 39, "periode": 5, "domaine": "ART", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Prononcer correctement les doubles consonnes", "exemples": "br, cr, bl, pl, sl", "action": "répéter après le modèle", "production": true },
+{ "rang": 40, "periode": 5, "domaine": "LET", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Reconnaître et nommer toutes les lettres d'un mot écrit dans les trois graphies", "exemples": "capitale, scripte, cursive", "action": "nommer chaque lettre désignée", "production": true },
+{ "rang": 41, "periode": 5, "domaine": "LET", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Connaître les différentes graphies d'une même lettre", "exemples": "majuscule capitale, minuscules scriptes, cursives", "action": "apparier les trois graphies d'une même lettre", "production": false },
+{ "rang": 42, "periode": 5, "domaine": "LET", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Connaître le nom des lettres de l'alphabet", "exemples": "les vingt-six lettres", "action": "nommer la lettre désignée", "production": true },
+{ "rang": 43, "periode": 5, "domaine": "LET", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Épeler les lettres d'un mot connu afin qu'un tiers puisse l'écrire", "exemples": "dire les lettres dans l'ordre", "action": "dire les lettres dans l'ordre", "production": true },
+{ "rang": 44, "periode": 5, "domaine": "ALP", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Prolonger les phonèmes pour retrouver les lettres auxquelles ils correspondent", "exemples": "voyelles, fricatives s/r/f/v/j/ch, liquide l", "action": "prolonger le phonème avec la main", "production": true },
+{ "rang": 45, "periode": 5, "domaine": "ALP", "palier": "GS", "colonne": "À partir de 5 ans", "objectif": "Connaître la valeur sonore des lettres", "exemples": "toutes les lettres, hormis les occlusives", "action": "toucher la lettre qui fait le son entendu", "production": false }
+  ],
+
+  "palier_de_sortie": [
+{ "objectif": "Reconnaître et nommer toutes les lettres d'un mot écrit dans les trois graphies", "verifiable": "dans l'app" },
+{ "objectif": "Connaître le nom des lettres de l'alphabet", "verifiable": "dans l'app" },
+{ "objectif": "Connaître la valeur sonore des lettres, hormis les occlusives", "verifiable": "dans l'app" },
+{ "objectif": "Repérer une rime, localiser un phonème, trouver l'intrus à l'initiale", "verifiable": "dans l'app" },
+{ "objectif": "Épeler les lettres d'un mot connu afin qu'un tiers puisse l'écrire", "verifiable": "hors app, au bilan" },
+{ "objectif": "Prononcer avec exactitude l'ensemble des trente-six phonèmes qui composent la langue française", "verifiable": "hors app, au bilan — il faut entendre la prononciation" },
+{ "objectif": "Prononcer correctement les couples ch/s, ch/j, ch/z et les doubles consonnes br/cr/bl/pl/sl", "verifiable": "hors app — il faut entendre la prononciation" }
+  ],
+
+  "hors_tranche": {
+    "note": "Ces objectifs ne sont pas dans la tranche GS de la v1. Ils sont listés pour que la structure les accueille sans réécriture.",
+    "contenu": [
+      "la manipulation des phonèmes — fusionner, supprimer, substituer un phonème : la colonne « À partir de 5 ans » ne demande la manipulation que sur les syllabes ; manipuler des phonèmes est un objectif du CP",
+      "le vocabulaire — environ 2 500 mots attendus en fin de GS",
+      "le discours oral complexe — connecteurs, subordination, récit",
+      "l'écriture cursive et le geste graphique",
+      "la compréhension de textes entendus"
+    ],
+    "raison": "La tranche GS de Ludo'Lire prépare l'entrée dans l'écrit, pas l'ensemble du langage oral de la maternelle."
+  }
+}

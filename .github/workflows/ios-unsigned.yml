@@ -1,0 +1,436 @@
+# =============================================================================
+#  iOS — IPA non signé
+# =============================================================================
+#
+#  Produit un IPA NON SIGNÉ, à installer après l'avoir re-signé soi-même sur son
+#  propre appareil, avec un outil comme ESign ou Sideloadly.
+#
+#  POURQUOI NON SIGNÉ, ET CE QUE CELA IMPLIQUE
+#  -------------------------------------------
+#  Signer un IPA exige un certificat Apple et un profil de provisionnement. Ce
+#  sont des secrets, et ce dépôt est public : aucun certificat, aucun mot de
+#  passe, aucun profil n'y est stocké. La signature est faite localement, sur la
+#  machine de la personne qui installe.
+#
+#  Conséquence pratique, à savoir AVANT de distribuer ce fichier :
+#
+#    - un IPA non signé NE S'INSTALLE PAS tel quel sur un iPhone. Il faut le
+#      re-signer. Avec un identifiant Apple gratuit, l'application cesse de
+#      fonctionner au bout de SEPT JOURS et doit être réinstallée ;
+#    - une signature avec un compte développeur Apple (99 € par an) donne une
+#      validité d'un an — c'est le seul moyen confortable pour une association ;
+#    - la distribution aux familles passe normalement par TestFlight et l'App
+#      Store, qui demandent tous deux un compte développeur.
+#
+#  Autrement dit : cet artefact sert à ESSAYER l'application, pas à la
+#  distribuer.
+#
+#  DÉCLENCHEMENT MANUEL UNIQUEMENT
+#  -------------------------------
+#  Un build iOS natif consomme un exécuteur macOS, facturé dix fois le prix d'un
+#  exécuteur Linux. Le lancer à chaque poussée serait un gaspillage : la
+#  majorité des commits ne mérite pas un binaire.
+#
+#  Utilisation : Actions → iOS — IPA non signé → Run workflow
+#
+#  XCODE 26 EST UNE CONDITION, PAS UNE PRÉFÉRENCE
+#  ----------------------------------------------
+#  Le SDK 57 d'Expo embarque `expo-modules-jsi`, dont le manifeste Swift déclare
+#  `swift-tools-version: 6.2` : Xcode 25 et antérieurs refusent ce manifeste, et
+#  la compilation s'arrête sur un message qui ne dit rien de la vraie cause. La
+#  version est donc VÉRIFIÉE AVANT d'installer quoi que ce soit — deux secondes,
+#  au lieu de quinze minutes.
+#
+#  `macos-26` est épinglé volontairement plutôt que `macos-latest` : une
+#  étiquette figée ne change pas sous nos pieds.
+#
+#  CE QUE CE FLUX VÉRIFIE, ET POURQUOI CES DEUX CHOSES-LÀ
+#  ------------------------------------------------------
+#  Ludo'Lire est une application HORS LIGNE : elle ne parle à aucun serveur, et
+#  elle n'a donc aucune variable `EXPO_PUBLIC_*` à perdre au regroupement. Le
+#  contrôle qui garde les autres applications du même auteur — « le paquet
+#  contient-il l'adresse de la base ? » — n'aurait ici rien à garder.
+#
+#  Le défaut à craindre est ailleurs, et il est propre à ce projet :
+#
+#    1. LE CONTENU EMBARQUÉ PEUT ÊTRE PÉRIMÉ. `assets/contenu-app.json` est
+#       fabriqué à partir des corpus. Modifier un texte sans relancer le
+#       générateur donne une application qui compile parfaitement et qui affiche
+#       l'ancien texte. Rien, dans le paquet, ne le signale. On refabrique donc
+#       le contenu, et on refuse si le fichier versionné change.
+#
+#    2. L'IPA PEUT EMBARQUER UN AUTRE CONTENU QUE CELUI DU DÉPÔT. Le contenu
+#       porte une empreinte de lui-même, et l'application l'affiche. On la
+#       cherche dans le paquet JavaScript livré : c'est la preuve que le binaire
+#       contient bien ce contenu-là.
+# =============================================================================
+
+name: iOS — IPA non signé
+
+on:
+  workflow_dispatch:
+
+# `contents: write`, et non `read` : la dernière étape dépose l'IPA dans une
+# RELEASE, qui est le seul endroit d'où on peut le télécharger depuis un iPhone
+# sans compte GitHub. Mesuré sur les autres dépôts de l'auteur : l'artefact d'un
+# flux répond 401 à un visiteur anonyme, alors qu'un fichier attaché à une
+# release répond 302. Un jeton en lecture seule ne pourrait pas écrire la release.
+permissions:
+  contents: write
+
+# Pas d'annulation : interrompre une compilation macOS ne rend pas le temps déjà
+# consommé, et laisse un `ios/build` à moitié écrit.
+concurrency:
+  group: ipa-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  ipa:
+    name: Compiler l'IPA non signé
+    runs-on: macos-26
+    timeout-minutes: 90
+
+    env:
+      # Le chemin est déclaré ici, et non calculé par une étape : `${{ env.… }}`
+      # ne lit pas une variable écrite dans `$GITHUB_ENV`, seulement celles
+      # déclarées dans le flux. L'archivage a donc besoin de celle-ci.
+      IPA: ios/build/unsigned/ludolire-non-signe.ipa
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v5
+
+      # -----------------------------------------------------------------------
+      #  Le contrôle qui doit passer en premier
+      # -----------------------------------------------------------------------
+      - name: Vérifier la version de Xcode
+        run: |
+          set -euo pipefail
+
+          # La sortie est capturée ENTIÈRE avant d'être tronquée, et ce n'est pas
+          # un détail de style. Mesuré ailleurs : `xcodebuild -version | head -1`
+          # ne renvoie pas la première ligne — `head` ferme le tuyau, `xcodebuild`
+          # reçoit un SIGPIPE, lève une exception non capturée et s'arrête sur le
+          # code 134. Le travail tombait en dix-sept secondes, avant toute
+          # installation, sur un message qui ne parlait ni de Xcode ni de tuyau.
+          INFO=$(xcodebuild -version)
+          VERSION=$(printf '%s\n' "$INFO" | sed -n '1s/^Xcode //p')
+          MAJEURE=${VERSION%%.*}
+
+          echo "Xcode $VERSION ($(xcode-select -p))"
+
+          if [ "$MAJEURE" -lt 26 ]; then
+            echo "::error::Xcode $VERSION est trop ancien. Le SDK 57 exige Xcode 26 ou plus."
+            echo "Le manifeste de expo-modules-jsi declare swift-tools-version 6.2,"
+            echo "que Xcode $MAJEURE ne sait pas lire. Choisissez une autre etiquette"
+            echo "d'executeur plutot que de retenter : reessayer ne changera rien."
+            exit 1
+          fi
+
+          echo "Xcode $VERSION convient (26 ou plus requis)."
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22.22.2'
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      # -----------------------------------------------------------------------
+      #  Les contrôles qui prennent deux minutes là où le build en prend quinze
+      # -----------------------------------------------------------------------
+      - name: Vérifier que le contenu embarqué est à jour
+        # `assets/contenu-app.json` est FABRIQUÉ à partir des corpus. Ce contrôle
+        # refait la fabrication et refuse si le fichier versionné change : c'est
+        # la seule façon de voir qu'un texte a été modifié sans que
+        # l'application en ait été avertie.
+        #
+        # Le défaut qu'il attrape est silencieux de bout en bout : le dépôt est
+        # cohérent, l'application compile, les tests passent, et l'application
+        # affiche l'ancien texte.
+        #
+        # Il compare des OCTETS. Le générateur écrit en `\n` et n'écrit jamais
+        # par `Path.write_text` — qui traduirait en `\r\n` sous Windows — donc
+        # le fichier est identique d'une plateforme à l'autre.
+        run: |
+          set -euo pipefail
+
+          python3 outils/generer-contenu-app.py
+
+          if ! git diff --exit-code -- assets/contenu-app.json; then
+            echo "::error::assets/contenu-app.json n'est pas à jour par rapport aux corpus."
+            echo "Relancez en local : python outils/generer-contenu-app.py"
+            exit 1
+          fi
+
+          echo "Le contenu embarqué est à jour."
+
+      - name: Vérifier le contenu et le code
+        # LES TROIS CONTRÔLES DOIVENT TOUJOURS TOURNER.
+        #
+        # Un `run:` multiligne est exécuté par `bash -e` : la première commande
+        # qui échoue termine le script, et les suivantes ne s'exécutent jamais.
+        # Sans le `|| code=1`, un défaut de typage resterait invisible tant que
+        # le contenu est rouge — et le pas étant déjà rouge, personne ne
+        # regarderait. Mesuré ailleurs : le journal ne contenait AUCUNE ligne du
+        # second contrôle.
+        #
+        # `|| code=1` et non `|| true` : il faut que le pas échoue à la fin.
+        # `exit "$code"` en dernière ligne : sous `bash -e`, c'est la dernière
+        # commande du script qui fixe le code de sortie.
+        run: |
+          set -euo pipefail
+
+          code=0
+          npm run check:workflows || code=1
+          npm run contenu:verifier || code=1
+          npm run typecheck || code=1
+          npm test || code=1
+          exit "$code"
+
+      # -----------------------------------------------------------------------
+      #  Compiler
+      # -----------------------------------------------------------------------
+      - name: Générer le projet iOS
+        # `ios/` n'est pas versionné : il est recréé ici, à chaque compilation.
+        # C'est ce qui permet au dépôt de rester sans configuration de signature.
+        #
+        # `--clean` efface un éventuel dossier existant. Sans lui, une
+        # modification de `app.json` — un identifiant, une permission — pourrait
+        # ne pas être reprise, et le binaire ne correspondrait pas au code.
+        run: npx expo prebuild --platform ios --clean
+
+      - name: Repérer le projet et le schéma
+        id: cible
+        # Le nom du projet Xcode est dérivé du nom de l'application, qui est en
+        # français et porte une apostrophe. Le deviner serait fragile : on
+        # demande donc à Xcode ce qu'il a produit, plutôt que de reconstruire la
+        # règle de nommage d'Expo — qui n'est pas documentée comme un contrat.
+        #
+        # Le schéma, lui, ne peut PAS être pris au hasard dans la liste. Sur un
+        # espace de travail CocoaPods, `xcodebuild -list` énumère aussi les
+        # schémas des pods, et le premier est `EXConstants` — alphabétiquement
+        # avant celui de l'application. Le prendre compilait un pod : le build
+        # réussissait sans produire d'application à empaqueter. Le schéma de
+        # l'application porte le nom de son `.xcodeproj` : c'est celui-là qu'on
+        # cherche, et on refuse de compiler si on ne le trouve pas.
+        run: |
+          set -euo pipefail
+
+          PROJET_APP=$(find ios -maxdepth 1 -name '*.xcodeproj' | head -n 1)
+
+          if [ -z "$PROJET_APP" ]; then
+            echo "::error::Aucun projet Xcode n'a été généré par expo prebuild."
+            exit 1
+          fi
+
+          SCHEME=$(basename "$PROJET_APP" .xcodeproj)
+
+          WORKSPACE=$(find ios -maxdepth 1 -name '*.xcworkspace' | head -n 1)
+
+          # `type` et `chemin` sortent SÉPARÉMENT, et jamais concaténés en
+          # `-workspace <chemin>` : une sortie interpolée sans guillemets se
+          # découperait en deux arguments dès que le chemin contient une espace.
+          if [ -n "$WORKSPACE" ]; then
+            TYPE=workspace
+            CHEMIN=$WORKSPACE
+          else
+            TYPE=project
+            CHEMIN=$PROJET_APP
+          fi
+
+          SCHEMAS=$(xcodebuild "-$TYPE" "$CHEMIN" -list -json 2>/dev/null \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); \
+                print('\n'.join(d.get('workspace', d.get('project', {})).get('schemes', [])))" \
+            || true)
+
+          # CONFIRMATION, pas sélection : le schéma est déjà déduit du projet.
+          # Une liste illisible avertit au lieu d'échouer — un contrôle de
+          # confort qui casse un build valide coûte plus cher que le défaut
+          # qu'il surveille.
+          if [ -z "$SCHEMAS" ]; then
+            echo "::warning::La liste des schémas n'a pas pu être lue."
+          elif ! printf '%s\n' "$SCHEMAS" | grep -Fxq "$SCHEME"; then
+            echo "::error::Le schéma « $SCHEME » est absent de la liste des schémas."
+            echo "Schémas proposés :"
+            printf '%s\n' "$SCHEMAS"
+            exit 1
+          fi
+
+          echo "type=$TYPE" >> "$GITHUB_OUTPUT"
+          echo "chemin=$CHEMIN" >> "$GITHUB_OUTPUT"
+          echo "scheme=$SCHEME" >> "$GITHUB_OUTPUT"
+          echo "Projet : $PROJET_APP"
+          echo "Type   : $TYPE"
+          echo "Chemin : $CHEMIN"
+          echo "Schéma : $SCHEME"
+
+      - name: Compiler sans signature
+        # Pas de `working-directory: ios` ici. Les chemins produits par l'étape
+        # de repérage sont relatifs à la racine du dépôt ; les exécuter depuis
+        # `ios/` les préfixait une seconde fois — `ios/ios/…` — et xcodebuild
+        # répondait « does not exist » pour un espace de travail que le repérage
+        # venait de trouver.
+        #
+        # Les quatre réglages de signature sont nécessaires ENSEMBLE.
+        # `CODE_SIGNING_ALLOWED=NO` suffit souvent, mais Xcode retombe parfois
+        # sur une identité par défaut, et l'échec est alors un message de
+        # trousseau de clés difficile à relier à sa cause.
+        run: |
+          set -euo pipefail
+
+          xcodebuild "-${{ steps.cible.outputs.type }}" "${{ steps.cible.outputs.chemin }}" \
+            -scheme "${{ steps.cible.outputs.scheme }}" \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath ios/build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGN_ENTITLEMENTS="" \
+            build
+
+      - name: Empaqueter l'IPA
+        # Un IPA n'est qu'une archive ZIP contenant un dossier `Payload/`, qui
+        # contient lui-même l'application `.app`. C'est toute la structure
+        # attendue — il n'y a ni manifeste ni en-tête à produire.
+        run: |
+          set -euo pipefail
+
+          APP=$(find ios/build/Build/Products/Release-iphoneos -maxdepth 1 -name '*.app' | head -n 1)
+
+          if [ -z "$APP" ]; then
+            echo "::error::Aucune application compilée n'a été trouvée."
+            find ios/build/Build/Products -maxdepth 2 -type d | head -n 30
+            exit 1
+          fi
+
+          echo "Application compilée : $APP"
+
+          mkdir -p "$(dirname "$IPA")"
+          rm -rf Payload
+          mkdir -p Payload
+          cp -R "$APP" Payload/
+          zip -qry "$IPA" Payload
+          rm -rf Payload
+
+          echo "$IPA : $(wc -c < "$IPA") octets"
+          unzip -l "$IPA" | head -n 12
+
+      - name: Vérifier que le paquet contient le contenu du dépôt
+        # LA SEULE BARRIÈRE AVANT L'IPHONE.
+        #
+        # Le contenu embarqué porte une empreinte de lui-même, et l'application
+        # l'affiche. La chercher dans le paquet JavaScript livré prouve que le
+        # binaire contient bien CE contenu-là, et pas un autre.
+        #
+        # L'empreinte est une chaîne HEXADÉCIMALE, donc purement ASCII : Hermes
+        # range les chaînes purement ASCII en ASCII, et non en UTF-16LE. C'est
+        # ce qui rend cette recherche fiable — une chaîne accentuée, elle,
+        # serait rangée en UTF-16LE et une recherche en UTF-8 conclurait à tort
+        # à l'absence.
+        run: |
+          set -euo pipefail
+
+          EMPREINTE=$(node -p "require('./assets/contenu-app.json').meta.empreinte")
+          echo "Empreinte attendue : $EMPREINTE"
+
+          if ! unzip -p "$IPA" 'Payload/*.app/main.jsbundle' 2>/dev/null | grep -qF "$EMPREINTE"; then
+            echo "::error::Le paquet ne contient pas l'empreinte du contenu du dépôt."
+            echo "Le binaire a été regroupé avec un autre contenu que celui-ci."
+            exit 1
+          fi
+
+          echo "Le paquet contient bien le contenu du dépôt."
+
+      - name: Résumer
+        run: |
+          set -euo pipefail
+
+          APP=$(find ios/build/Build/Products/Release-iphoneos -maxdepth 1 -name '*.app' | head -n 1)
+          IDENTIFIANT=$(/usr/libexec/PlistBuddy -c "Print :CFBundleIdentifier" "$APP/Info.plist")
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$APP/Info.plist")
+          BUILD=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" "$APP/Info.plist")
+          TAILLE=$(du -h "$IPA" | cut -f1)
+          EMPREINTE=$(node -p "require('./assets/contenu-app.json').meta.empreinte")
+
+          {
+            echo "## IPA non signé prêt"
+            echo
+            echo "| | |"
+            echo "| --- | --- |"
+            echo "| Identifiant | \`$IDENTIFIANT\` |"
+            echo "| Version | \`$VERSION\` (\`$BUILD\`) |"
+            echo "| Contenu | \`$EMPREINTE\` |"
+            echo "| Schéma compilé | \`${{ steps.cible.outputs.scheme }}\` |"
+            echo "| Taille | $TAILLE |"
+            echo
+            echo "### Cet IPA ne s'installera pas tel quel"
+            echo
+            echo "iOS vérifie la signature avant d'exécuter une application : un IPA"
+            echo "non signé est refusé, sans message qui l'explique. Il faut le"
+            echo "**re-signer** — avec ESign ou Sideloadly."
+            echo
+            echo "1. Téléchargez l'IPA depuis la page des versions du dépôt —"
+            echo "   l'artefact de ce flux, lui, demande un compte GitHub :"
+            echo "   https://github.com/$GITHUB_REPOSITORY/releases/latest"
+            echo "2. Ouvrez ESign sur l'iPhone et importez le fichier."
+            echo "3. Signez avec un certificat obtenu sur l'appareil."
+            echo "4. Installez depuis ESign, puis ouvrez l'application."
+            echo
+            echo "La signature par certificat gratuit dure **sept jours** :"
+            echo "l'application cesse de s'ouvrir au-delà, et il faut re-signer."
+            echo "Pour un usage réel par les familles, la voie normale reste le"
+            echo "magasin — cet artefact sert à **essayer** l'application."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Archiver l'IPA
+        uses: actions/upload-artifact@v7
+        with:
+          name: ipa-non-signe
+          path: ${{ env.IPA }}
+          # Un IPA de plusieurs dizaines de mégaoctets se télécharge à la main :
+          # il n'a pas vocation à rester. Trente jours couvrent l'essai.
+          #
+          # Cet artefact n'est PAS la voie de livraison : il demande un compte
+          # GitHub, et répond 401 à un visiteur anonyme. Il reste ici pour la
+          # reprise d'un travail, pas pour l'installation. L'étape suivante
+          # publie la voie qui marche.
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Publier l'IPA dans la version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          VERSION=$(node -p "require('./app.json').expo.version")
+          TAG="v$VERSION"
+
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" \
+              --title "Ludo'Lire $VERSION" \
+              --notes "IPA non signé de Ludo'Lire $VERSION. Voir la procédure d'installation dans le résumé du flux." \
+              --target "$GITHUB_SHA" || true
+          fi
+
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            echo "::error::la version $TAG n'existe pas et n'a pas pu être créée"
+            exit 1
+          fi
+
+          # Le nom porte la version et la mention « non signé », parce que c'est
+          # la première chose qu'on lit dans le dossier de téléchargements du
+          # téléphone — et qu'un IPA non signé ne s'installe pas tel quel.
+          FICHIER="ludolire-$VERSION-non-signe.ipa"
+          cp "$IPA" "$FICHIER"
+          echo "$FICHIER : $(wc -c < "$FICHIER") octets"
+
+          gh release upload "$TAG" "$FICHIER" --clobber
+
+          echo "### IPA publié dans la version $TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo >> "$GITHUB_STEP_SUMMARY"
+          echo "https://github.com/$GITHUB_REPOSITORY/releases/tag/$TAG" >> "$GITHUB_STEP_SUMMARY"

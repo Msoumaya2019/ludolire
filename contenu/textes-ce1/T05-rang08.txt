@@ -1,0 +1,10 @@
+# rang: 8
+# La maison de la reine
+
+La reine a une belle maison.
+Dans la maison, la reine a une table et un lit.
+Le chat a besoin de la reine.
+La reine a besoin du chat.
+Le soir, le chat a rejoint la reine.
+La reine a un point sur la main.
+Le chat a un point aussi.

@@ -1,0 +1,12 @@
+# rang: 11
+# L'éléphant et le téléphone
+
+Papa a une photo.
+Sur la photo, un éléphant a un téléphone.
+Le téléphone est dans la maison.
+Maman aime l'éléphant.
+L'éléphant aime le téléphone.
+Le soir, l'éléphant a rejoint la maison.
+Papa a une phrase sur la photo.
+La phrase a un point.
+Maman rit encore.

@@ -1,0 +1,2435 @@
+{
+  "meta": {
+    "titre": "Exercices de la tranche CE1",
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "role": "Banque d'exercices de la tranche CE1 : un exercice par unité de progression au minimum, chacun avec sa consigne et son geste de réponse.",
+    "source_progression": "outils/progression-ce1.json — les 42 unités. Aucune unité n'est laissée sans exercice : une unité sans exercice est un objectif qu'on annonce et qu'on n'entraîne pas. Le champ `production` de chaque unité dit si son objectif demande à l'enfant de produire ce que la machine ne peut pas entendre.",
+    "source_textes": "contenu/textes-ce1/ — les 18 textes de la tranche. Un exercice de compréhension est adossé à un texte nommé par son identifiant (`T18-rang38`), et la phrase-preuve qu'il cite est vérifiée comme existant LITTÉRALEMENT dans ce texte. Le rang du texte ne peut pas dépasser celui de l'unité : un texte qu'on ne peut pas encore lire ne peut pas porter une question.",
+    "source_mots": "contenu/textes-ce1/ et outils/images-gs.json — un exercice n'emploie que des mots déchiffrables au rang de son unité, ce que le contrôle calcule avec le décodeur du CE1, et n'affiche en image que des mots déjà illustrés.",
+    "regle_de_contenu": "Un exercice du CE1 n'emploie que des mots déchiffrables au rang de son unité, et il porte sur TOUT ce que l'enfant voit : les mots de la série, mais aussi les questions et leurs réponses. Au CE1 la règle ne protège plus le découpage, elle protège la lecture : un mot qu'on ne peut pas encore déchiffrer transforme l'exercice en devinette, et une option qu'on ne peut pas lire est une option qui n'existe pas.",
+    "regle_du_geste": "Toute réponse se donne par le geste, et la consigne est dite par la voix. L'application n'a pas de micro : elle ne peut pas entendre ce que l'enfant lit, donc tout ce qui se lit à voix haute est déclaré hors app, et tout ce qui se vérifie dans l'application se vérifie par un toucher.",
+    "regle_des_distracteurs": "Une mauvaise réponse doit être une lecture PLAUSIBLE du texte, pas une absurdité. Une option écartée d'emblée n'apprend rien à l'enfant et ne mesure rien : c'est la règle des intruses du jeu de syllabes, transposée aux questions. Un intrus partage le plus possible avec la bonne réponse — le même personnage, le même lieu, la même action — et ne s'en écarte que par ce que la question demande.",
+    "ce_que_la_banque_ne_regle_pas": "Elle ne règle ni l'habillage graphique, ni l'ordre des exercices dans une séance, ni la difficulté relative de deux exercices. Elle dit ce que chaque unité demande à l'enfant, avec quel matériel, et ce que l'application peut vérifier — ou pas.",
+    "les_deux_champs_de_production": "`substitution` ne vaut que pour un exercice hors app : il nomme le jumeau réceptif qui vérifie ce que la machine ne peut pas juger, ou écrit « aucune » quand il n'en existe pas. `inversion` dit ce que le geste reprend à la place de la production, et ne vaut que pour un exercice jugé par l'app qui couvre une unité de production.",
+    "le_champ_phrase_preuve": "Une question de compréhension ne vaut que si l'on peut montrer où le texte le dit. Chaque question porte donc sa `phrase_preuve`, citée du texte mot pour mot, et le contrôle vérifie qu'elle s'y trouve réellement. Une phrase-preuve approximative est une réponse qu'on ne peut pas défendre, et l'enfant apprend à justifier par une phrase qu'il n'a pas lue.",
+    "les_consignes_du_ce1": "Le CE1 n'a pas de corpus de consignes enregistrées : elles sont déclarées ici, avec leur texte, qui est le script de l'enregistrement à faire. Le besoin est déclaré dans `besoins`, et il est déclaré par les consignes elles-mêmes — sans quoi une consigne jamais utilisée resterait à enregistrer pour rien. Une consigne du CE1 est courte et, autant que possible, déchiffrable : c'est un texte de lecture comme un autre.",
+    "les_textes_courts": "Quatre exercices ont besoin d'un texte trop court pour être un texte du palier : distinguer le récit du documentaire demande deux textes à comparer, apparier deux lectures qui se ressemblent en demande trois, et deux exercices de pluriel jouent sur un texte de quatre lignes. Ces textes vivent dans leur propre corpus (`contenu/textes-courts-ce1/`), chacun déclarant son rang, son TYPE et son titre, et l'exercice les CITE par leur nom de fichier (`textes_courts`). Le type est ce qui rend la clé de réponse vérifiable : une question qui demande « le texte qui raconte » et dont la bonne réponse est déclarée `informatif` apprend l'inverse de ce qu'elle annonce, et le contrôle le refuse. Le corpus est contrôlé par `outils/verifier-textes-courts-ce1.py`, éprouvé par `outils/tester-textes-courts-ce1.py` — 15 corpus faux et 1 témoin, tous vus.",
+    "les_illustrations_du_ce1": "Le corpus d'illustrations du CE1 existe depuis le 21 septembre 2026 (`outils/images-ce1.json`, 3 mots) et s'ajoute à celui de la GS (`outils/images-gs.json`, 44 mots) : un exercice du CE1 n'affiche en image qu'un mot de l'un ou de l'autre. Le corpus du CE1 déclare en plus les VINGT-DEUX mots que les unités 4, 13 et 30 annoncent et qui ne peuvent pas être dessinés, chacun avec sa raison — la réponse aux besoins B04, B13 et B30 est donc « voici ce qui se dessine, et voici pourquoi le reste ne se dessine pas ». Deux de ces images ne sont pas encore affichées par une série : `foin` et `parfum` sont déclarés `present_dans_la_serie: false`, et l'écart est consigné plutôt que tu.",
+    "les_images_de_recit": "Les images de RÉCIT de la tranche existent depuis le 21 septembre 2026 (`outils/images-recit-ce1.json`, 8 scènes) : elles ne portent pas un mot mais un MOMENT, et servent la remise en ordre — quatre moments par exercice, que l'enfant doit replacer dans l'ordre du texte. Deux exercices de la banque jouent sur elles : E19 (unité 14) et E45 (unité 37), qui sont exactement les deux dont l'unité annonce un geste d'image. Les deux autres exercices de la même mécanique, E39 (unité 32) et E51 (unité 38), jouent sur le TEXTE : leurs unités demandent de lire une recette et un texte entier, et le corpus le déclare au lieu de les ignorer. Le contrôle des images refuse un exercice de remise en ordre dont l'unité annonce un geste d'image et que nul récit ne couvre, et refuse qu'un exercice qui joue sur le texte ne soit pas déclaré comme tel."
+  },
+  "mecaniques": [
+    {
+      "id": "lire_mot_image",
+      "libelle": "Lire un mot et toucher son image",
+      "ce_que_l_enfant_fait": "lire le mot écrit, puis toucher l'image correspondante parmi quatre",
+      "ce_que_l_application_fait": "affiche quatre images et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "trier_graphies",
+      "libelle": "Trier des mots selon la graphie",
+      "ce_que_l_enfant_fait": "ranger chaque mot dans la colonne de la graphie qui produit le son",
+      "ce_que_l_application_fait": "affiche deux ou trois colonnes et range le mot touché",
+      "verdict": "app"
+    },
+    {
+      "id": "trier_sons",
+      "libelle": "Trier des mots selon la voyelle entendue",
+      "ce_que_l_enfant_fait": "ranger chaque mot dans la colonne de la voyelle qu'on entend, quand deux sons s'écrivent pareil",
+      "ce_que_l_application_fait": "affiche deux colonnes et range le mot touché",
+      "verdict": "app"
+    },
+    {
+      "id": "completer_mot",
+      "libelle": "Compléter un mot",
+      "ce_que_l_enfant_fait": "toucher la carte-graphie qui complète le mot à trou",
+      "ce_que_l_application_fait": "affiche le mot troué et les cartes, et enregistre la carte posée",
+      "verdict": "app"
+    },
+    {
+      "id": "toucher_graphie_dans_mot",
+      "libelle": "Toucher la graphie dans le mot",
+      "ce_que_l_enfant_fait": "toucher, dans le mot affiché, la graphie du son entendu",
+      "ce_que_l_application_fait": "affiche le mot et enregistre la graphie touchée",
+      "verdict": "app"
+    },
+    {
+      "id": "toucher_mot_dans_phrase",
+      "libelle": "Toucher un mot dans une phrase",
+      "ce_que_l_enfant_fait": "toucher, dans la phrase affichée, le mot que la consigne désigne",
+      "ce_que_l_application_fait": "affiche la phrase en mots touchables et enregistre le mot touché",
+      "verdict": "app"
+    },
+    {
+      "id": "apparier_mot_image",
+      "libelle": "Apparier des mots et des images",
+      "ce_que_l_enfant_fait": "toucher un mot puis son image, jusqu'à épuiser les paires",
+      "ce_que_l_application_fait": "affiche les deux colonnes et vérifie les paires formées",
+      "verdict": "app"
+    },
+    {
+      "id": "apparier_graphies",
+      "libelle": "Apparier deux mots qui partagent une graphie",
+      "ce_que_l_enfant_fait": "toucher deux mots dont une graphie produit le même son",
+      "ce_que_l_application_fait": "affiche les mots et vérifie les paires formées",
+      "verdict": "app"
+    },
+    {
+      "id": "apparier_textes",
+      "libelle": "Apparier un texte à un autre qui lui ressemble",
+      "ce_que_l_enfant_fait": "toucher, parmi trois textes courts, celui qui ressemble à celui qu'on vient de lire",
+      "ce_que_l_application_fait": "affiche les trois textes et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "ecouter_et_choisir",
+      "libelle": "Écouter un mot et toucher sa graphie",
+      "ce_que_l_enfant_fait": "écouter le mot dit par la voix, puis toucher le mot écrit qui correspond",
+      "ce_que_l_application_fait": "joue le mot enregistré et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "lire_flash",
+      "libelle": "Lire un mot affiché brièvement",
+      "ce_que_l_enfant_fait": "lire le mot avant qu'il disparaisse, puis toucher le même mot parmi quatre",
+      "ce_que_l_application_fait": "affiche le mot un court instant, puis les quatre candidats",
+      "verdict": "app"
+    },
+    {
+      "id": "lire_pseudo_mot",
+      "libelle": "Décider si une suite de lettres est un mot",
+      "ce_que_l_enfant_fait": "toucher « oui » si la suite est un mot français, « non » sinon",
+      "ce_que_l_application_fait": "affiche la suite et enregistre le choix binaire",
+      "verdict": "app"
+    },
+    {
+      "id": "lire_et_choisir_son",
+      "libelle": "Lire et toucher le mot où le son s'entend",
+      "ce_que_l_enfant_fait": "lire les mots affichés, puis toucher celui qui contient le son demandé",
+      "ce_que_l_application_fait": "affiche les mots et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "classer_famille",
+      "libelle": "Classer des mots en familles",
+      "ce_que_l_enfant_fait": "ranger les mots qui se ressemblent dans la même famille",
+      "ce_que_l_application_fait": "affiche les mots et les familles, et vérifie le rangement",
+      "verdict": "app"
+    },
+    {
+      "id": "choisir_forme",
+      "libelle": "Choisir la forme qui convient",
+      "ce_que_l_enfant_fait": "toucher la forme du mot qui convient à la phrase",
+      "ce_que_l_application_fait": "affiche la phrase et les formes, et enregistre le choix",
+      "verdict": "app"
+    },
+    {
+      "id": "choisir_titre",
+      "libelle": "Choisir le titre du texte",
+      "ce_que_l_enfant_fait": "toucher, parmi trois, le titre qui convient au texte lu",
+      "ce_que_l_application_fait": "affiche les trois titres et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "choisir_resume",
+      "libelle": "Choisir le résumé qui convient",
+      "ce_que_l_enfant_fait": "toucher, parmi trois, le résumé qui dit ce que le texte raconte",
+      "ce_que_l_application_fait": "affiche les trois résumés et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "toucher_phrase_preuve",
+      "libelle": "Toucher la phrase qui prouve la réponse",
+      "ce_que_l_enfant_fait": "toucher, dans le texte affiché, la phrase qui permet de répondre",
+      "ce_que_l_application_fait": "affiche le texte en phrases touchables et enregistre la phrase choisie",
+      "verdict": "app"
+    },
+    {
+      "id": "ordonner_recit",
+      "libelle": "Remettre le récit dans l'ordre",
+      "ce_que_l_enfant_fait": "toucher les étapes du récit dans l'ordre où elles arrivent",
+      "ce_que_l_application_fait": "affiche les étapes mélangées et vérifie l'ordre reconstruit",
+      "verdict": "app"
+    },
+    {
+      "id": "toucher_referent",
+      "libelle": "Toucher le mot que remplace un pronom",
+      "ce_que_l_enfant_fait": "toucher, plus haut dans le texte, le mot que désigne le pronom souligné",
+      "ce_que_l_application_fait": "affiche le texte et enregistre le mot touché",
+      "verdict": "app"
+    },
+    {
+      "id": "lever_ambiguite",
+      "libelle": "Choisir le sens qui convient",
+      "ce_que_l_enfant_fait": "toucher, entre deux sens possibles d'un mot, celui que le texte retient",
+      "ce_que_l_application_fait": "affiche les deux sens et enregistre le choix",
+      "verdict": "app"
+    },
+    {
+      "id": "deviner_mot",
+      "libelle": "Trouver le sens d'un mot inconnu",
+      "ce_que_l_enfant_fait": "toucher, parmi trois, ce que veut dire le mot en gras, d'après le texte",
+      "ce_que_l_application_fait": "affiche les trois sens et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "inferer",
+      "libelle": "Répondre à une question dont la réponse n'est pas écrite",
+      "ce_que_l_enfant_fait": "toucher la réponse qui se déduit du texte sans y être écrite",
+      "ce_que_l_application_fait": "affiche les réponses et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "suivre_consigne_ecrite",
+      "libelle": "Exécuter une consigne lue",
+      "ce_que_l_enfant_fait": "lire la consigne du texte et faire ce qu'elle dit, dans l'ordre",
+      "ce_que_l_application_fait": "vérifie l'ordre et la conformité des gestes demandés",
+      "verdict": "app"
+    },
+    {
+      "id": "prelever_info",
+      "libelle": "Trouver une information dans un texte",
+      "ce_que_l_enfant_fait": "toucher, parmi les phrases du texte, celle qui porte l'information demandée",
+      "ce_que_l_application_fait": "affiche le texte et enregistre la phrase touchée",
+      "verdict": "app"
+    },
+    {
+      "id": "toucher_emotion",
+      "libelle": "Dire ce que ressent le personnage",
+      "ce_que_l_enfant_fait": "toucher le mot qui dit ce que ressent le personnage à ce moment du texte",
+      "ce_que_l_application_fait": "affiche les mots d'émotion et enregistre le toucher",
+      "verdict": "app"
+    },
+    {
+      "id": "associer_personnage_trait",
+      "libelle": "Associer un personnage et un trait",
+      "ce_que_l_enfant_fait": "toucher le trait qui va avec le personnage, pour chaque personnage",
+      "ce_que_l_application_fait": "affiche les personnages et les traits, et vérifie les paires",
+      "verdict": "app"
+    },
+    {
+      "id": "distinguer_type",
+      "libelle": "Dire si le texte raconte ou explique",
+      "ce_que_l_enfant_fait": "toucher « il raconte une histoire » ou « il explique quelque chose »",
+      "ce_que_l_application_fait": "affiche les deux étiquettes et enregistre le choix",
+      "verdict": "app"
+    },
+    {
+      "id": "marquer_groupes",
+      "libelle": "Marquer les groupes de mots",
+      "ce_que_l_enfant_fait": "toucher, entre deux mots, les endroits où le groupe se termine et où l'on respire",
+      "ce_que_l_application_fait": "affiche le texte en mots touchables et enregistre les coupures",
+      "verdict": "app"
+    },
+    {
+      "id": "lire_a_voix_haute",
+      "libelle": "Lire à voix haute",
+      "ce_que_l_enfant_fait": "lire le texte à voix haute, devant l'adulte",
+      "ce_que_l_application_fait": "ne fait rien : elle ne peut pas entendre",
+      "verdict": "hors app"
+    },
+    {
+      "id": "lire_et_chronometrer",
+      "libelle": "Lire et se faire chronométrer",
+      "ce_que_l_enfant_fait": "lire le texte pendant que l'adulte mesure le temps",
+      "ce_que_l_application_fait": "affiche le texte et le nombre de mots, et laisse l'adulte saisir la durée",
+      "verdict": "hors app"
+    },
+    {
+      "id": "choisir_son_livre",
+      "libelle": "Choisir un livre pour soi",
+      "ce_que_l_enfant_fait": "parcourir les livres et en choisir un, pour le plaisir",
+      "ce_que_l_application_fait": "ne fait rien : elle ne peut pas juger un choix personnel",
+      "verdict": "hors app"
+    },
+    {
+      "id": "dire_sa_lecture",
+      "libelle": "Dire ce qu'une lecture a rappelé",
+      "ce_que_l_enfant_fait": "dire à l'adulte ce que le texte a rappelé, ou à quoi il a fait penser",
+      "ce_que_l_application_fait": "ne fait rien : elle ne peut pas entendre",
+      "verdict": "hors app"
+    }
+  ],
+  "consignes": [
+    {
+      "id": "lis_le_mot_image",
+      "texte": "Lis le mot, puis touche son image.",
+      "picto": "mot-et-image",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "trie_selon_graphie",
+      "texte": "Range chaque mot dans la colonne de la lettre qui fait le son.",
+      "picto": "colonnes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "trie_selon_son",
+      "texte": "Range chaque mot dans la colonne de la voyelle que tu entends.",
+      "picto": "colonnes-sons",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "complete_le_mot",
+      "texte": "Touche la carte qui complète le mot.",
+      "picto": "carte-a-poser",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "touche_la_graphie",
+      "texte": "Touche la lettre qui fait le son.",
+      "picto": "graphie-a-toucher",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "touche_le_mot",
+      "texte": "Touche le mot demandé dans la phrase.",
+      "picto": "mot-a-toucher",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "apparie_mots_images",
+      "texte": "Touche un mot, puis son image.",
+      "picto": "deux-colonnes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "apparie_les_mots",
+      "texte": "Touche deux mots qui vont ensemble.",
+      "picto": "deux-colonnes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "choisis_le_texte",
+      "texte": "Touche le texte qui ressemble à celui que tu viens de lire.",
+      "picto": "trois-textes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "ecoute_et_touche",
+      "texte": "Écoute le mot, puis touche-le.",
+      "picto": "oreille",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "lis_vite",
+      "texte": "Lis le mot, puis touche le même mot.",
+      "picto": "eclair",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "vrai_ou_faux_mot",
+      "texte": "Est-ce un vrai mot ? Touche oui ou non.",
+      "picto": "oui-non",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "lis_et_touche_le_son",
+      "texte": "Lis les mots, puis touche celui où tu entends le son.",
+      "picto": "loupe",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "classe_les_mots",
+      "texte": "Range ensemble les mots qui se ressemblent.",
+      "picto": "paniers",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "choisis_la_forme",
+      "texte": "Touche la forme qui va dans la phrase.",
+      "picto": "phrase-a-trou",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "choisis_le_titre",
+      "texte": "Touche le titre qui va avec le texte.",
+      "picto": "trois-titres",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "choisis_le_resume",
+      "texte": "Touche le résumé qui dit ce que raconte le texte.",
+      "picto": "trois-resumes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "touche_la_phrase",
+      "texte": "Touche la phrase qui prouve ta réponse.",
+      "picto": "phrase-a-toucher",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "remets_dans_ordre",
+      "texte": "Touche les étapes dans l'ordre de l'histoire.",
+      "picto": "etapes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "touche_le_mot_remplace",
+      "texte": "Touche le mot que remplace le mot souligné.",
+      "picto": "lien",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "choisis_le_sens",
+      "texte": "Touche le sens qui va avec le texte.",
+      "picto": "deux-sens",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "devine_le_mot",
+      "texte": "Touche ce que veut dire le mot en gras.",
+      "picto": "loupe",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "deduis_la_reponse",
+      "texte": "Touche ce que le texte permet de comprendre, même si ce n'est pas écrit.",
+      "picto": "bulle",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "cherche_dans_le_texte",
+      "texte": "Cherche la réponse dans le texte, puis touche la phrase.",
+      "picto": "phrase-a-toucher",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "suis_la_consigne",
+      "texte": "Lis la consigne, puis fais ce qu'elle dit.",
+      "picto": "liste-a-faire",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "touche_l_emotion",
+      "texte": "Touche ce que ressent le personnage.",
+      "picto": "visages",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "associe_personnage",
+      "texte": "Touche le personnage qui va avec le trait.",
+      "picto": "deux-colonnes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "raconte_ou_explique",
+      "texte": "Ce texte raconte une histoire, ou il explique quelque chose ?",
+      "picto": "deux-etiquettes",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "marque_les_pauses",
+      "texte": "Touche les endroits où l'on respire.",
+      "picto": "souffle",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "lis_a_voix_haute",
+      "texte": "Lis le texte à voix haute.",
+      "picto": "voix",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "lis_et_chronometre",
+      "texte": "Lis le texte, et l'adulte note le temps.",
+      "picto": "chronometre",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "choisis_ton_livre",
+      "texte": "Choisis le livre que tu veux lire.",
+      "picto": "etagere",
+      "besoin_id": "B01a"
+    },
+    {
+      "id": "dis_ce_que_tu_penses",
+      "texte": "Dis à l'adulte ce que ce texte t'a rappelé.",
+      "picto": "bulle",
+      "besoin_id": "B01a"
+    }
+  ],
+  "exercices": [
+    {
+      "id": "E01",
+      "unite": 1,
+      "mecanique": "lire_mot_image",
+      "titre": "Le mot et son image",
+      "consigne": "lis_le_mot_image",
+      "geste": "lire le mot écrit, puis toucher l'image correspondante parmi quatre",
+      "serie": [
+        "chat",
+        "rat",
+        "sac",
+        "main"
+      ],
+      "mots": [
+        "chat",
+        "rat",
+        "sac",
+        "main"
+      ],
+      "affiches": [
+        "chat",
+        "rat",
+        "sac",
+        "main"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "lire un mot entier sans le décomposer, et le rapprocher de ce qu'il désigne",
+      "ne_verifie_pas": "le sens du mot hors de l'image : l'exercice demande de reconnaître, pas de définir"
+    },
+    {
+      "id": "E02",
+      "unite": 1,
+      "mecanique": "lire_flash",
+      "titre": "L'éclair",
+      "consigne": "lis_vite",
+      "geste": "lire le mot avant qu'il disparaisse, puis toucher le même mot parmi quatre",
+      "serie": [
+        "dix mots affichés un court instant, un par un, puis choisis parmi quatre"
+      ],
+      "mots": [
+        "chat",
+        "rat",
+        "sac",
+        "valise",
+        "moto",
+        "vélo",
+        "table",
+        "lune",
+        "tomate",
+        "banane"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "reconnaître un mot d'un seul regard, sans passer par la syllabe",
+      "ne_verifie_pas": "la vitesse de lecture à voix haute, qui ne se mesure pas à l'écran"
+    },
+    {
+      "id": "E03",
+      "unite": 1,
+      "mecanique": "apparier_mot_image",
+      "titre": "Les paires",
+      "consigne": "apparie_mots_images",
+      "geste": "toucher un mot puis son image, jusqu'à épuiser les paires",
+      "serie": [
+        "huit mots et leurs huit images, mélangés"
+      ],
+      "mots": [
+        "papa",
+        "maman",
+        "bébé",
+        "lune",
+        "jupe",
+        "café",
+        "vélo",
+        "moto"
+      ],
+      "affiches": [
+        "papa",
+        "maman",
+        "bébé",
+        "lune",
+        "jupe",
+        "café",
+        "vélo",
+        "moto"
+      ],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "tenir un mot en mémoire le temps de trouver son image",
+      "ne_verifie_pas": "l'ordre dans lequel les paires sont trouvées : il n'y a pas de bon ordre"
+    },
+    {
+      "id": "E04",
+      "unite": 2,
+      "mecanique": "trier_graphies",
+      "titre": "Les colonnes du è",
+      "consigne": "trie_selon_graphie",
+      "geste": "ranger chaque mot dans la colonne de la graphie qui produit le son",
+      "serie": [
+        "quatre colonnes : ai, ei, è, ê",
+        "onze mots à ranger"
+      ],
+      "mots": [
+        "craie",
+        "reine",
+        "lait",
+        "maison",
+        "chaise",
+        "zèbre",
+        "père",
+        "mère",
+        "fête",
+        "tête",
+        "aime"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "reconnaître la graphie qui produit le son, dans un mot entier",
+      "ne_verifie_pas": "l'orthographe du mot : l'enfant range, il n'écrit pas",
+      "graphies": [
+        "ai",
+        "ei",
+        "è",
+        "ê"
+      ]
+    },
+    {
+      "id": "E05",
+      "unite": 2,
+      "mecanique": "toucher_graphie_dans_mot",
+      "titre": "Touche le è",
+      "consigne": "touche_la_graphie",
+      "geste": "toucher, dans le mot affiché, la graphie du son entendu",
+      "serie": [
+        "cinq mots, la graphie du son à toucher dans chacun"
+      ],
+      "mots": [
+        "craie",
+        "reine",
+        "père",
+        "fête",
+        "chaise"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 45,
+      "entraine": "isoler la graphie dans le mot, au lieu de la reconnaître de loin",
+      "ne_verifie_pas": "la lecture du reste du mot : le doigt peut tomber juste sans que le mot soit lu",
+      "graphies": [
+        "ai",
+        "ei",
+        "è",
+        "ê"
+      ]
+    },
+    {
+      "id": "E06",
+      "unite": 2,
+      "mecanique": "ecouter_et_choisir",
+      "titre": "Écoute et touche",
+      "consigne": "ecoute_et_touche",
+      "geste": "écouter le mot dit par la voix, puis toucher le mot écrit qui correspond",
+      "serie": [
+        "six mots dits un par un, chacun à retrouver parmi quatre écrits"
+      ],
+      "mots": [
+        "craie",
+        "reine",
+        "père",
+        "tête",
+        "zèbre",
+        "lait"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/ɛ/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "faire correspondre ce qu'on entend et ce qu'on voit écrit",
+      "ne_verifie_pas": "la production du son : l'enfant reconnaît, il ne prononce pas",
+      "besoin_id": "B02"
+    },
+    {
+      "id": "E07",
+      "unite": 3,
+      "mecanique": "trier_graphies",
+      "titre": "Les deux nasales",
+      "consigne": "trie_selon_graphie",
+      "geste": "ranger chaque mot dans la colonne de la graphie qui produit le son",
+      "serie": [
+        "deux colonnes : en, em",
+        "huit mots à ranger"
+      ],
+      "mots": [
+        "vent",
+        "dent",
+        "tempête",
+        "emporte",
+        "entend",
+        "ensemble",
+        "content",
+        "moment"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "voir que la nasale change de lettre selon celle qui suit",
+      "ne_verifie_pas": "le choix de la lettre dans un mot nouveau : l'enfant range des mots qu'il voit",
+      "graphies": [
+        "en",
+        "em"
+      ]
+    },
+    {
+      "id": "E08",
+      "unite": 3,
+      "mecanique": "completer_mot",
+      "titre": "La carte qui manque",
+      "consigne": "complete_le_mot",
+      "geste": "toucher la carte-graphie qui complète le mot à trou",
+      "serie": [
+        "cinq mots à trou, les cartes en et em sous la main"
+      ],
+      "mots": [
+        "vent",
+        "dent",
+        "tempête",
+        "emporte",
+        "enfant"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "produire la graphie au lieu de la reconnaître, sans écrire",
+      "ne_verifie_pas": "l'écriture du mot : l'enfant pose une carte, il ne trace pas les lettres",
+      "graphies": [
+        "en",
+        "em"
+      ]
+    },
+    {
+      "id": "E09",
+      "unite": 4,
+      "mecanique": "lire_et_choisir_son",
+      "titre": "Où entend-on oin ?",
+      "consigne": "lis_et_touche_le_son",
+      "geste": "lire les mots affichés, puis toucher celui qui contient le son demandé",
+      "serie": [
+        "six mots affichés, un seul porte oin"
+      ],
+      "mots": [
+        "coin",
+        "point",
+        "loin",
+        "besoin",
+        "joint",
+        "rejoint"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "entendre la nasale rare dans un mot qu'on lit",
+      "ne_verifie_pas": "l'orthographe de oin : l'enfant choisit un mot, il ne l'écrit pas",
+      "besoin_id": "B04"
+    },
+    {
+      "id": "E10",
+      "unite": 5,
+      "mecanique": "choisir_resume",
+      "titre": "De quoi parle le texte ?",
+      "consigne": "choisis_le_resume",
+      "geste": "toucher, parmi trois, le résumé qui dit ce que raconte le texte",
+      "serie": [
+        "le texte « Le chat » affiché en entier",
+        "une question, trois résumés"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "tenir le texte entier en tête, et non sa première phrase",
+      "ne_verifie_pas": "le choix des mots du résumé : l'enfant choisit, il ne rédige pas",
+      "texte": "T01-rang01",
+      "questions": [
+        {
+          "question": "Quel résumé dit ce que raconte le texte ?",
+          "bonne": "Le chat prend la noix, et la souris rit.",
+          "intrus": [
+            "La souris prend la noix, et le chat rit.",
+            "Le chat a une souris, et la souris a un chat."
+          ],
+          "phrase_preuve": "Le chat a la noix."
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "unite": 6,
+      "mecanique": "choisir_titre",
+      "titre": "Le titre du texte",
+      "consigne": "choisis_le_titre",
+      "geste": "toucher, parmi trois, le titre qui convient au texte lu",
+      "serie": [
+        "le texte « La fête » affiché en entier",
+        "une question, trois titres"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "Le programme demande de DONNER un titre au texte, et donner un titre est un acte de parole : la machine ne peut pas l'entendre. Le geste garde le jugement — reconnaître, parmi trois, celui qui convient — et perd la production. Les deux intrus sont des titres plausibles du même texte : « Les pains de maman » et « Le vent de la maison » parlent du même monde sans dire de quoi le texte parle.",
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "décider de quoi le texte parle, et le reconnaître parmi d'autres",
+      "ne_verifie_pas": "la formulation d'un titre par l'enfant : c'est elle qui est visée par l'unité, et elle se vérifie à l'oral",
+      "texte": "T02-rang02"
+    },
+    {
+      "id": "E12",
+      "unite": 7,
+      "mecanique": "toucher_phrase_preuve",
+      "titre": "Prouve-le",
+      "consigne": "touche_la_phrase",
+      "geste": "toucher, dans le texte affiché, la phrase qui permet de répondre",
+      "serie": [
+        "le texte « Le vent » affiché en phrases touchables",
+        "une question, une phrase à trouver"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "Le programme demande de JUSTIFIER une réponse par un retour au texte. Justifier est un acte de parole ; toucher la phrase qui le dit est le geste qui en garde la trace. L'enfant n'explique pas sa raison : il montre l'endroit, et c'est cet endroit qui est jugé.",
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "retourner au texte, au lieu de répondre de mémoire",
+      "ne_verifie_pas": "la formulation de la justification : l'enfant montre la phrase, il ne dit pas pourquoi elle prouve",
+      "texte": "T03-rang03",
+      "questions": [
+        {
+          "question": "Qu'est-ce que le vent emporte ?",
+          "bonne": "la craie",
+          "intrus": [
+            "les pains",
+            "la maison"
+          ],
+          "phrase_preuve": "Le vent emporte la craie."
+        }
+      ]
+    },
+    {
+      "id": "E13",
+      "unite": 8,
+      "mecanique": "marquer_groupes",
+      "titre": "Où l'on respire",
+      "consigne": "marque_les_pauses",
+      "geste": "toucher, entre deux mots, les endroits où le groupe se termine et où l'on respire",
+      "serie": [
+        "le texte « La maison de la reine » en mots touchables",
+        "sept coupures à placer"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "découper le texte en groupes de sens, et non mot à mot",
+      "ne_verifie_pas": "la lecture qui suit : placer les coupures ne dit rien de la façon de lire à voix haute",
+      "texte": "T05-rang08"
+    },
+    {
+      "id": "E14",
+      "unite": 9,
+      "mecanique": "ecouter_et_choisir",
+      "titre": "Le son de la montagne",
+      "consigne": "ecoute_et_touche",
+      "geste": "écouter le mot dit par la voix, puis toucher le mot écrit qui correspond",
+      "serie": [
+        "cinq mots dits un par un, chacun à retrouver parmi trois écrits"
+      ],
+      "mots": [
+        "agneau",
+        "montagne",
+        "vigne",
+        "signe",
+        "campagne"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/ɲ/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "entendre /ɲ/ et le reconnaître dans deux lettres écrites",
+      "ne_verifie_pas": "la prononciation de /ɲ/ par l'enfant : il choisit, il ne dit pas",
+      "besoin_id": "B02"
+    },
+    {
+      "id": "E15",
+      "unite": 10,
+      "mecanique": "apparier_graphies",
+      "titre": "Deux mots pour un son",
+      "consigne": "apparie_les_mots",
+      "geste": "toucher deux mots dont une graphie produit le même son",
+      "serie": [
+        "fille et billet d'un côté, yeux et crayon de l'autre, mélangés"
+      ],
+      "mots": [
+        "fille",
+        "billet",
+        "yeux",
+        "crayon"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "voir que deux graphies différentes portent le même son",
+      "ne_verifie_pas": "le choix de la graphie dans un mot nouveau : l'enfant apparie ce qu'il voit",
+      "graphies": [
+        "ill",
+        "y"
+      ]
+    },
+    {
+      "id": "E16",
+      "unite": 11,
+      "mecanique": "trier_graphies",
+      "titre": "Le f de la photo",
+      "consigne": "trie_selon_graphie",
+      "geste": "ranger chaque mot dans la colonne de la graphie qui produit le son",
+      "serie": [
+        "deux colonnes : ph et f",
+        "six mots à ranger"
+      ],
+      "mots": [
+        "photo",
+        "téléphone",
+        "éléphant",
+        "phrase",
+        "fleur",
+        "fête"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/f/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "distinguer les deux écritures du même son",
+      "ne_verifie_pas": "le choix entre ph et f quand on écrit : l'enfant range des mots qu'il voit",
+      "graphies": [
+        "ph"
+      ]
+    },
+    {
+      "id": "E17",
+      "unite": 12,
+      "mecanique": "trier_sons",
+      "titre": "Les deux eu",
+      "consigne": "trie_selon_son",
+      "geste": "ranger chaque mot dans la colonne de la voyelle qu'on entend, quand deux sons s'écrivent pareil",
+      "serie": [
+        "deux colonnes : eu de fleur, eu de deux",
+        "six mots à ranger"
+      ],
+      "mots": [
+        "fleur",
+        "peur",
+        "deux",
+        "peu",
+        "jeu",
+        "bleu"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/œ/",
+        "/ø/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "distinguer deux voyelles que l'écriture ne distingue pas",
+      "ne_verifie_pas": "la règle qui décide, qui n'existe pas : c'est le mot qu'on connaît qui tranche, pas la graphie"
+    },
+    {
+      "id": "E18",
+      "unite": 13,
+      "mecanique": "lire_et_choisir_son",
+      "titre": "Lundi ou lune ?",
+      "consigne": "lis_et_touche_le_son",
+      "geste": "lire les mots affichés, puis toucher celui qui contient le son demandé",
+      "serie": [
+        "six mots affichés, dont trois portent la nasale un et trois le u suivi de n"
+      ],
+      "mots": [
+        "lundi",
+        "brun",
+        "chacun",
+        "aucun",
+        "lune",
+        "brune"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/œ̃/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "séparer une nasale de deux lettres qui se suivent sans former de son",
+      "ne_verifie_pas": "la prononciation de la nasale : l'enfant lit, il ne dit pas à voix haute",
+      "besoin_id": "B13"
+    },
+    {
+      "id": "E19",
+      "unite": 14,
+      "mecanique": "ordonner_recit",
+      "titre": "Dans l'ordre",
+      "consigne": "remets_dans_ordre",
+      "geste": "toucher les étapes du récit dans l'ordre où elles arrivent",
+      "serie": [
+        "le texte « L'éléphant et le téléphone » lu d'abord",
+        "quatre images de récit mélangées à remettre dans l'ordre"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "Le programme demande de RESTITUER les enchaînements du récit, et restituer est un acte de parole. Le geste garde l'ordre — la seule chose qui s'y vérifie — et perd le récit. Un enfant qui remet les étapes dans l'ordre n'a pas dit l'histoire.",
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "tenir la suite des événements, et non un seul moment",
+      "ne_verifie_pas": "la mise en mots du récit : l'ordre est jugé, la narration ne l'est pas",
+      "texte": "T07-rang11",
+      "questions": [
+        {
+          "question": "Que trouve-t-on sur la photo ?",
+          "bonne": "un éléphant avec un téléphone",
+          "intrus": [
+            "un éléphant dans la maison",
+            "un téléphone sur la table"
+          ],
+          "phrase_preuve": "Sur la photo, un éléphant a un téléphone."
+        }
+      ]
+    },
+    {
+      "id": "E20",
+      "unite": 15,
+      "mecanique": "toucher_emotion",
+      "titre": "Ce qu'elle ressent",
+      "consigne": "touche_l_emotion",
+      "geste": "toucher le mot qui dit ce que ressent le personnage à ce moment du texte",
+      "serie": [
+        "le texte « La montagne » affiché",
+        "une question, trois mots d'émotion"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "Le programme demande d'EXPLICITER les émotions des personnages, et expliciter est un acte de parole — le palier de sortie range d'ailleurs cet objectif hors app. Le geste garde le repérage : le texte dit que l'agneau a besoin de la reine, et l'enfant touche ce que cela dit du lien. Il ne nomme pas l'émotion de lui-même.",
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "lire un état intérieur dans ce que le texte raconte",
+      "ne_verifie_pas": "le mot que l'enfant emploierait lui-même pour dire l'émotion",
+      "texte": "T06-rang09",
+      "questions": [
+        {
+          "question": "Que veut la reine, dans ce texte ?",
+          "bonne": "être avec l'agneau et la montagne",
+          "intrus": [
+            "rejoindre le chat de la maison",
+            "trouver une craie dans la vigne"
+          ],
+          "phrase_preuve": "L'agneau a besoin de la reine."
+        }
+      ]
+    },
+    {
+      "id": "E21",
+      "unite": 16,
+      "mecanique": "distinguer_type",
+      "titre": "Ça raconte ou ça explique ?",
+      "consigne": "raconte_ou_explique",
+      "geste": "toucher « il raconte une histoire » ou « il explique quelque chose »",
+      "serie": [
+        "deux textes courts affichés l'un sous l'autre",
+        "trois étiquettes à toucher : le titre de chaque texte, et « ni l'un ni l'autre »"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "reconnaître ce qui arrive de ce qui est toujours vrai",
+      "ne_verifie_pas": "la lecture de textes longs des deux types : les deux textes comparés sont courts, et le documentaire long n'arrive qu'au rang 33",
+      "questions": [
+        {
+          "question": "Touche le texte qui raconte une histoire.",
+          "bonne": "L'agneau de la reine",
+          "intrus": [
+            "L'air qui va",
+            "Ni l'un ni l'autre"
+          ],
+          "phrase_preuve": "Un lundi, il a rejoint la maison."
+        }
+      ],
+      "textes_courts": [
+        "C01-rang16",
+        "C02-rang16"
+      ]
+    },
+    {
+      "id": "E22",
+      "unite": 17,
+      "mecanique": "toucher_graphie_dans_mot",
+      "titre": "La fin en tion",
+      "consigne": "touche_la_graphie",
+      "geste": "toucher, dans le mot affiché, la graphie du son entendu",
+      "serie": [
+        "six mots, la fin tion à toucher dans chacun"
+      ],
+      "mots": [
+        "potion",
+        "nation",
+        "station",
+        "action",
+        "direction",
+        "question"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 60,
+      "entraine": "isoler un suffixe insécable, où le t ne se lit pas comme un t",
+      "ne_verifie_pas": "le sens du mot : l'exercice porte sur la fin, pas sur ce qu'elle veut dire",
+      "graphies": [
+        "tion"
+      ]
+    },
+    {
+      "id": "E23",
+      "unite": 18,
+      "mecanique": "apparier_graphies",
+      "titre": "Les mots qui riment",
+      "consigne": "apparie_les_mots",
+      "geste": "toucher deux mots dont une graphie produit le même son",
+      "serie": [
+        "six mots à apparier deux par deux, sur la fin qui sonne pareil"
+      ],
+      "mots": [
+        "soleil",
+        "fauteuil",
+        "grenouille",
+        "oreille",
+        "feuille",
+        "travail"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "entendre que le l de ces fins ne s'entend pas",
+      "ne_verifie_pas": "l'écriture de ces fins : l'enfant apparie des mots qu'il voit",
+      "graphies": [
+        "ail",
+        "eil",
+        "euil",
+        "ouille",
+        "aille",
+        "eille",
+        "euille"
+      ]
+    },
+    {
+      "id": "E24",
+      "unite": 19,
+      "mecanique": "trier_graphies",
+      "titre": "Le c de citron",
+      "consigne": "trie_selon_graphie",
+      "geste": "ranger chaque mot dans la colonne de la valeur de la lettre",
+      "serie": [
+        "deux colonnes : le c de citron, le c de café",
+        "huit mots à ranger"
+      ],
+      "mots": [
+        "citron",
+        "place",
+        "cinéma",
+        "merci",
+        "café",
+        "cartable",
+        "canard",
+        "école"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/s/",
+        "/k/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "décider de la valeur d'une lettre par la lettre qui suit",
+      "ne_verifie_pas": "les mots où le c ne fait ni /s/ ni /k/ : il n'y en a pas dans la série",
+      "graphies": [
+        "c"
+      ]
+    },
+    {
+      "id": "E25",
+      "unite": 20,
+      "mecanique": "trier_graphies",
+      "titre": "Le g de girafe",
+      "consigne": "trie_selon_graphie",
+      "geste": "ranger chaque mot dans la colonne de la valeur de la lettre",
+      "serie": [
+        "deux colonnes : le g de girafe, le g de gâteau",
+        "cinq mots à ranger"
+      ],
+      "mots": [
+        "girafe",
+        "mange",
+        "mélange",
+        "rouge",
+        "gâteau"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/ʒ/",
+        "/g/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "décider de la valeur du g par la lettre qui suit, comme pour le c",
+      "ne_verifie_pas": "la graphie ge devant a, o, u : la série ne la contient pas",
+      "graphies": [
+        "g"
+      ]
+    },
+    {
+      "id": "E26",
+      "unite": 21,
+      "mecanique": "lire_et_choisir_son",
+      "titre": "Le s qui chante",
+      "consigne": "lis_et_touche_le_son",
+      "geste": "lire les mots affichés, puis toucher celui qui contient le son demandé",
+      "serie": [
+        "neuf mots affichés, à partager entre le s qui fait /z/ et le s qui fait /s/"
+      ],
+      "mots": [
+        "maison",
+        "chaise",
+        "oiseau",
+        "rose",
+        "valise",
+        "musique",
+        "chemise",
+        "tasse",
+        "poisson"
+      ],
+      "affiches": [],
+      "phonemes": [
+        "/z/",
+        "/s/"
+      ],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "décider de la valeur du s par ce qui l'entoure",
+      "ne_verifie_pas": "la règle écrite : c'est le voisinage qu'on voit, pas une règle qu'on récite"
+    },
+    {
+      "id": "E27",
+      "unite": 22,
+      "mecanique": "toucher_referent",
+      "titre": "Qui est-il ?",
+      "consigne": "touche_le_mot_remplace",
+      "geste": "toucher, plus haut dans le texte, le mot que désigne le pronom souligné",
+      "serie": [
+        "le texte « Le chat de la reine » affiché",
+        "trois pronoms soulignés, trois mots à toucher"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "remonter le texte pour retrouver qui un mot désigne",
+      "ne_verifie_pas": "les reprises qui ne sont pas des pronoms : la série n'en contient pas",
+      "texte": "T09-rang16",
+      "questions": [
+        {
+          "question": "Dans « Le chat a besoin de la reine », qui est « le chat » ?",
+          "bonne": "le chat brun de la reine",
+          "intrus": [
+            "l'agneau de la vigne",
+            "le chat de la montagne"
+          ],
+          "phrase_preuve": "La reine a un chat brun."
+        }
+      ]
+    },
+    {
+      "id": "E28",
+      "unite": 23,
+      "mecanique": "lever_ambiguite",
+      "titre": "Le chat est-il là ?",
+      "consigne": "choisis_le_sens",
+      "geste": "toucher, entre deux sens possibles, celui que le texte retient",
+      "serie": [
+        "le texte « Le lundi brun » affiché",
+        "une question, deux réponses contraires"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "trancher entre deux phrases du texte qui semblent se contredire",
+      "ne_verifie_pas": "les ambiguïtés de sens d'un mot : la série porte sur une contradiction apparente",
+      "texte": "T08-rang13",
+      "questions": [
+        {
+          "question": "La reine a-t-elle un chat ?",
+          "bonne": "Oui, elle a un chat brun.",
+          "intrus": [
+            "Non, aucun chat n'est dans la maison.",
+            "Non, le chat est dans la vigne."
+          ],
+          "phrase_preuve": "La reine a un chat brun."
+        }
+      ]
+    },
+    {
+      "id": "E29",
+      "unite": 24,
+      "mecanique": "deviner_mot",
+      "titre": "Que veut dire potion ?",
+      "consigne": "devine_le_mot",
+      "geste": "toucher, parmi trois, ce que veut dire le mot en gras, d'après le texte",
+      "serie": [
+        "le texte « La station » affiché, le mot potion en gras",
+        "une question, trois sens"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "se servir du texte pour comprendre un mot qu'on ne connaît pas",
+      "ne_verifie_pas": "le sens exact du mot hors du texte : c'est le sens d'ici qui est demandé",
+      "texte": "T10-rang17",
+      "questions": [
+        {
+          "question": "Que veut dire « la potion », dans ce texte ?",
+          "bonne": "quelque chose qui a une action sur le chat",
+          "intrus": [
+            "une station sur la montagne",
+            "une question de papa"
+          ],
+          "phrase_preuve": "La potion a une action sur le chat."
+        }
+      ]
+    },
+    {
+      "id": "E30",
+      "unite": 25,
+      "mecanique": "associer_personnage_trait",
+      "titre": "Qui aime quoi ?",
+      "consigne": "associe_personnage",
+      "geste": "toucher le trait qui va avec le personnage, pour chaque personnage",
+      "serie": [
+        "le texte « La valise de la reine » affiché",
+        "trois personnages, trois traits"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "Le programme demande de CARACTÉRISER les personnages, et caractériser est un acte de parole. Le geste garde l'appariement — ce que le texte dit de chacun — et perd le portrait. Un enfant qui apparie juste n'a pas dit quel personnage est le chat.",
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "rattacher un trait à un personnage, et non au texte en général",
+      "ne_verifie_pas": "le portrait que l'enfant ferait du personnage, qui est ce que l'unité vise",
+      "texte": "T12-rang21",
+      "questions": [
+        {
+          "question": "Qu'aime l'oiseau ?",
+          "bonne": "la musique",
+          "intrus": [
+            "la chemise",
+            "le poisson"
+          ],
+          "phrase_preuve": "L'oiseau aime la musique."
+        }
+      ]
+    },
+    {
+      "id": "E31",
+      "unite": 26,
+      "mecanique": "ecouter_et_choisir",
+      "titre": "La lettre qu'on n'entend pas",
+      "consigne": "ecoute_et_touche",
+      "geste": "écouter le mot dit par la voix, puis toucher le mot écrit qui correspond",
+      "serie": [
+        "six mots dits un par un, chacun à retrouver parmi trois écrits"
+      ],
+      "mots": [
+        "loup",
+        "nez",
+        "cheval",
+        "animal",
+        "tabac",
+        "fusil"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "voir une lettre à la fin d'un mot sans la faire sonner",
+      "ne_verifie_pas": "l'explication de la lettre muette : elle ne se devine pas, elle s'apprend",
+      "besoin_id": "B02"
+    },
+    {
+      "id": "E32",
+      "unite": 27,
+      "mecanique": "toucher_mot_dans_phrase",
+      "titre": "La marque du pluriel",
+      "consigne": "touche_le_mot",
+      "geste": "toucher, dans la phrase affichée, le mot qui porte la marque du pluriel",
+      "serie": [
+        "un texte court de quatre lignes",
+        "une phrase à la fois, un mot à toucher par phrase"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "voir la marque du pluriel là où elle ne s'entend pas",
+      "ne_verifie_pas": "la règle de l'accord : l'enfant repère la marque, il ne l'explique pas",
+      "questions": [
+        {
+          "question": "Quel mot porte la marque du pluriel dans « Ils dorment le jour » ?",
+          "bonne": "dorment",
+          "intrus": [
+            "jour",
+            "Ils"
+          ],
+          "phrase_preuve": "Ils dorment le jour."
+        }
+      ],
+      "textes_courts": [
+        "C03-rang27"
+      ]
+    },
+    {
+      "id": "E33",
+      "unite": 27,
+      "mecanique": "choisir_forme",
+      "titre": "Le pluriel ou le singulier",
+      "consigne": "choisis_la_forme",
+      "geste": "toucher la forme du mot qui convient à la phrase",
+      "serie": [
+        "deux phrases à trou, deux formes à chaque fois"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "accorder le verbe au sujet, sur une marque qu'on ne prononce pas",
+      "ne_verifie_pas": "la production écrite de la marque : l'enfant touche une forme, il ne l'écrit pas",
+      "questions": [
+        {
+          "question": "Les chats ___ la maison.",
+          "bonne": "aiment",
+          "intrus": [
+            "aime",
+            "aimes"
+          ],
+          "phrase_preuve": "Les chats aiment la maison."
+        },
+        {
+          "question": "Ils ___ le jour.",
+          "bonne": "dorment",
+          "intrus": [
+            "dort",
+            "dorme"
+          ],
+          "phrase_preuve": "Ils dorment le jour."
+        }
+      ],
+      "textes_courts": [
+        "C03-rang27"
+      ]
+    },
+    {
+      "id": "E34",
+      "unite": 28,
+      "mecanique": "toucher_graphie_dans_mot",
+      "titre": "Les lettres en double",
+      "consigne": "touche_la_graphie",
+      "geste": "toucher, dans le mot affiché, la consonne doublée",
+      "serie": [
+        "le texte « La pomme » affiché",
+        "cinq mots où la consonne doublée est à toucher"
+      ],
+      "mots": [
+        "pomme",
+        "échelle",
+        "appelle",
+        "arrive",
+        "attend"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "voir deux lettres pour un seul son",
+      "ne_verifie_pas": "la prononciation de la double : elle ne s'entend pas, elle s'écrit",
+      "texte": "T14-rang28"
+    },
+    {
+      "id": "E35",
+      "unite": 29,
+      "mecanique": "toucher_mot_dans_phrase",
+      "titre": "Le mot qu'on connaît par cœur",
+      "consigne": "touche_le_mot",
+      "geste": "toucher, dans la phrase affichée, le mot-outil entendu",
+      "serie": [
+        "le texte « La pomme » affiché",
+        "six mots-outils à retrouver dans les phrases"
+      ],
+      "mots": [
+        "et",
+        "est",
+        "elle",
+        "dans",
+        "avec",
+        "un"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "reconnaître d'un seul regard les mots que le texte emploie partout",
+      "ne_verifie_pas": "la lecture des autres mots de la phrase : l'exercice ne porte que sur les mots-outils",
+      "texte": "T14-rang28"
+    },
+    {
+      "id": "E36",
+      "unite": 30,
+      "mecanique": "lire_flash",
+      "titre": "Les mots qui ne se déchiffrent pas",
+      "consigne": "lis_vite",
+      "geste": "lire le mot avant qu'il disparaisse, puis toucher le même mot parmi quatre",
+      "serie": [
+        "cinq mots affichés un court instant, un par un, puis choisis parmi quatre"
+      ],
+      "mots": [
+        "monsieur",
+        "femme",
+        "second",
+        "fils",
+        "œil"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "reconnaître d'un seul regard les mots dont les lettres ne disent pas le son",
+      "ne_verifie_pas": "la raison de l'irrégularité : ces mots ne s'expliquent pas, ils s'apprennent",
+      "besoin_id": "B30"
+    },
+    {
+      "id": "E37",
+      "unite": 31,
+      "mecanique": "inferer",
+      "titre": "Ce que le texte ne dit pas",
+      "consigne": "deduis_la_reponse",
+      "geste": "toucher la réponse qui se déduit du texte sans y être écrite",
+      "serie": [
+        "le texte « Monsieur le chat » affiché",
+        "une question dont la réponse n'est pas écrite"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 90,
+      "entraine": "conclure ce que le texte permet de comprendre sans l'écrire",
+      "ne_verifie_pas": "le raisonnement de l'enfant : seule la conclusion est jugée",
+      "texte": "T15-rang30",
+      "questions": [
+        {
+          "question": "Pourquoi monsieur le chat appelle-t-il la reine ?",
+          "bonne": "parce qu'elle apporte une pomme",
+          "intrus": [
+            "parce qu'elle a une question",
+            "parce qu'elle a une valise"
+          ],
+          "phrase_preuve": "La reine arrive avec une pomme."
+        }
+      ]
+    },
+    {
+      "id": "E38",
+      "unite": 32,
+      "mecanique": "suivre_consigne_ecrite",
+      "titre": "Fais la recette",
+      "consigne": "suis_la_consigne",
+      "geste": "lire la consigne du texte et faire ce qu'elle dit, dans l'ordre",
+      "serie": [
+        "le texte « La recette de la reine » affiché en étapes",
+        "six gestes à faire dans l'ordre"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "exécuter un texte qui dit quoi faire, et dans quel ordre",
+      "ne_verifie_pas": "la réussite de la recette hors de l'écran : les gestes sont vérifiés, pas le gâteau",
+      "texte": "T16-rang32",
+      "questions": [
+        {
+          "question": "Par quoi papa commence-t-il ?",
+          "bonne": "il coupe la pomme",
+          "intrus": [
+            "il ajoute le lait",
+            "il mélange avec une cuillère"
+          ],
+          "phrase_preuve": "Papa coupe la pomme."
+        }
+      ]
+    },
+    {
+      "id": "E39",
+      "unite": 32,
+      "mecanique": "ordonner_recit",
+      "titre": "La recette dans l'ordre",
+      "consigne": "remets_dans_ordre",
+      "geste": "toucher les étapes du texte dans l'ordre où elles arrivent",
+      "serie": [
+        "six étapes de la recette mélangées, à remettre dans l'ordre"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "suivre l'ordre d'un texte qui enchaîne des étapes",
+      "ne_verifie_pas": "le temps de réalisation : l'ordre est jugé, pas la durée",
+      "texte": "T16-rang32",
+      "questions": [
+        {
+          "question": "Qu'est-ce qui vient juste après avoir mis la pomme dans la tasse ?",
+          "bonne": "ajouter le lait",
+          "intrus": [
+            "couper la pomme",
+            "appeler la reine"
+          ],
+          "phrase_preuve": "Il ajoute le lait."
+        }
+      ]
+    },
+    {
+      "id": "E40",
+      "unite": 33,
+      "mecanique": "prelever_info",
+      "titre": "Que fait le chat la nuit ?",
+      "consigne": "cherche_dans_le_texte",
+      "geste": "toucher, parmi les phrases du texte, celle qui porte l'information demandée",
+      "serie": [
+        "le texte « Le chat » affiché en phrases touchables",
+        "trois questions"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "trouver une information précise dans un texte qu'on ne raconte pas",
+      "ne_verifie_pas": "la mémorisation du texte : la question se traite en y retournant",
+      "texte": "T17-rang33",
+      "questions": [
+        {
+          "question": "Où le chat dort-il le jour ?",
+          "bonne": "sur une chaise",
+          "intrus": [
+            "dans le jardin",
+            "sur l'échelle"
+          ],
+          "phrase_preuve": "Le jour, il dort sur une chaise."
+        },
+        {
+          "question": "Que fait le chat la nuit ?",
+          "bonne": "il sort dans le jardin",
+          "intrus": [
+            "il dort sur une chaise",
+            "il lave sa robe"
+          ],
+          "phrase_preuve": "La nuit, il sort dans le jardin."
+        },
+        {
+          "question": "Avec quoi le chat lave-t-il sa robe ?",
+          "bonne": "avec sa langue",
+          "intrus": [
+            "avec ses griffes",
+            "avec sa main"
+          ],
+          "phrase_preuve": "Il lave sa robe avec sa langue."
+        }
+      ]
+    },
+    {
+      "id": "E45",
+      "unite": 37,
+      "mecanique": "ordonner_recit",
+      "titre": "Le résumé en images",
+      "consigne": "remets_dans_ordre",
+      "geste": "toucher les étapes du récit dans l'ordre où elles arrivent",
+      "serie": [
+        "quatre images de récit : les moments du texte « Le chat »",
+        "l'ordre à reconstruire"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "Le programme demande de RÉSUMER le texte, oralement — le palier de sortie range cet objectif hors app. Le geste garde la trame : remettre les moments dans l'ordre est ce qui reste d'un résumé quand on ne peut pas le dire. Le résumé lui-même, celui qui choisit ce qu'on garde et ce qu'on laisse, n'est pas jugé.",
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "choisir les moments qui comptent, et les remettre dans l'ordre",
+      "ne_verifie_pas": "ce qu'un résumé doit laisser de côté : la sélection est faite d'avance",
+      "texte": "T17-rang33",
+      "questions": [
+        {
+          "question": "Quel moment vient en dernier ?",
+          "bonne": "le chat est un bon compagnon",
+          "intrus": [
+            "le chat dort sur une chaise",
+            "le chat lave sa robe"
+          ],
+          "phrase_preuve": "Le chat est un bon compagnon."
+        }
+      ]
+    },
+    {
+      "id": "E41",
+      "unite": 34,
+      "mecanique": "lire_a_voix_haute",
+      "titre": "Lis pour quelqu'un",
+      "consigne": "lis_a_voix_haute",
+      "geste": "aucun geste de réponse : l'enfant lit, un adulte valide",
+      "serie": [
+        "le texte « Le chat » (T17-rang33), lu après préparation"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "le jumeau réceptif est E13 : l'enfant touche, dans le texte, les endroits où le groupe de mots se termine. Il vérifie le repérage des groupes de souffle, jamais la lecture qui les respecte.",
+      "inversion": null,
+      "pourquoi_hors_app": "l'application ne peut pas entendre. Réaliser les pauses adéquates se vérifie à l'oreille d'un adulte, et le palier de sortie déclare déjà cet objectif hors app.",
+      "duree_s": 180,
+      "entraine": "lire un texte préparé en marquant les pauses",
+      "ne_verifie_pas": "tout ce qui s'entend : le ton, le rythme, la justesse des pauses",
+      "texte": "T17-rang33"
+    },
+    {
+      "id": "E53",
+      "unite": 39,
+      "mecanique": "lire_et_chronometrer",
+      "titre": "Soixante-dix mots par minute",
+      "consigne": "lis_et_chronometre",
+      "geste": "lire le texte pendant que l'adulte mesure le temps",
+      "serie": [
+        "le texte « La pomme d'or » (T18-rang38), soixante-quinze mots"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "aucune : la fluence n'a pas de jumeau réceptif. Un exercice qui ferait toucher des mots ne mesurerait pas une vitesse, et prétendre le contraire serait la faute la plus coûteuse de la banque.",
+      "inversion": null,
+      "pourquoi_hors_app": "la vitesse de lecture ne se mesure pas sans micro : l'application ne peut pas compter les mots que l'enfant a lus. Elle affiche le texte et le nombre de mots, et laisse l'adulte saisir la durée — c'est un chronomètre, pas un juge.",
+      "duree_s": 180,
+      "entraine": "lire un texte entier sans s'arrêter",
+      "ne_verifie_pas": "la fluence elle-même : l'application mesure, elle n'évalue pas",
+      "texte": "T18-rang38"
+    },
+    {
+      "id": "E54",
+      "unite": 40,
+      "mecanique": "lire_a_voix_haute",
+      "titre": "Mets le ton",
+      "consigne": "lis_a_voix_haute",
+      "geste": "aucun geste de réponse : l'enfant lit, un adulte valide",
+      "serie": [
+        "le texte « La pomme d'or » (T18-rang38), relu avec un autre ton"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "aucune : rien dans l'application ne juge l'expressivité. Un jumeau réceptif qui prétendrait le faire mesurerait autre chose, et le ferait passer pour ce qu'il n'est pas.",
+      "inversion": null,
+      "pourquoi_hors_app": "modifier sa voix et sa cadence selon le sens est un acte de parole, et l'application n'a pas de micro. Le palier de sortie range la lecture expressive hors app, au bilan.",
+      "duree_s": 180,
+      "entraine": "adapter sa voix au sens du texte",
+      "ne_verifie_pas": "tout : cette unité ne passe pas par un écran",
+      "texte": "T18-rang38"
+    },
+    {
+      "id": "E42",
+      "unite": 35,
+      "mecanique": "ecouter_et_choisir",
+      "titre": "Les mots qui n'existent pas",
+      "consigne": "ecoute_et_touche",
+      "geste": "écouter la suite de lettres dite par la voix, puis toucher celle qui correspond",
+      "serie": [
+        "cinq suites de lettres dites une par une, chacune à retrouver parmi trois écrites"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "décoder des suites de lettres qu'on n'a jamais vues",
+      "ne_verifie_pas": "l'écriture de ces suites : l'enfant les reconnaît, il ne les écrit pas",
+      "besoin_id": "B02",
+      "pseudo_mots": [
+        "pm01",
+        "pm02",
+        "pm03",
+        "pm04",
+        "pm05"
+      ]
+    },
+    {
+      "id": "E43",
+      "unite": 35,
+      "mecanique": "lire_pseudo_mot",
+      "titre": "Vrai mot ou pas ?",
+      "consigne": "vrai_ou_faux_mot",
+      "geste": "toucher « oui » si la suite est un mot français, « non » sinon",
+      "serie": [
+        "dix suites affichées une par une, cinq mots et cinq pseudo-mots mêlés"
+      ],
+      "mots": [
+        "montagne",
+        "soleil",
+        "poisson",
+        "cartable",
+        "musique"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 75,
+      "entraine": "décoder d'abord, décider ensuite — un pseudo-mot se lit sans se reconnaître",
+      "ne_verifie_pas": "ce que l'enfant fait d'un mot qu'il croit reconnaître sans le lire",
+      "pseudo_mots": [
+        "pm06",
+        "pm07",
+        "pm08",
+        "pm09",
+        "pm10"
+      ]
+    },
+    {
+      "id": "E44",
+      "unite": 36,
+      "mecanique": "classer_famille",
+      "titre": "Les familles de mots",
+      "consigne": "classe_les_mots",
+      "geste": "ranger les mots qui se ressemblent dans la même famille",
+      "serie": [
+        "trois familles à remplir : les mots en c de citron, en c de café, en tion"
+      ],
+      "mots": [
+        "citron",
+        "cinéma",
+        "place",
+        "face",
+        "café",
+        "cartable",
+        "école",
+        "flacon",
+        "flocon",
+        "potion",
+        "nation",
+        "station"
+      ],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "ranger des mots nouveaux par la graphie qu'ils partagent",
+      "ne_verifie_pas": "la famille du sens : c'est la famille de l'écriture qui est demandée ici",
+      "graphies": [
+        "c",
+        "tion"
+      ]
+    },
+    {
+      "id": "E46",
+      "unite": 38,
+      "mecanique": "choisir_resume",
+      "titre": "Le résumé de la pomme d'or",
+      "consigne": "choisis_le_resume",
+      "geste": "toucher, parmi trois, le résumé qui dit ce que raconte le texte",
+      "serie": [
+        "le texte « La pomme d'or » affiché en entier",
+        "trois questions de compréhension"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 180,
+      "entraine": "dégager le sens du texte entier, seul",
+      "ne_verifie_pas": "la qualité du résumé que l'enfant ferait lui-même",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Quel résumé dit ce que raconte le texte ?",
+          "bonne": "Le chat trouve une pomme d'or et appelle la reine pour la manger avec lui.",
+          "intrus": [
+            "La reine trouve une pomme d'or et la donne à son chat.",
+            "Le chat monte sur une échelle et prend la pomme pour lui seul."
+          ],
+          "phrase_preuve": "Il appelle la reine."
+        }
+      ]
+    },
+    {
+      "id": "E47",
+      "unite": 38,
+      "mecanique": "choisir_titre",
+      "titre": "Un titre pour la pomme d'or",
+      "consigne": "choisis_le_titre",
+      "geste": "toucher, parmi trois, le titre qui convient au texte lu",
+      "serie": [
+        "le texte « La pomme d'or » affiché en entier",
+        "trois titres"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "choisir ce qui dit le mieux le texte entier",
+      "ne_verifie_pas": "le titre que l'enfant inventerait : il choisit parmi trois",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Quel titre convient le mieux à ce texte ?",
+          "bonne": "La pomme d'or",
+          "intrus": [
+            "Le chat de la montagne",
+            "La valise de la reine"
+          ],
+          "phrase_preuve": "Sur le pommier, une pomme d'or."
+        }
+      ]
+    },
+    {
+      "id": "E48",
+      "unite": 38,
+      "mecanique": "toucher_referent",
+      "titre": "Qui arrive ?",
+      "consigne": "touche_le_mot_remplace",
+      "geste": "toucher, plus haut dans le texte, le mot que désigne le pronom souligné",
+      "serie": [
+        "le texte « La pomme d'or » affiché",
+        "trois pronoms soulignés, trois mots à toucher"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "suivre qui fait quoi dans un texte qui nomme peu",
+      "ne_verifie_pas": "les reprises par un nom : la série porte sur les pronoms",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Dans « Elle arrive avec une valise », qui est « elle » ?",
+          "bonne": "la reine",
+          "intrus": [
+            "la pomme",
+            "la valise"
+          ],
+          "phrase_preuve": "La reine a un chat brun."
+        }
+      ]
+    },
+    {
+      "id": "E49",
+      "unite": 38,
+      "mecanique": "inferer",
+      "titre": "Ce que le texte ne dit pas",
+      "consigne": "deduis_la_reponse",
+      "geste": "toucher la réponse qui se déduit du texte sans y être écrite",
+      "serie": [
+        "le texte « La pomme d'or » affiché",
+        "une question dont la réponse n'est pas écrite"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "conclure ce que le texte permet de comprendre sans l'écrire",
+      "ne_verifie_pas": "le chemin du raisonnement : seule la conclusion est jugée",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Pourquoi le chat appelle-t-il la reine ?",
+          "bonne": "parce qu'il veut partager la pomme avec elle",
+          "intrus": [
+            "parce qu'il ne peut pas monter sur l'échelle",
+            "parce qu'il a perdu sa valise"
+          ],
+          "phrase_preuve": "Ils mangent la pomme ensemble."
+        }
+      ]
+    },
+    {
+      "id": "E50",
+      "unite": 38,
+      "mecanique": "deviner_mot",
+      "titre": "Que veut dire pommier ?",
+      "consigne": "devine_le_mot",
+      "geste": "toucher, parmi trois, ce que veut dire le mot en gras, d'après le texte",
+      "serie": [
+        "le texte « La pomme d'or » affiché, le mot pommier en gras",
+        "une question, trois sens"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "se servir de la forme du mot et du texte pour le comprendre",
+      "ne_verifie_pas": "le sens du mot hors du texte : c'est le sens d'ici qui est demandé",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Que veut dire « le pommier », dans ce texte ?",
+          "bonne": "l'arbre où il y a une pomme",
+          "intrus": [
+            "la valise de la reine",
+            "le jardin de la maison"
+          ],
+          "phrase_preuve": "Dans le jardin, il y a un pommier."
+        }
+      ]
+    },
+    {
+      "id": "E51",
+      "unite": 38,
+      "mecanique": "ordonner_recit",
+      "titre": "L'histoire dans l'ordre",
+      "consigne": "remets_dans_ordre",
+      "geste": "toucher les étapes du récit dans l'ordre où elles arrivent",
+      "serie": [
+        "cinq étapes du texte « La pomme d'or » mélangées",
+        "l'ordre à reconstruire"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 150,
+      "entraine": "restituer la suite du récit, du début à la fin",
+      "ne_verifie_pas": "la mise en mots du récit : l'ordre est jugé, la narration ne l'est pas",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Que fait le chat en arrivant dans le jardin ?",
+          "bonne": "il voit un pommier",
+          "intrus": [
+            "il appelle la reine",
+            "il monte sur une échelle"
+          ],
+          "phrase_preuve": "Dans le jardin, il y a un pommier."
+        }
+      ]
+    },
+    {
+      "id": "E52",
+      "unite": 38,
+      "mecanique": "toucher_emotion",
+      "titre": "Ce que la reine ressent",
+      "consigne": "touche_l_emotion",
+      "geste": "toucher le mot qui dit ce que ressent le personnage à ce moment du texte",
+      "serie": [
+        "le texte « La pomme d'or » affiché",
+        "une question, trois mots d'émotion"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": null,
+      "pourquoi_hors_app": null,
+      "duree_s": 120,
+      "entraine": "lire un sentiment dans ce que le texte dit du lien entre deux personnages",
+      "ne_verifie_pas": "le mot que l'enfant emploierait lui-même : trois mots lui sont proposés",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Que ressent la reine pour son chat, à la fin du texte ?",
+          "bonne": "de l'affection",
+          "intrus": [
+            "de la peur",
+            "de la colère"
+          ],
+          "phrase_preuve": "La reine aime son chat brun."
+        }
+      ]
+    },
+    {
+      "id": "E55",
+      "unite": 41,
+      "mecanique": "apparier_textes",
+      "titre": "Le texte qui ressemble",
+      "consigne": "choisis_le_texte",
+      "geste": "toucher, parmi trois textes courts, celui qui ressemble à celui qu'on vient de lire",
+      "serie": [
+        "le texte « La pomme d'or » lu d'abord",
+        "trois textes courts affichés"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "app",
+      "substitution": null,
+      "inversion": "Le programme demande d'ÉTABLIR DES LIENS entre ses lectures, et dire ce lien est un acte de parole. Le geste garde le rapprochement — reconnaître ce qui se ressemble — et perd l'explication du lien. Un enfant qui touche le bon texte n'a pas dit pourquoi il ressemble.",
+      "pourquoi_hors_app": null,
+      "duree_s": 150,
+      "entraine": "reconnaître ce qu'une lecture a de commun avec une autre",
+      "ne_verifie_pas": "le lien que l'enfant ferait avec sa propre expérience, qui ne se touche pas",
+      "texte": "T18-rang38",
+      "questions": [
+        {
+          "question": "Quel texte ressemble le plus à celui que tu viens de lire ?",
+          "bonne": "Une échelle, une pomme",
+          "intrus": [
+            "L'air qui va",
+            "Le téléphone de papa"
+          ],
+          "phrase_preuve": "Il a grimpé sur une échelle."
+        }
+      ],
+      "textes_courts": [
+        "C04-rang41",
+        "C02-rang16",
+        "C05-rang41"
+      ]
+    },
+    {
+      "id": "E56",
+      "unite": 41,
+      "mecanique": "dire_sa_lecture",
+      "titre": "Ce que ça t'a rappelé",
+      "consigne": "dis_ce_que_tu_penses",
+      "geste": "aucun geste de réponse : l'enfant parle à l'adulte",
+      "serie": [
+        "le texte « La pomme d'or » relu, puis un temps de parole"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "le jumeau réceptif est E55 : l'enfant touche, parmi trois, le texte qui ressemble à celui qu'il vient de lire. Il vérifie le rapprochement entre deux lectures, jamais le lien avec l'expérience de l'enfant.",
+      "inversion": null,
+      "pourquoi_hors_app": "relier une lecture à sa propre expérience est un acte de parole, et l'application n'a pas de micro. C'est la moitié de l'objectif de l'unité, et c'est la moitié qui compte le plus.",
+      "duree_s": 180,
+      "entraine": "mettre en mots ce qu'une lecture a rappelé",
+      "ne_verifie_pas": "tout ce qui se dit : l'application ne peut ni l'entendre ni le juger",
+      "texte": "T18-rang38"
+    },
+    {
+      "id": "E57",
+      "unite": 42,
+      "mecanique": "choisir_son_livre",
+      "titre": "Le livre que tu veux",
+      "consigne": "choisis_ton_livre",
+      "geste": "aucun geste de réponse : l'enfant parcourt et choisit",
+      "serie": [
+        "une étagère de livres, à parcourir sans consigne de lecture"
+      ],
+      "mots": [],
+      "affiches": [],
+      "phonemes": [],
+      "lettres": [],
+      "verdict": "hors app",
+      "substitution": "aucune : rien dans l'application ne juge un choix personnel, et rien ne doit le faire. L'étagère est là, elle ne mesure rien.",
+      "inversion": null,
+      "pourquoi_hors_app": "choisir un livre pour son plaisir ne se vérifie pas : il n'y a pas de bonne réponse, et une application qui en aurait une jugerait un goût. Le programme demande d'aller vers les livres — c'est la seule unité de la tranche qui ne passe pas par un écran.",
+      "duree_s": 300,
+      "entraine": "aller vers un livre de son propre mouvement",
+      "ne_verifie_pas": "tout : cette unité se joue hors de l'application, et c'est son intérêt"
+    }
+  ],
+  "corrections": [
+    {
+      "objet": "outils/cgp-ce1.json et outils/verifier-textes-ce1.py — les graphies aille, eille et euille",
+      "defaut": "La liste des graphies du CE1 était écrite DEUX FOIS : dans la table (unité 18 : « ail, eil, euil, ouille ») et dans le code (qui en découpait quatre autres, dont « aille » et « eille », sans leur rattacher aucune CGP). Tout mot contenant « aille » ou « eille » — oreille, taille, bataille, abeille — était donc refusé comme « graphème non enseigné » ; et « feuille », découpé f | euil | l | e, était lu /fœjl/ : accepté, et de travers.",
+      "correction": "Les graphies sont désormais DÉRIVÉES de la table, avec leur identifiant de CGP, par `graphemes_et_identifiants`. Ajouter une graphie se fait dans le JSON, à l'unité qui l'enseigne ; le code suit. La table déclare les sept graphies de l'unité 18, et deux cas du harnais les éprouvent — un par le verdict, un par la lecture.",
+      "pourquoi_c_est_grave": "Le défaut était invisible : aucun des dix-huit textes de la tranche ne contient ces graphies, donc le contrôle des textes était vert. Il n'est apparu qu'en écrivant l'exercice de l'unité 18, c'est-à-dire en demandant au décodeur un mot qu'aucun texte ne lui avait encore demandé. Un contrôle vert sur un corpus ne dit rien d'un mot absent du corpus."
+    },
+    {
+      "objet": "outils/verifier-textes-ce1.py — le contrôle d'atteignabilité des graphies",
+      "defaut": "La première version de ce contrôle cherchait chaque graphie déclarée dans la découpe d'une sonde construite autour d'elle (« a » + graphie + « t »). Elle ne pouvait pas échouer : la découpe prend toujours la plus longue correspondance, et la graphie cherchée était la plus longue de sa propre sonde. Le contrôle a d'ailleurs accusé deux graphies saines — « a » + « ill » donne « aill », lu ail puis l.",
+      "correction": "Le contrôle porte maintenant sur ce qui peut réellement se perdre : les deux graphies positionnelles, c et g, que la dérivation écarte et que `resoudre_ce1` traite par un chemin à part. Il éprouve les deux contextes — le c de citron doit valoir c-doux, celui de cartable non — et il échoue si ce chemin est perdu.",
+      "pourquoi_c_est_grave": "Un contrôle qui ne peut pas échouer fait pire que rien : il rassure. Et un contrôle éprouvé sur des attentes fausses apprend à douter de lui-même au lieu de mesurer."
+    },
+    {
+      "objet": "outils/progression-ce1.json — l'action des unités 4, 13 et 30",
+      "defaut": "Ces trois unités annoncent « toucher l'image du mot entendu ». Le corpus d'illustrations est celui de la GS : quarante-quatre mots, dont aucun ne contient oin, aucun ne contient la nasale un, et aucun n'est un mot irrégulier. L'action annoncée ne pouvait pas être exercée, et rien ne le disait.",
+      "correction": "Les exercices E09, E18 et E36 emploient la mécanique qui reste possible — lire et choisir le mot, ou reconnaître le mot d'un seul regard — et le manque est déclaré dans les besoins B04, B13 et B30. La mécanique `ecouter_et_toucher_image` a été retirée de la liste : une mécanique déclarée et jamais employée est une promesse qu'on ne tient pas. Depuis, le corpus d'illustrations du CE1 existe (`outils/images-ce1.json`, `contenu/LUDOLIRE-IMAGES-CE1.md`) : trois images produites — `foin`, `parfum`, `œil` — et vingt-deux mots déclarés non dessinables, chacun avec sa raison. L'action annoncée n'est toujours pas exerçable, et le corpus dit POURQUOI : les deux nasales rares et les mots irréguliers sont les endroits du français où le nom concret se raréfie, et une famille qui compte un seul mot illustrable ne peut pas porter un exercice de discrimination. Le besoin n'est donc pas un manque d'illustrateur, c'est une propriété du lexique — et la réponse est la lecture, pas le dessin.",
+      "pourquoi_c_est_grave": "Un besoin tu se transforme en exercice faux : on écrit un exercice qui a l'air de faire ce que l'unité demande, et l'objectif n'est pas entraîné. C'est le mode d'échec le plus coûteux d'une banque — il fait croire qu'une unité est outillée quand elle ne l'est pas."
+    },
+    {
+      "objet": "outils/exercices-ce1.json — la longueur des séries",
+      "defaut": "Les exercices adossés à un texte annonçaient une durée sans dire ce que l'enfant voyait. Un exercice de compréhension au CE1 demande de relire, de revenir au texte et de comparer trois réponses : la durée d'un exercice de GS ne pouvait pas être reprise telle quelle.",
+      "correction": "Chaque exercice adossé à un texte déclare ce qu'il affiche, combien de questions il pose, et une durée de quatre-vingt-dix à cent quatre-vingts secondes. La durée totale de la banque est affichée par le contrôle, et c'est elle qui dira si une séance tient dans un temps d'attention de sept ans.",
+      "pourquoi_c_est_grave": "Une durée inventée ne se voit pas dans un tableau ; elle se voit dans une classe, quand l'enfant décroche au troisième exercice."
+    }
+  ],
+  "besoins": [
+    {
+      "id": "B01a",
+      "unite": 1,
+      "manque": "les trente-trois consignes du CE1 ne sont pas enregistrées",
+      "detail": "Le corpus audio est celui de la GS : trente et une consignes, écrites pour des enfants qui ne lisent pas encore. Les consignes du CE1 sont écrites ET dites, et aucune n'est enregistrée. Le texte de chaque consigne est le script de l'enregistrement à faire, et il est déclaré dans la banque.",
+      "bloque": false
+    },
+    {
+      "id": "B02",
+      "unite": 2,
+      "manque": "les mots du CE1 ne sont pas enregistrés",
+      "detail": "Le corpus audio de la GS contient des phonèmes et des mots de GS. Les mécaniques qui font écouter un mot — écouter et toucher, écouter et décider — ont besoin des mots du CE1 : craie, reine, agneau, montagne, loup, cheval, et les suites de lettres de l'unité 35.",
+      "bloque": false
+    },
+    {
+      "id": "B04",
+      "unite": 4,
+      "manque": "aucun mot contenant oin n'est illustré",
+      "detail": "L'unité 4 annonce « toucher l'image du mot entendu ». Les quarante-quatre mots illustrés sont ceux de la GS : aucun ne contient oin. L'exercice E09 demande donc de lire et de choisir le mot, ce qui entraîne la lecture mais pas le lien mot-image.",
+      "bloque": false
+    },
+    {
+      "id": "B13",
+      "unite": 13,
+      "manque": "aucun mot contenant la nasale un n'est illustré",
+      "detail": "Même défaut qu'à l'unité 4 : lundi, brun, chacun, aucun ne sont pas illustrés. L'exercice E18 sépare la nasale de deux lettres qui se suivent sans former de son — lundi contre lune — mais ne peut pas passer par l'image.",
+      "bloque": false
+    },
+    {
+      "id": "B30",
+      "unite": 30,
+      "manque": "aucun mot irrégulier n'est illustré",
+      "detail": "L'unité 30 annonce « toucher l'image du mot entendu ». monsieur, femme, second, fils, œil ne sont pas illustrés, et ce sont des mots qui ne se déchiffrent pas : ils s'apprennent d'un seul regard. L'exercice E36 les fait reconnaître en lecture flash, ce qui est bien l'objectif, mais sans le support de l'image.",
+      "bloque": false
+    }
+  ]
+}

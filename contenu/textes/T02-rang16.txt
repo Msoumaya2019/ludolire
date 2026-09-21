@@ -1,0 +1,6 @@
+# Le cheval
+
+Le cheval a une patte.
+La patte a mal.
+Papa a une patate et une tomate.
+Le cheval a la patate et la tomate.

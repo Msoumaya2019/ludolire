@@ -1,0 +1,11 @@
+# rang: 16
+# Le chat de la reine
+
+La reine a un chat brun.
+Le chat aime la montagne.
+Le lundi, la reine et le chat vont à la montagne.
+Sur la montagne, un agneau est dans la vigne.
+L'agneau a un point sur la main.
+Le soir, la reine a rejoint la maison.
+Le chat a besoin de la reine.
+La reine aime le chat brun.

@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "objet": "Les huit images de récit du CE1 : quatre moments pour chacun des deux exercices de remise en ordre.",
+    "pourquoi_un_corpus_a_part": "Une icône PORTE un mot et se reconnaît seule ; une image de récit porte un MOMENT et doit se distinguer des trois autres pour pouvoir être remise à sa place. Ce n'est pas le même métier, et le corpus lexical du CE1 ne peut pas le tenir : ses invariants — la graphie, la découpe, la lisibilité au rang — ne disent rien de l'ordre d'un récit. Ce corpus-ci reprend donc le cadrage technique par référence, et n'en recopie rien.",
+    "ce_que_ce_corpus_n_est_pas": "Ce n'est pas une illustration des deux textes. Une image de récit ne montre pas tout ce qu'un texte dit : elle montre quatre moments, et c'est leur ORDRE qui porte l'information. Les lignes écartées le sont parce qu'elles ne se dessinent pas — et le corpus dit lesquelles, plutôt que de laisser croire que le texte n'en compte que quatre. Ce n'est pas non plus le corpus des quatre exercices de remise en ordre du CE1 : deux d'entre eux ne jouent pas sur des images, et c'est la progression qui le dit — voir `exercices_sans_images`.",
+    "ce_qu_il_ne_peut_pas_verifier": "Le contrôle lit le fichier : il sait qu'un cadre fait tout le tour, qu'aucun texte n'est écrit dans l'image, que le trait fait 4 px et que l'ordre dessiné est celui du texte. Il ne sait pas si un dessin est RECONNU comme le moment qu'il annonce. Un fichier peut être parfaitement conforme et montrer autre chose. C'est la planche qui le donne à voir, et l'œil qui le juge.",
+    "usage": "python outils/generer-images.py --recit",
+    "controle": "python outils/verifier-images.py --recit",
+    "epreuve": "python outils/tester-images-recit.py"
+  },
+  "cadrage_de_reference": "images-ce1.json",
+  "exercices_sans_images": [
+    {
+      "exercice": "E39",
+      "raison": "L'unité 32 ne demande pas d'images : elle demande de réaliser ce qu'un texte prescriptif dit, et l'ordre des étapes d'une recette est DANS le texte. Dessiner la recette retirerait la lecture, qui est tout l'objet de l'unité — son geste annoncé est « ordonner les étapes d'une recette dans l'ordre où le texte les donne », et il ne dit pas le mot image."
+    },
+    {
+      "exercice": "E51",
+      "raison": "L'unité 38 est une unité de lecture en autonomie : son geste annoncé est « un texte entier, et les questions des unités précédentes ». Les cinq étapes de « La pomme d'or » sont des phrases, et c'est en les lisant qu'on les ordonne. L'image ne remplacerait pas la lecture, elle l'éviterait."
+    }
+  ],
+  "reperes": [
+    "le personnage",
+    "le cadre",
+    "le moment du jour",
+    "le décor",
+    "le geste du corps"
+  ],
+  "interdits": [
+    "un nombre, écrit ou en points — il donnerait l'ordre",
+    "une flèche ou un ordre dessiné — même raison",
+    "du texte — l'enfant lirait la réponse au lieu de la chercher",
+    "un objet que la ligne citée ne porte pas — un indice faux range l'image de travers"
+  ],
+  "regles_du_recit": {
+    "ce_qu_une_image_de_recit_doit_faire": [
+      "porter un moment, pas un mot : ce qui est dessiné doit pouvoir se raconter en une phrase, et cette phrase est la ligne citée",
+      "se distinguer des trois autres par un repère déclaré — sans quoi deux images sont interchangeables, donc l'exercice n'a pas de réponse",
+      "se reconnaître au premier coup d'œil à 112 points, comme les icônes"
+    ],
+    "ce_qu_elle_ne_doit_pas_faire": [
+      "donner l'ordre : ni nombre, ni flèche, ni case numérotée",
+      "écrire : rien à lire dans une image, même pour qui sait lire",
+      "ajouter un objet que la ligne citée ne porte pas — c'est un indice faux, et il est plus nuisible qu'une absence"
+    ],
+    "comment_les_figures_sont_prises": "Les figures d'une scène ne sont pas redessinées : ce sont celles de la série — le même papa, le même éléphant, le même chat — placées et réduites par `place()`. Le trait est compensé, parce que le moteur de rendu ignore `vector-effect=\"non-scaling-stroke\"` : sans compensation, une figure réduite de moitié porterait un trait de 2 px au milieu de figures à 4 px. Une figure réemployée garde sa pose, sauf ce qu'il faut pour dire le moment (les yeux de Maman sont recouverts et redessinés pour le rire)."
+  },
+  "recits": [
+    {
+      "exercice": "E19",
+      "unite": 14,
+      "rang": 11,
+      "texte": "T07-rang11",
+      "titre_du_texte": "L'éléphant et le téléphone",
+      "ce_que_l_exercice_demande": "Restituer les enchaînements du récit — l'exercice le paie par une `inversion` : le geste garde l'ordre, et perd le récit.",
+      "ce_que_l_image_ne_dit_pas": "Les images ne disent pas les phrases. Elles portent l'ordre des moments, pas leur mise en mots : un enfant qui les remet dans l'ordre n'a pas raconté l'histoire, et c'est exactement ce que l'exercice déclare.",
+      "etapes": [
+        {
+          "id": "e19_1",
+          "ordre": 1,
+          "moment": "Papa tient une photo",
+          "ligne_citee": "Papa a une photo.",
+          "repere": "le personnage",
+          "objet": "un adulte debout, les deux mains posées sur les bords d'une photo ; ce que la photo montre n'est pas dessiné",
+          "risque": [
+            {
+              "avec": "e19_2",
+              "pourquoi": "les deux étapes montrent une photo : ici elle est tenue, là c'est elle qui remplit l'image, et qui regarde les deux y voit deux fois une photo",
+              "parade": "à l'étape 1 le personnage est là et le contenu de la photo n'est pas dessiné ; à l'étape 2 il n'y a aucun personnage et le cadre fait tout le tour de l'image"
+            }
+          ]
+        },
+        {
+          "id": "e19_2",
+          "ordre": 2,
+          "moment": "L'éléphant au téléphone, vu dans la photo",
+          "ligne_citee": "Sur la photo, un éléphant a un téléphone.",
+          "repere": "le cadre",
+          "objet": "un éléphant gris tenant un téléphone noir au bout de sa trompe, vu à travers un cadre blanc qui fait tout le tour de l'image",
+          "risque": [
+            {
+              "avec": "e19_1",
+              "pourquoi": "les deux étapes montrent une photo",
+              "parade": "le cadre fait ici tout le tour, et aucun personnage n'y figure — l'inverse exact de l'étape 1"
+            },
+            {
+              "avec": "e19_3",
+              "pourquoi": "l'éléphant est dans les deux étapes : c'est la seule figure du récit qui revient",
+              "parade": "à l'étape 2 il est dans un cadre et tient un téléphone ; à l'étape 3 il est dehors, devant une maison, sous la lune"
+            }
+          ]
+        },
+        {
+          "id": "e19_3",
+          "ordre": 3,
+          "moment": "L'éléphant arrive à la maison, le soir",
+          "ligne_citee": "Le soir, l'éléphant a rejoint la maison.",
+          "repere": "le moment du jour",
+          "objet": "une maison à toit rouge et un éléphant tourné vers elle, sur une ligne de sol, sous une lune",
+          "risque": [
+            {
+              "avec": "e19_2",
+              "pourquoi": "l'éléphant est dans les deux étapes",
+              "parade": "ici l'éléphant est tourné vers la maison et il n'y a ni cadre ni téléphone"
+            }
+          ]
+        },
+        {
+          "id": "e19_4",
+          "ordre": 4,
+          "moment": "Maman rit",
+          "ligne_citee": "Maman rit encore.",
+          "repere": "le geste du corps",
+          "objet": "une femme debout, les yeux fermés en arcs et la bouche grande ouverte ; c'est le seul personnage du récit qui ait un geste",
+          "risque": []
+        }
+      ]
+    },
+    {
+      "exercice": "E45",
+      "unite": 37,
+      "rang": 33,
+      "texte": "T17-rang33",
+      "titre_du_texte": "Le chat",
+      "ce_que_l_exercice_demande": "Résumer le texte — le palier de sortie range cet objectif hors app, et l'exercice le paie par une `inversion` : le geste garde la trame, la sélection des moments n'est pas jugée.",
+      "ce_que_l_image_ne_dit_pas": "Aucune image ne dit qu'elle est la dernière. Elle montre son moment ; c'est le texte qui désigne le dernier, et l'ordre se déduit de ce qu'on a lu.",
+      "etapes": [
+        {
+          "id": "e45_1",
+          "ordre": 1,
+          "moment": "Le chat dort sur une chaise, le jour",
+          "ligne_citee": "Le jour, il dort sur une chaise.",
+          "repere": "le moment du jour",
+          "objet": "un chat couché, les yeux fermés en arcs, sur une chaise de bois, sous un soleil",
+          "risque": [
+            {
+              "avec": "e45_4",
+              "pourquoi": "ce sont les deux étapes où le chat ne fait rien : elles sont interchangeables tant qu'on ne regarde que le chat",
+              "parade": "ici il est seul, couché, sur une chaise, sous un soleil ; là il est debout près d'un enfant, et il n'y a ni chaise ni soleil"
+            }
+          ]
+        },
+        {
+          "id": "e45_2",
+          "ordre": 2,
+          "moment": "Le chat lèche sa patte",
+          "ligne_citee": "Il lave sa robe avec sa langue.",
+          "repere": "le geste du corps",
+          "objet": "le chat debout, une patte avant levée au museau et la langue tirée sur la patte",
+          "risque": [
+            {
+              "avec": "e45_3",
+              "pourquoi": "le chat est debout dans les deux étapes, et c'est la même figure : seule la patte levée les sépare",
+              "parade": "ici la patte est au museau ; là le chat est posé sur un barreau, entre les deux montants d'une échelle"
+            }
+          ]
+        },
+        {
+          "id": "e45_3",
+          "ordre": 3,
+          "moment": "Le chat monte à l'échelle",
+          "ligne_citee": "Il monte sur l'échelle.",
+          "repere": "le décor",
+          "objet": "le chat posé sur un barreau, entre les deux montants d'une échelle, les pattes sur le barreau",
+          "risque": [
+            {
+              "avec": "e45_2",
+              "pourquoi": "le chat est debout dans les deux étapes",
+              "parade": "l'échelle est le seul décor de tout le corpus, et elle ne peut pas être confondue avec une chaise"
+            }
+          ]
+        },
+        {
+          "id": "e45_4",
+          "ordre": 4,
+          "moment": "Le chat et l'enfant, l'un près de l'autre",
+          "ligne_citee": "Le chat est un bon compagnon.",
+          "repere": "le personnage",
+          "objet": "un bébé assis et un chat debout côte à côte, sans rien faire ; c'est la seule étape où un personnage et le chat sont ensemble",
+          "risque": [
+            {
+              "avec": "e45_1",
+              "pourquoi": "ce sont les deux étapes où le chat ne fait rien, donc celles qu'on peut intervertir sans que le geste proteste",
+              "parade": "ici le bébé est là et le chat est debout ; là le chat est seul et couché"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

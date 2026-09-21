@@ -1,0 +1,21 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    // Le contenu embarqué est un fichier JSON importé par l'application. Sans
+    // cette option, TypeScript refuse l'import et rien ne compile.
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"],
+  // `outils/` porte les scripts Python du projet, `contenu/` les textes et les
+  // documents, `assets/` les images : rien de tout cela n'est du TypeScript, et
+  // un `include` plus large irait y chercher des erreurs qui n'en sont pas.
+  "exclude": ["node_modules", "dist", ".expo", "outils", "contenu"]
+}

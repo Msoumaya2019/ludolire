@@ -1,0 +1,8 @@
+# rang: 41
+# type: recit
+# titre: Le téléphone de papa
+
+Papa a un téléphone.
+Il le pose sur la table.
+Papa a une question.
+Maman a une réponse.

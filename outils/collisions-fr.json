@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "titre": "Collisions du jeu de syllabes avec des mots français",
+    "version": "0.2.0",
+    "date": "2026-09-21",
+    "role": "Liste déclarée des mots reconstitués par une intruse qui sont de VRAIS mots français, et le sort qui leur est fait.",
+    "comment_elle_a_ete_obtenue": "En imprimant les 84 reconstitutions de la banque, une par une, et en les lisant. Ce n'est pas un dictionnaire : c'est ce qu'une lecture humaine a trouvé sur cette banque-là. Elle a été relue deux fois, et la seconde lecture a trouvé `bouton` et `mure`, que la première avait laissés passer.",
+    "pourquoi_partielle": "Il n'y a pas de lexique français embarqué. Cette liste est donc incomplète par construction : elle ne contient que les collisions qu'une lecture a vues, sur la banque du 21 septembre 2026. Toute intruse ajoutée plus tard doit être relue à la main. Le contrôle, lui, ne sait vérifier que ce qui est écrit ici — c'est une garantie de non-régression, pas une garantie d'exhaustivité. La première lecture avait manqué deux mots ; rien ne dit que la troisième n'en trouverait pas un.",
+    "critere": "Le critère n'est pas « est-ce un mot français ? » mais « l'enfant de cinq à huit ans peut-il le prendre pour juste ? ». Un mot réel mais inconnu ne gêne pas : l'enfant entend le résultat, ne le reconnaît pas, et sait que ce n'est pas le mot cherché. Un mot réel et FAMILIER gêne vraiment — il peut l'accepter comme juste parce que c'est un mot. Un HOMOPHONE compte comme familier : `mure` se prononce comme `mûre`, que l'enfant connaît. C'est cette distinction qui sépare `interdits` de `toleres`."
+  },
+
+  "interdits": [
+    { "mot": "boisson", "item": "K12 poisson", "intruse": "bois", "pourquoi": "mot du quotidien ; l'enfant peut le tenir pour juste" },
+    { "mot": "moisson", "item": "K12 poisson", "intruse": "mois", "pourquoi": "mot connu, et l'item n'en a pas besoin" },
+    { "mot": "pompe", "item": "J08 pomme", "intruse": "pe", "pourquoi": "objet familier" },
+    { "mot": "rime", "item": "K05 lime", "intruse": "ri", "pourquoi": "mot de comptine, connu avant le CP" },
+    { "mot": "tamis", "item": "K07 tapis", "intruse": "mis", "pourquoi": "objet de cuisine plausible dans l'entourage de l'enfant" },
+    { "mot": "bouton", "item": "J13 et K11 mouton", "intruse": "bou", "pourquoi": "un des premiers mots du quotidien ; l'enfant qui ne discrimine pas m/n produit un mot qu'il connaît" },
+    { "mot": "mure", "item": "K03 mule", "intruse": "re", "pourquoi": "homophone de `mûre`, que l'enfant connaît. Interdit sur le critère de l'homophone, pas de l'orthographe" }
+  ],
+
+  "toleres": [
+    { "mot": "rune", "item": "K01 lune", "intruse": "ru", "pourquoi": "mot réel, hors du vocabulaire d'un enfant de cinq à huit ans" },
+    { "mot": "ramé", "item": "K04 rame", "intruse": "mé", "pourquoi": "forme verbale réelle, inconnue à l'écrit à ce niveau" },
+    { "mot": "camard", "item": "J12 canard", "intruse": "mard", "pourquoi": "mot réel et vieilli, inconnu de l'enfant" },
+    { "mot": "cavé", "item": "J05 café", "intruse": "vé", "pourquoi": "forme verbale rare. TOLÉRÉ parce que c'est la seule intruse f/v de l'item, et que la paire f/v est ce que l'item sert (unité 19) : l'interdire viderait l'item de son objet" },
+    { "mot": "rapin", "item": "J10 lapin", "intruse": "ra", "pourquoi": "mot réel et vieilli, inconnu de l'enfant" },
+    { "mot": "liras", "item": "K06 lilas", "intruse": "ras", "pourquoi": "forme verbale réelle ; l'enfant de CP ne la lit pas encore comme un mot" },
+    { "mot": "linas", "item": "K06 lilas", "intruse": "nas", "pourquoi": "nom propre de lieu, pas un mot de vocabulaire" }
+  ]
+}

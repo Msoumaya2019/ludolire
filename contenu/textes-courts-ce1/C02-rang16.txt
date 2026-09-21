@@ -1,0 +1,7 @@
+# rang: 16
+# type: informatif
+# titre: L'air qui va
+
+Le vent est de l'air qui va.
+Quand le vent est fort, il emporte la craie.
+Sans le vent, les bateaux ne vont pas.

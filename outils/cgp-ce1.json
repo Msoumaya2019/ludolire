@@ -1,0 +1,147 @@
+{
+  "meta": {
+    "titre": "Table des correspondances graphophonémiques — tranche CE1 (v1 de Ludo'Lire)",
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "source_programme": "Annexe 3 — programme de français du cycle 2 (arrêté du 22 octobre 2024, JO du 25 octobre 2024, BO n° 41 du 31 octobre 2024, application rentrée 2025-2026), section « Lecture », sous-section « Cours élémentaire première année ».",
+    "source_progression": "outils/progression-ce1.json — le rang de chaque unité de cette table est celui de la progression CE1. Les deux tables se relisent l'une contre l'autre : une CGP introduite ici à un rang qui n'existe pas là serait une CGP que personne n'enseigne.",
+    "statut": "proposition à valider — l'ordre est notre choix, dans le cadre officiel.",
+    "heritage_du_cp": "Cette table NE REDÉCLARE PAS les trente CGP du CP. Elles sont acquises : au CE1, le décodage des correspondances apprises au CP est à AUTOMATISER, pas à réenseigner — le programme le demande « tout au long de l'année ». Les CGP autorisées à un rang du CE1 sont donc l'ensemble des CGP de `outils/cgp-cp.json` au rang 30, réuni aux CGP de cette table jusqu'au rang demandé.",
+    "mots_outils": "Les mots-outils mémorisés ne sont pas redéclarés non plus : ils sont dans `outils/cgp-cp.json` (`mots_outils_memorises`) et le contrôle du CE1 les lit là. Deux listes de la même chose divergeraient, et c'est exactement ce que le contrôle existe pour attraper.",
+    "ce_que_le_ce1_change": "Trois règles du CP tombent au CE1, et c'est la raison d'être de cette table. La terminaison -ent, INTERDITE dans toute la tranche CP, devient lisible au rang 27 — le programme en donne l'exemple « ils chantent ». Les consonnes doubles, admises au CP pour ss et ll seulement, deviennent générales au rang 28. Les lettres finales muettes, admises au CP pour e, s, t, d, x, s'étendent aux muettes LEXICALES au rang 26 — « le lait », « le loup ».",
+    "convention_unite": "Une unité = un phonème et la ou les graphies enseignées pour le produire. Le rang est celui de `progression-ce1.json`. Une unité du CE1 qui ne porte aucune CGP nouvelle n'apparaît pas ici : elle est une consolidation, ou une règle, ou une autre affaire que le code — et le compte ci-dessous dit lesquelles.",
+    "compte_des_unites_idm": "Les vingt et une unités du domaine « Identifier les mots » se répartissent en quatre groupes, et le compte doit tomber juste. Les quatre listes sont données ci-dessous en DONNÉES, et non seulement en prose : un nombre écrit dans une phrase ne se contrôle pas, alors qu'une liste se compare à la progression. Le contrôle vérifie que les quatre listes sont disjointes, que leur réunion est exactement l'ensemble des unités « Identifier les mots » de la progression, et que le groupe des CGP nouvelles est exactement l'ensemble des rangs de cette table.",
+    "repartition_idm": {
+      "cgp_nouvelle": [2, 3, 4, 9, 10, 11, 13, 17, 18, 19, 20],
+      "regle_sans_cgp": [12, 26, 27, 28],
+      "consolidation": [1, 21, 29],
+      "autre": [30, 35, 36]
+    },
+    "lecture_de_la_repartition": "`cgp_nouvelle` : l'unité introduit une correspondance, et elle figure donc dans cette table. `regle_sans_cgp` : l'unité porte une règle de lecture qui n'ajoute aucune correspondance — les muettes lexicales, les morphèmes muets, les consonnes doubles, et l'opposition eu ouvert / eu fermé, qui s'entend sans se lire. `consolidation` : l'unité ne fait que reprendre l'acquis du CP — l'automatisation des trente CGP, l'opposition s/ss, les mots-outils. `autre` : l'unité porte autre chose que du code — les mots irréguliers, les pseudo-mots, les listes analogiques.",
+    "l_unite_12_n_est_pas_une_cgp": "L'unité 12, « Distinguer eu ouvert /œ/ de eu fermé /ø/ », a d'abord été déclarée ici comme une CGP nouvelle, avec les graphies `eu` et `œu`. C'était une erreur, et elle avait une conséquence précise : l'identifiant `eu-ouvert` n'était atteignable par AUCUN mot. La graphie est la même pour les deux sons — « deux » et « fleur » s'écrivent tous deux avec eu — donc la découpe ne peut pas choisir, et le contrôle n'aurait jamais pu exiger cette CGP. Une correspondance qu'aucun mot ne peut déclencher est une ligne de table qui ne sert à rien, et c'est le genre de trou qu'une table pleine cache. L'unité est donc une RÈGLE — elle s'entend, elle ne se lit pas — et elle figure dans `strands.sons_proches`.",
+    "ce_que_cette_table_ne_fait_pas": "Elle ne dit pas à quelle PÉRIODE chaque CGP est enseignée : c'est la progression qui le dit, et cette table s'y réfère par le rang. Elle ne dit pas non plus dans quels mots chaque CGP est employée — c'est la banque de mots, et pour la compréhension, les textes."
+  },
+
+  "strands": {
+    "correspondances_declarees": [
+      { "rang": 1, "lettres": ["x"], "identifiants": ["c-dur", "s-sourd"], "regle": "un x entre deux voyelles vaut /ks/ — « texte », « taxi », « expliquer »", "exemples": ["texte", "taxi", "explication"],
+        "statut_de_cette_regle": "Comme le h muet, ce n'est PAS un objectif relevé du programme : c'est une déclaration opérationnelle. Le x final était connu du CP (lettre muette), le x interne ne l'était pas, et « texte » — le mot autour duquel tourne toute la compréhension du CE1 — était inclaffable." }
+    ],
+
+    "lettres_sans_son": [
+      { "rang": 1, "lettres": ["h"], "regle": "un h qui n'est ni dans ch ni dans ph ne s'entend pas — « homme », « huit », « histoire », « heure »", "exemples": ["homme", "huit", "histoire", "heure", "hiver"],
+        "statut_de_cette_regle": "Ce n'est PAS un objectif du CE1 relevé du programme : c'est une déclaration opérationnelle. L'enfant a rencontré le h muet dans des mots du CP, et le contrôle ne pouvait pas lire un mot qui en contient — « homme » lui était inclaffable, et un refus qui porte à côté finit par être ignoré. La règle est donc déclarée ici pour que le contrôle puisse lire les mots de tous les jours, et elle est marquée comme notre déclaration, non comme celle du programme. Le CP, lui, ne la porte pas : c'est une limite connue de `verifier-textes.py`." }
+    ],
+    "muettes_de_position": [
+      { "rang": 1, "regle": "un r final est MUET après un e — « aimer », « chanter », « parler », « premier », « escalier » — et PRONONCÉ après toute autre voyelle — « partir », « voir », « trésor », « cœur », « peur », « fleur », « mur », « bonjour »", "exemples": ["chanter", "partir", "premier", "fleur"],
+        "statut_de_cette_regle": "C'est une règle de POSITION, et non une muette lexicale : elle ne se mémorise pas mot à mot, elle se lit. Elle vaut donc à tout rang, dès le premier jour du CE1 — un enfant de CE1 lit « chanter » et « partir » en septembre. Une version antérieure la rangeait au rang 26 avec les muettes lexicales, et le contrôle rapportait alors « chanter » au rang 1 comme « consonne finale qu'aucune règle ne couvre » : le refus portait à côté, puisque la règle était écrite dans la même table.",
+        "exceptions_prononcees": [
+          { "mot": "mer", "raison": "mot en -er dont le r final se prononce" },
+          { "mot": "fer", "raison": "mot en -er dont le r final se prononce" },
+          { "mot": "cher", "raison": "mot en -er dont le r final se prononce" },
+          { "mot": "hiver", "raison": "mot en -er dont le r final se prononce" },
+          { "mot": "hier", "raison": "mot en -er dont le r final se prononce" },
+          { "mot": "super", "raison": "mot en -er dont le r final se prononce" },
+          { "mot": "monsieur", "raison": "r final prononcé, et le mot est irrégulier de toute façon" }
+        ],
+        "pourquoi_une_liste_et_pas_un_ajout_au_fil_des_textes": "Une version antérieure n'avait pas de règle et déclarait un mot de plus à chaque texte écrit — fleur, peur, cœur, trésor, sœur, pêcheur — alors qu'aucun de ces mots n'est une exception : c'est la règle qui manquait. Une liste qu'on allonge à chaque usage n'est pas une liste d'exceptions, c'est une règle qu'on n'a pas trouvée. Cette liste-ci est fermée : les mots en -er dont le r se prononce, et rien d'autre.",
+        "le_pluriel_suit_le_singulier": "Le s du pluriel ne change pas la consonne : « les mers », « les hivers » se lisent comme « mer » et « hiver ». Le contrôle essaie donc le mot sans son s final avant de conclure, sans quoi le pluriel d'un mot déclaré serait lu de travers — accepté, mais mal lu, ce qui est le sens d'erreur le plus dangereux." }
+    ],
+
+    "muettes_lexicales": [
+      { "rang": 26, "regle": "une consonne finale muette qui n'est ni le e muet, ni le s du pluriel, ni t, d, x — elle appartient au mot et se mémorise", "exemples": ["lait", "loup", "tabac", "fusil"],
+        "exceptions_prononcees": [
+          { "mot": "avec", "raison": "le c final se prononce /k/, contre la règle" },
+          { "mot": "sac", "raison": "le c final se prononce /k/" },
+          { "mot": "lac", "raison": "le c final se prononce /k/" },
+          { "mot": "parc", "raison": "le c final se prononce /k/" },
+          { "mot": "cinq", "raison": "le q final se prononce /k/" },
+          { "mot": "sud", "raison": "le d final se prononce" }
+        ],
+        "où_sont_passés_les_mots_en_er": "Les mots en -er dont le r se prononce — mer, fer, cher, hiver, hier, super, monsieur — ne sont plus dans cette liste : ils sont les exceptions d'une RÈGLE, et cette règle est déclarée dans `strands.muettes_de_position`. Les garder ici laissait croire que le r final ne se réglait qu'au rang 26, alors qu'il se règle à tout rang — et le contrôle le disait faux : « chanter » au rang 1 était rapporté comme « consonne finale qu'aucune règle ne couvre », alors que la règle était écrite dans cette même table. Un refus qui porte à côté finit par être ignoré.",
+        "mots_en_ent_nasal": [
+          "vent", "dent", "argent", "content", "moment", "accident", "talent", "client",
+          "présent", "violent", "différent", "parent", "absent", "souvent"
+        ],
+        "pourquoi_deux_listes_et_pourquoi_elles_sont_la_limite_de_la_regle": "La terminaison -ent est une marque grammaticale muette — « ils chantent » — et elle s'écrit exactement comme une nasale suivie d'un t — « le vent ». La découpe ne peut pas les distinguer, et aucune règle d'orthographe ne le peut. Le contrôle lit donc ces deux listes : les mots dont le en est NASAL y sont déclarés un par un, et tous les autres mots en -ent sont lus avec la terminaison muette. Ce second défaut est un pari, et il faut le dire : un mot en -ent dont le en serait nasal SANS figurer dans la liste serait lu comme une terminaison muette. La liste est donc la limite de la règle, et elle se vérifie en relisant les textes du CE1, mot à mot. « sept » et « huit » ne sont pas ici : leur irrégularité n'est pas dans la finale mais dans le mot entier — le p muet et le t prononcé de « sept » — et ils sont déclarés parmi les mots irréguliers mémorisés." }
+    ],
+    "morphemes_muets": [
+      { "rang": 27, "regle": "la terminaison -ent d'un verbe ne se prononce pas ; elle marque le pluriel et ne s'entend pas", "exemples": ["ils chantent", "elles dorment", "les enfants"] },
+      { "rang": 27, "regle": "les autres marques grammaticales muettes suivent la même règle", "exemples": ["ils parlent", "il chante"] }
+    ],
+    "consonnes_doubles": [
+      { "rang": 28, "regle": "toutes les consonnes doubles se lisent comme la consonne simple, et s'écrivent doubles", "exemples": ["pomme", "échelle", "arrive", "elle"] }
+    ],
+    "sons_proches": [
+      { "rang": 12, "regle": "eu se lit /ø/ ou /œ/ selon le mot, et la graphie ne le dit pas — « deux » contre « fleur », « jeudi » contre « peur ». La distinction s'entend, elle ne se lit pas : c'est pourquoi cette unité ne figure pas parmi les CGP de cette table", "exemples": ["deux", "fleur", "jeudi", "peur", "feu", "neuf"] }
+    ]
+  },
+
+  "mots_outils_memorises": [
+    { "rang": 1, "mot": "il", "raison": "consonne finale — le l final n'est couvert qu'au rang 26" },
+    { "rang": 1, "mot": "ils", "raison": "consonne finale — le l final n'est couvert qu'au rang 26" },
+    { "rang": 1, "mot": "un", "raison": "la nasale un n'est enseignée qu'à l'unité 13" },
+    { "rang": 1, "mot": "ce", "raison": "le c doux n'est enseigné qu'à l'unité 19" },
+    { "rang": 1, "mot": "cet", "raison": "le c doux n'est enseigné qu'à l'unité 19" },
+    { "rang": 1, "mot": "cette", "raison": "le c doux (unité 19) et le tt doublé (unité 28)" },
+    { "rang": 1, "mot": "ces", "raison": "le c doux n'est enseigné qu'à l'unité 19" },
+    { "rang": 1, "mot": "c", "raison": "forme élidée de « ce », mémorisée comme lui — « c'est » est un mot de tous les jours, et le c doux n'est enseigné qu'à l'unité 19" },
+    { "rang": 1, "mot": "leur", "raison": "consonne finale — le r final n'est couvert qu'au rang 26" },
+    { "rang": 1, "mot": "leurs", "raison": "consonne finale" },
+    { "rang": 1, "mot": "comme", "raison": "le mm doublé n'est enseigné qu'à l'unité 28" },
+    { "rang": 1, "mot": "mais", "raison": "le ai n'est enseigné qu'à l'unité 2" },
+    { "rang": 1, "mot": "car", "raison": "consonne finale — le r final" },
+    { "rang": 1, "mot": "or", "raison": "consonne finale — le r final" },
+    { "rang": 1, "mot": "donc", "raison": "consonne finale — le c final" },
+    { "rang": 1, "mot": "bien", "raison": "la nasale en n'est enseignée qu'à l'unité 3" },
+    { "rang": 1, "mot": "rien", "raison": "la nasale en n'est enseignée qu'à l'unité 3" },
+    { "rang": 1, "mot": "sur", "raison": "consonne finale — le r final" },
+    { "rang": 1, "mot": "pour", "raison": "consonne finale — le r final" },
+    { "rang": 1, "mot": "par", "raison": "consonne finale — le r final" },
+    { "rang": 1, "mot": "avec", "raison": "le c doux n'est enseigné qu'à l'unité 19" },
+    { "rang": 1, "mot": "entre", "raison": "la nasale en n'est enseignée qu'à l'unité 3" },
+    { "rang": 1, "mot": "vers", "raison": "consonne finale" },
+    { "rang": 1, "mot": "chez", "raison": "consonne finale — le z final" },
+    { "rang": 1, "mot": "pendant", "raison": "la nasale en n'est enseignée qu'à l'unité 3" },
+    { "rang": 1, "mot": "ici", "raison": "le c doux n'est enseigné qu'à l'unité 19" },
+    { "rang": 1, "mot": "alors", "raison": "consonne finale — le r final" },
+    { "rang": 1, "mot": "encore", "raison": "la nasale en n'est enseignée qu'à l'unité 3" },
+    { "rang": 1, "mot": "toujours", "raison": "consonne finale — le r final" },
+    { "rang": 1, "mot": "jamais", "raison": "le ai n'est enseigné qu'à l'unité 2" },
+    { "rang": 1, "mot": "souvent", "raison": "la terminaison -ent n'est ouverte qu'à l'unité 27" },
+    { "rang": 1, "mot": "beaucoup", "raison": "consonne finale — le p final" },
+    { "rang": 1, "mot": "trop", "raison": "consonne finale — le p final" },
+    { "rang": 1, "mot": "assez", "raison": "consonne finale — le z final" },
+    { "rang": 1, "mot": "quel", "raison": "consonne finale — le l final" }
+  ],
+
+  "mots_irreguliers_memorises": [
+    { "rang": 30, "mot": "monsieur", "raison": "ni la graphie ni la prononciation ne se déduisent — mot mémorisé globalement" },
+    { "rang": 30, "mot": "femme", "raison": "e ouvert sous une graphie de e muet — mémorisé globalement" },
+    { "rang": 30, "mot": "second", "raison": "c muet interne, prononcé /səɡɔ̃/ — mémorisé globalement" },
+    { "rang": 30, "mot": "fils", "raison": "le s du singulier se prononce, contre la règle — mémorisé globalement" },
+    { "rang": 30, "mot": "œil", "raison": "graphie œ hors de toute CGP enseignée — mémorisé globalement" },
+    { "rang": 26, "mot": "sept", "raison": "le p est muet ET le t se prononce — deux irrégularités dans une syllabe, qu'aucune règle de finale ne peut exprimer" },
+    { "rang": 26, "mot": "huit", "raison": "le t final se prononce, contre la règle du CP qui le dit muet" }
+  ],
+
+  "unites": [
+    { "rang": 2, "cgp": ["e-ouvert"], "phoneme": "/ɛ/", "graphies": ["ai", "ei", "è", "ê"], "critere": "les quatre graphies du même phonème — le programme les groupe explicitement dans un seul objectif" },
+    { "rang": 3, "cgp": ["en"], "phoneme": "/ɑ̃/", "graphies": ["en", "em"], "critere": "deuxième graphie de la nasale, après an et am apprises au CP" },
+    { "rang": 4, "cgp": ["oin"], "phoneme": "/wɛ̃/", "graphies": ["oin"], "critere": "nasale rare, mais très fréquente dans les mots de la vie courante" },
+    { "rang": 9, "cgp": ["gn"], "phoneme": "/ɲ/", "graphies": ["gn"], "critere": "graphème insécable — deux lettres pour un seul phonème" },
+    { "rang": 10, "cgp": ["ill"], "phoneme": "/j/", "graphies": ["ill", "y"], "critere": "le /j/ a plusieurs graphies selon la place dans le mot — ill à l'intérieur, y selon la lettre qui précède" },
+    { "rang": 11, "cgp": ["ph"], "phoneme": "/f/", "graphies": ["ph"], "critere": "graphie savante du /f/, très fréquente dans les mots courants" },
+    { "rang": 13, "cgp": ["un"], "phoneme": "/œ̃/", "graphies": ["un", "um"], "critere": "nasale rare, à traiter après oin : les deux se confondent à l'oreille dans certaines régions. Le um est déclaré ici comme le om de on, le am de an et le im de in : une nasale devant p ou b s'écrit avec un m. L'oublier refusait « parfum » et faisait lire « humble » /ymbl/ — accepté, et de travers." },
+    { "rang": 17, "cgp": ["tion"], "phoneme": "/sjɔ̃/", "graphies": ["tion"], "critere": "suffixe nominal très fréquent et insécable — le t s'y prononce /s/, contre sa valeur habituelle" },
+    { "rang": 18, "cgp": ["ail"], "phoneme": "/j/", "graphies": ["ail", "eil", "euil", "ouille", "aille", "eille", "euille"], "critere": "les voyelles suivies de /j/ — une seule règle de position, sept graphies écrites. Les trois dernières (aille, eille, euille) sont les cas où le l ne s'entend pas : « oreille », « taille », « feuille ». Les déclarer ici, et non seulement dans le code, est ce qui les empêche d'être refusées — ou lues /fœjl/ sans que rien ne le signale." },
+    { "rang": 19, "cgp": ["c-doux"], "phoneme": "/s/", "graphies": ["c"], "critere": "la valeur de c dépend de la lettre suivante — première valeur positionnelle, et elle n'est pas au CP" },
+    { "rang": 20, "cgp": ["g-doux"], "phoneme": "/ʒ/", "graphies": ["g"], "critere": "idem pour g — et ge pour /ʒ/ devant a, o, u, ce que le CP ne couvre que par ge" }
+  ],
+
+  "hors_tranche": {
+    "note": "Le programme du cycle 2 ne s'arrête pas au CE1. Ce qui suit n'est pas dans la tranche : il appartient à la section CE2, qui n'a pas été relevée.",
+    "ce2": "à relever — la section « Cours élémentaire deuxième année » du même programme, quand la tranche CE2 s'ouvrira.",
+    "pourquoi_ce_n_est_pas_un_oubli": "Relever le CE2 maintenant donnerait une liste invérifiable : aucune unité ne s'y référerait, et rien ne dirait si elle est complète."
+  }
+}

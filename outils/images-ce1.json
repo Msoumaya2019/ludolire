@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "titre": "Illustrations de la tranche CE1",
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "role": "Source de vérité unique des images du CE1 : les mots que la tranche doit MONTRER, le brief de dessin de ceux qui peuvent l'être, et la raison écrite de ceux qui ne peuvent pas.",
+    "suite_de": "outils/images-gs.json. Le cadrage, les règles de dessin, la palette et le nommage ne sont PAS recopiés ici : ils sont repris par référence (`cadrage_de_reference`). Deux copies d'une même règle divergent — c'est la leçon de la graphie déclarée deux fois, qui a valu quatre mots refusés et un mot lu de travers.",
+    "ce_qui_change_au_ce1": "À la GS, l'image était le SEUL accès au mot : l'enfant de cinq ans ne lit pas. Au CE1, l'enfant lit — et l'image change de rôle. Elle ne porte plus le mot, elle le vérifie : c'est le mot écrit qu'on lit d'abord, et l'image qui confirme. Trois conséquences, et elles sont des règles : le mot doit être LISIBLE au rang de l'unité qui l'affiche, il doit être EMPLOYABLE par un exercice de cette unité, et un mot qu'on ne peut pas dessiner doit être DÉCLARÉ avec sa raison.",
+    "ce_que_ce_corpus_ne_fait_pas": "Il ne règle pas ce qui reste : deux exercices — E09 et E18 — portent un énoncé qui décrit une série que leurs mots ne réalisent pas. E09 annonce « six mots affichés, un seul porte oin » et sa série en compte six qui portent TOUS la graphie, si bien que l'exercice n'a pas de mauvaise réponse ; E18 annonce « trois et trois » et sa série en compte quatre et deux. Le corpus le consigne mot pour mot plutôt que de le taire, et il ne le corrige pas : choisir quels mots une unité affiche est une décision pédagogique, et elle appartient au porteur du projet.",
+    "pourquoi_trois_images_seulement": "Parce que les deux nasales rares et les mots irréguliers sont précisément les endroits du lexique où le nom concret se raréfie. Sur les vingt-huit mots examinés pour les trois besoins, trois sont illustrables. Ce n'est pas une paresse du corpus, c'est une propriété du français — et elle est la vraie réponse au besoin : B04, B13 et B30 ne se soldent pas par un dessin, ils se soldent par une LECTURE, ce que les exercices font déjà.",
+    "source_des_mots": "Les mots viennent des exercices qui déclarent les besoins B04, B13 et B30 (`outils/exercices-ce1.json`), plus les mots de la même famille que le corpus a examinés et écartés. Aucun mot n'est inventé : chacun est attesté dans un exercice de la tranche.",
+    "ce_qui_est_verifie": "`outils/verifier-images.py --ce1` contrôle que chaque mot illustré est lisible au rang de l'unité qui le porte, que son brief est exécutable, que les risques d'ambiguïté sont déclarés, que les fichiers SVG obéissent au cadrage de la GS, et que TOUT mot qu'un exercice des trois besoins affiche est soit illustré — ici ou dans la tranche GS — soit déclaré non illustrable avec sa raison. Ce dernier contrôle est celui qui fait du corpus une réponse : un mot oublié le fait échouer.",
+    "pourquoi_reponse_aux_besoins": "Ce datum est la réponse déclarée aux trois besoins, mot pour mot. Sans lui, un mot illustré qui DISPARAÎT du corpus ne ferait échouer aucun contrôle : le contrôle de couverture part des mots que les exercices affichent, et un mot illustré que nul exercice n'affiche encore n'est réclamé par personne. C'est la falsification qui l'a montré — le corpus privé de « foin » restait vert — et non la lecture du code. Deux sources de la même chose se surveillent l'une l'autre : celle-ci est écrite à la main, celle des mots illustrés est calculée, et le contrôle refuse qu'elles divergent."
+  },
+  "cadrage_de_reference": "images-gs.json",
+  "reponse_aux_besoins": {
+    "B04": {
+      "illustrables": [
+        "foin"
+      ],
+      "raison_si_aucun": null,
+      "ce_que_le_dessin_ne_peut_pas": "Sur les sept mots que l'unité 4 peut afficher, un seul est illustrable : « foin ». « coin », « point », « loin », « besoin », « joint » et « rejoint » sont déclarés, chacun avec sa raison. La graphie est donc servie par la LECTURE — ce que l'exercice E09 fait — et non par l'image."
+    },
+    "B13": {
+      "illustrables": [
+        "parfum"
+      ],
+      "raison_si_aucun": null,
+      "ce_que_le_dessin_ne_peut_pas": "« parfum » est le seul nom concret de la nasale, et il fallait d'abord que la table déclare « um » pour qu'il soit lisible au rang 13. « lundi », « brun », « brune », « chacun » et « aucun » sont déclarés : un jour, une couleur, deux pronoms. La nasale rare est portée par des mots grammaticaux, et aucun dessin ne les nomme."
+    },
+    "B30": {
+      "illustrables": [
+        "œil"
+      ],
+      "raison_si_aucun": null,
+      "ce_que_le_dessin_ne_peut_pas": "« œil » est le seul des cinq mots irréguliers qui soit un objet. « monsieur » et « femme » sont refusés pour ne pas défaire la convention d'adultes de la série ; « second » est un rang, « fils » est une relation. Un mot irrégulier s'apprend d'un seul regard, et le regard n'a pas besoin d'une image — il a besoin du mot."
+    }
+  },
+  "regles_ce1": [
+    "Un mot illustré doit être LISIBLE au rang de l'unité qui l'affiche. Le contrôle le décode avec `verifier-textes-ce1.py` et refuse un mot que l'enfant ne peut pas encore lire. C'est la règle qui a écarté « poing » : la graphie y est, le mot n'est pas lisible avant le rang 26.",
+    "Un mot illustré doit être EMPLOYABLE par un exercice de l'unité qui déclare le besoin, et le corpus dit la vérité sur son emploi : `present_dans_la_serie` est comparé à la série réelle de l'exercice. Une image que rien n'affiche est un dessin qui ne sert pas, et le corpus ne peut pas le prétendre employé.",
+    "Un mot que l'unité annonce et qui ne peut pas être dessiné est DÉCLARÉ, avec sa raison et son motif. Le silence serait la faute : une case vide se lit comme un oubli, alors que « on ne peut pas le dessiner, voici pourquoi » est une réponse.",
+    "Le motif du refus vient d'une liste fermée (`abstrait`, `pronom`, `forme verbale`, `couleur`, `jour`, `nombre`, `relation`, `nomme autre chose`, `illisible au rang`, `convention tenue`, `la graphie n'y est pas`). Un motif libre ne se compte pas, et un refus qui ne se compte pas ne se vérifie pas.",
+    "Aucune image n'ajoute une convention à la série. « papa » et « maman » tiennent la seule convention d'adultes du corpus ; c'est pourquoi « monsieur » et « femme » sont refusés plutôt que dessinés une seconde fois — une seconde convention ferait perdre la première.",
+    "Le même objet ne peut pas servir deux mots, et la règle vaut ENTRE les deux corpus : un mot du CE1 qui frôlerait un mot de la GS le déclare en `hors_banque`, faute de quoi deux images se répondraient sans que rien ne le signale.",
+    "Aucun mot n'est inventé pour les besoins du dessin : les mots examinés sont ceux des exercices qui déclarent le besoin, ou des mots de la même famille que le corpus nomme et écarte."
+  ],
+  "motifs_de_refus": [
+    "abstrait",
+    "pronom",
+    "forme verbale",
+    "couleur",
+    "jour",
+    "nombre",
+    "relation",
+    "nomme autre chose",
+    "illisible au rang",
+    "convention tenue",
+    "la graphie n'y est pas"
+  ],
+  "items": [
+    {
+      "mot": "foin",
+      "rang": 4,
+      "besoin": "B04",
+      "graphie": "oin",
+      "decoupe": [
+        "f",
+        "oin"
+      ],
+      "employable_par": {
+        "exercice": "E09",
+        "present_dans_la_serie": false,
+        "ce_qu_il_faudrait": "La série de E09 est composée de six mots qui portent TOUS oin — coin, point, loin, besoin, joint, rejoint — alors que son énoncé annonce « six mots affichés, un seul porte oin ». Ajouter « foin » ne suffit donc pas : il faut que la série contienne des mots qui ne portent PAS la graphie, sans quoi l'exercice n'a pas de mauvaise réponse. Retoucher la série est une décision pédagogique, et elle est laissée au porteur du projet."
+      },
+      "objet": "une meule de foin : un tas en dôme de brins dorés, plus large que haut, posé au sol, quelques brins dépassant du sommet",
+      "interdit": [
+        "un champ",
+        "une colline",
+        "un toit",
+        "une tente",
+        "une fourche",
+        "de la neige"
+      ],
+      "risque": [
+        {
+          "avec": null,
+          "hors_banque": "herbe, paille — ni l'une ni l'autre n'est illustrée, mais un enfant de sept ans peut les nommer",
+          "pourquoi": "l'herbe est ce qui pousse, le foin est ce qui est coupé et ramassé ; un tapis de brins verts se nomme « herbe », et un tas blanc se nomme « neige »",
+          "parade": "le tas a une FORME — base nette, sommet irrégulier, brins qui dépassent — là où l'herbe est un tapis sans forme ; et la teinte est dorée, jamais verte ni blanche"
+        }
+      ]
+    },
+    {
+      "mot": "parfum",
+      "rang": 13,
+      "besoin": "B13",
+      "graphie": "un",
+      "decoupe": [
+        "p",
+        "a",
+        "r",
+        "f",
+        "um"
+      ],
+      "employable_par": {
+        "exercice": "E18",
+        "present_dans_la_serie": false,
+        "ce_qu_il_faudrait": "Ajouter « parfum » à la série de E18. L'énoncé annonce « six mots affichés, dont trois portent la nasale un et trois le u suivi de n », alors que la série en compte quatre et deux — l'écart est réel et le corpus le consigne sans le corriger. Le mot est lisible au rang 13 depuis que la table déclare « um »."
+      },
+      "objet": "un flacon de parfum : une panse trapue à épaule marquée, un col court, un bouchon doré, et une poire à vaporiser reliée au bouchon par un tube",
+      "interdit": [
+        "une bouteille à bouchon",
+        "un verre",
+        "une fleur",
+        "un vaporisateur d'eau"
+      ],
+      "risque": [
+        {
+          "avec": null,
+          "hors_banque": "bouteille, flacon, vaporisateur — aucun n'est illustré dans la série",
+          "pourquoi": "un flacon sans poire à vaporiser se nomme « une bouteille » ; c'est le geste du parfum qui fait le mot, pas le récipient",
+          "parade": "la POIRE À VAPORISER est le trait distinctif, et elle est le seul objet de la série à en porter une : elle seule dit le parfum"
+        }
+      ]
+    },
+    {
+      "mot": "œil",
+      "rang": 30,
+      "besoin": "B30",
+      "graphie": "irregulier",
+      "decoupe": [
+        "œ",
+        "i",
+        "l"
+      ],
+      "note_decoupe": "Le décodeur segmente « œ | i | l », ce qui ne donne pas /œj/ : c'est exactement pourquoi le mot est mémorisé. Le corpus l'écrit au lieu de le cacher, et le contrôle compare cette ligne à la découpe réelle — si la table change, l'écart se voit.",
+      "employable_par": {
+        "exercice": "E36",
+        "present_dans_la_serie": true,
+        "ce_qu_il_faudrait": "rien — le mot est déjà dans la série de E36."
+      },
+      "objet": "un œil vu de face, en gros plan : un ovale blanc, un iris bleu et une pupille noire, deux cils sur le bord supérieur",
+      "interdit": [
+        "un visage",
+        "deux yeux",
+        "des lunettes",
+        "un sourcil",
+        "une larme"
+      ],
+      "risque": [
+        {
+          "avec": null,
+          "hors_banque": "nez — illustré dans la tranche GS, et c'est la même famille : une partie du visage",
+          "pourquoi": "une partie du visage isolée se confond avec une autre : sans l'iris et sans la pupille, un ovale surmonté de cils se lit comme un sourcil",
+          "parade": "l'œil est ENTIER et centré, et il porte l'iris et la pupille — deux traits que le nez et le sourcil ne peuvent pas porter"
+        }
+      ]
+    }
+  ],
+  "non_illustrables": [
+    {
+      "mot": "coin",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "abstrait",
+      "raison": "un coin n'est pas un objet, c'est une partie d'un autre : le coin d'une page se nomme « page », le coin d'une pièce se nomme « mur ». L'image ferait nommer le tout."
+    },
+    {
+      "mot": "point",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "abstrait",
+      "raison": "un point est une marque, pas un objet : le dessin d'un point se nomme « un rond » ou « une bille », et c'est le mot que l'enfant dirait."
+    },
+    {
+      "mot": "loin",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "abstrait",
+      "raison": "un adverbe de lieu : le dessiner demande deux objets et une distance entre eux, et l'image nommerait les deux objets, pas le mot visé."
+    },
+    {
+      "mot": "besoin",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "abstrait",
+      "raison": "un nom abstrait : il n'y a rien à montrer."
+    },
+    {
+      "mot": "joint",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "forme verbale",
+      "raison": "le mot est d'abord un participe ; le dessin d'une jointure se nomme « jointure », et un joint de plomberie est un objet que l'enfant ne connaît pas."
+    },
+    {
+      "mot": "rejoint",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "forme verbale",
+      "raison": "l'image d'un verbe montrerait deux objets et un mouvement, donc deux noms et une action : elle ne dirait pas le mot."
+    },
+    {
+      "mot": "poing",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "illisible au rang",
+      "raison": "le mot porte la graphie, mais son g final n'est couvert par aucune règle avant le rang 26 : « poing » n'est pas lisible au rang 4, donc pas affichable. C'est le décodeur qui le dit, pas une impression."
+    },
+    {
+      "mot": "poisson",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "la graphie n'y est pas",
+      "raison": "« poisson » contient les lettres o-i-n dans cet ordre, mais pas la graphie : il se décode `p | oi | ss | on`, soit /pwasɔ̃/. Illustrer un poisson ne servirait pas l'unité 4 — et c'était la première idée, fausse, et c'est le décodeur qui l'a montrée fausse."
+    },
+    {
+      "mot": "groin",
+      "besoin": "B04",
+      "rang": 4,
+      "motif": "nomme autre chose",
+      "raison": "un groin se dessine — un museau rose à deux narines — mais un enfant de sept ans nomme « un cochon » ce qu'il voit, pas « un groin ». L'image ferait nommer un autre mot que le mot visé."
+    },
+    {
+      "mot": "lundi",
+      "besoin": "B13",
+      "rang": 13,
+      "motif": "jour",
+      "raison": "un jour de la semaine ne se dessine pas sans écrire son nom : l'image d'un calendrier se nomme « calendrier », et la charte interdit tout texte dans une image."
+    },
+    {
+      "mot": "brun",
+      "besoin": "B13",
+      "rang": 13,
+      "motif": "couleur",
+      "raison": "une couleur n'est pas un objet : le dessin d'une tache brune se nomme « une tache » ou « du chocolat », et la série n'illustre aucune couleur."
+    },
+    {
+      "mot": "brune",
+      "besoin": "B13",
+      "rang": 13,
+      "motif": "couleur",
+      "raison": "la forme féminine de la même couleur, avec la même impossibilité."
+    },
+    {
+      "mot": "chacun",
+      "besoin": "B13",
+      "rang": 13,
+      "motif": "pronom",
+      "raison": "un pronom indéfini : il ne désigne pas un objet mais une répartition. Rien à montrer."
+    },
+    {
+      "mot": "aucun",
+      "besoin": "B13",
+      "rang": 13,
+      "motif": "pronom",
+      "raison": "un pronom indéfini, et de surcroît négatif : la négation ne se dessine pas."
+    },
+    {
+      "mot": "humble",
+      "besoin": "B13",
+      "rang": 13,
+      "motif": "abstrait",
+      "raison": "un adjectif : la modestie ne se dessine pas, et le dessin d'une personne modeste se nomme « un enfant » ou « une dame »."
+    },
+    {
+      "mot": "emprunt",
+      "besoin": "B13",
+      "rang": 13,
+      "motif": "abstrait",
+      "raison": "un nom abstrait : le dessin d'un objet prêté ne dit pas qu'il est prêté, il nomme l'objet."
+    },
+    {
+      "mot": "monsieur",
+      "besoin": "B30",
+      "rang": 30,
+      "motif": "convention tenue",
+      "raison": "un adulte seul ne se distingue pas de « papa ». La série a FIXÉ une convention — barbe courte pour papa, cheveux attachés pour maman — et une seule. En ajouter une seconde pour « monsieur » ferait deux conventions pour un seul trait distinctif, et c'est la première qui perdrait : « papa » deviendrait ambigu."
+    },
+    {
+      "mot": "femme",
+      "besoin": "B30",
+      "rang": 30,
+      "motif": "convention tenue",
+      "raison": "même raison que « monsieur », du côté de « maman ». Un quatrième adulte dans une série qui en compte deux ne s'ajoute pas : il défait la paire."
+    },
+    {
+      "mot": "second",
+      "besoin": "B30",
+      "rang": 30,
+      "motif": "nombre",
+      "raison": "un ordinal : il dit un rang, pas un objet. L'image d'un rang est un chiffre, et la charte interdit tout chiffre dans une image."
+    },
+    {
+      "mot": "fils",
+      "besoin": "B30",
+      "rang": 30,
+      "motif": "relation",
+      "raison": "une relation, pas un objet : le dessin d'un garçon se nomme « garçon », et le dessin d'un garçon près d'un adulte se nomme « famille ». Le lien ne se voit pas."
+    },
+    {
+      "mot": "sept",
+      "besoin": "B30",
+      "rang": 26,
+      "motif": "nombre",
+      "raison": "un nombre s'écrit : l'image d'un nombre est un chiffre, et la charte interdit tout chiffre. Le mot est mémorisé au rang 26, mais il n'est pas illustrable."
+    },
+    {
+      "mot": "huit",
+      "besoin": "B30",
+      "rang": 26,
+      "motif": "nombre",
+      "raison": "même raison que « sept » : un nombre se montre par un chiffre, et c'est interdit."
+    }
+  ]
+}

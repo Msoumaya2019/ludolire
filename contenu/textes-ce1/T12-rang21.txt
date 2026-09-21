@@ -1,0 +1,14 @@
+# rang: 21
+# La valise de la reine
+
+La reine a une valise.
+Dans la valise, il y a une chemise.
+La chemise est rose.
+Papa a une chaise.
+Sur la chaise, il y a un oiseau.
+L'oiseau aime la musique.
+Maman a une tasse.
+Le chat a une valise aussi.
+Dans la valise du chat, il y a un poisson.
+Le poisson est rose.
+Papa rit encore.

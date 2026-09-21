@@ -1,0 +1,6 @@
+# Contrôle négatif -ent — ce texte DOIT être refusé au rang 20, et pour cette seule raison.
+# « volent » est déchiffrable au rang 20 jusqu'à sa dernière syllabe : v (12), o (3), l (7).
+# Seule la terminaison -ent le disqualifie. Si ce texte passe, c'est que l'interdiction
+# n'est plus appliquée ; s'il est refusé pour une autre raison, le cas ne prouve rien.
+
+Les poules volent.

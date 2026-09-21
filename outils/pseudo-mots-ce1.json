@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "titre": "Corpus des pseudo-mots du CE1",
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "role": "Tout ce que l'application fait entendre et fait lire quand elle demande de décoder une suite de lettres qui n'est pas un mot.",
+    "source": "Annexe 3 du programme de français du cycle 2, section « Lecture », sous-section « Cours élémentaire première année », objectif de l'unité 35 : « L'élève déchiffre et écrit sous la dictée des syllabes et des pseudo-mots comportant des CGP courantes et d'autres plus complexes (ex. : doir, stag, choust, valin, cagnou, etc.). »",
+    "pourquoi_un_corpus": "Les cinq pseudo-mots du programme étaient portés par les DEUX exercices qui les emploient, chacun de son côté, et la même liste se trouvait donc deux fois dans la banque. Deux copies de la même chose divergent : ici elles avaient déjà divergé, et dans le sens le plus coûteux — les deux exercices de la même unité faisaient entendre et relire EXACTEMENT les mêmes cinq suites. L'enfant qui venait de toucher « valin » dans l'un n'avait plus besoin de le décoder dans l'autre, alors que ce second exercice déclare lui-même entraîner « décoder d'abord, décider ensuite ». Le corpus est désormais la seule copie : les exercices citent un identifiant, le contrôle le résout, et deux exercices de la même unité ne peuvent pas citer le même.",
+    "ce_qu_est_un_pseudo_mot": "Une suite de lettres qui se décode et qui ne se reconnaît pas. Elle est écrite avec des graphies déjà enseignées, elle n'est le mot d'aucun corpus, et sa lecture se déduit des lettres seules — c'est la seule chose qu'un enfant puisse faire devant elle, puisqu'il ne l'a jamais rencontrée.",
+    "la_lecture_est_derivee": "La prononciation n'est PAS déclarée : elle est dérivée, graphie par graphie, des tables de correspondance du projet — la même source que celle qui décide si un texte est déchiffrable. La lecture obtenue est la lecture mécanique : chaque graphie est lue par la correspondance qui l'enseigne, et la seule lettre muette est le e final. La conséquence est assumée et vaut pour trois des cinq exemples du programme : une suite qui finit par une consonne se lit par cette consonne — « doir » se dit /dwaʁ/, « choust » /ʃust/, « stag » /stag/. Un enfant ne peut pas savoir qu'un pseudo-mot porte une lettre muette finale, puisque la règle des consonnes finales muettes s'apprend mot par mot, et qu'un pseudo-mot n'est dans aucun lexique. Déclarer la prononciation à la main aurait donné trois valeurs que rien n'aurait pu vérifier ; la dériver la donne vérifiable, et c'est la même pour tous.",
+    "enregistrement": {
+      "famille": "pm",
+      "nommage": "pm_<slug>.wav — un fichier par suite, jamais un fichier qui en contient plusieurs",
+      "niveau": "-16 LUFS — le niveau des consignes, pas celui des phonèmes isolés : c'est une suite de lettres qu'on demande d'entendre, et l'écart entre les deux niveaux se remarque.",
+      "silence": "150 ms avant, 250 ms après, comme le reste du corpus",
+      "script": "la voix dit la suite exactement telle que le tableau la transcrit, et rien de plus — ni « alors, écoute bien », ni un exemple avant, ni la suite épelée.",
+      "ce_que_la_famille_empeche": "Un pseudo-mot enregistré comme un mot deviendrait un mot. Le préfixe `pm` le sépare des fichiers `mot_` du corpus, et le contrôle refuse un pseudo-mot qui serait déjà un mot de l'application. C'est la crainte que B35 déclare, et c'est la seule partie de B35 qui se solde par une règle : le reste de B35 est un enregistrement à faire, pas un contrôle à écrire."
+    },
+    "limite": "Deux limites, et elles sont déclarées plutôt que tues. D'abord, « ce n'est pas un mot français » ne se vérifie pas : il n'y a pas de lexique embarqué. Le contrôle vérifie deux choses, et ce sont les deux seules qui comptent pour l'exercice : que le pseudo-mot n'est le mot d'aucun corpus DE L'APPLICATION — c'est le seul cas où l'enfant l'aurait déjà lu comme un mot — et que sa lecture mécanique n'est celle d'aucun mot du lexique de l'application, sans quoi l'exercice ferait lire l'homophone d'un mot connu. Une suite qui serait un mot français absent de l'application passerait. Ensuite, neuf graphies de la table du CE1 — ill, y, ail, eil, euil, ouille, aille, eille, euille — n'ont PAS de lecture dérivable : la table leur donne /j/, qui est une semi-consonne et ne fait pas une syllabe, donc l'étiquette de la classe des graphies du /j/ en fin de mot et non leur lecture. La lecture réelle se compose — `ail` vaut /aj/, `euille` /œj/, `ill` /ij/ — et rien dans la table ne porte cette composition. Aucun pseudo-mot bâti sur l'une de ces neuf graphies ne peut donc entrer dans ce corpus, faute d'une prononciation fondée. Le décodeur, lui, n'en souffre pas : il n'a jamais besoin du phonème pour dire si un texte est déchiffrable. C'est en écrivant ce corpus qu'on l'a vu, et c'est écrit ici parce qu'une table qui déclare une classe là où on attend une lecture se relit autrement."
+  },
+  "pseudo_mots": [
+    {
+      "id": "pm01",
+      "mot": "doir",
+      "graphies": ["oi", "r"],
+      "complexite": "simple",
+      "origine": "programme"
+    },
+    {
+      "id": "pm02",
+      "mot": "stag",
+      "graphies": ["g"],
+      "complexite": "simple",
+      "origine": "programme"
+    },
+    {
+      "id": "pm03",
+      "mot": "choust",
+      "graphies": ["ch", "ou"],
+      "complexite": "simple",
+      "origine": "programme"
+    },
+    {
+      "id": "pm04",
+      "mot": "valin",
+      "graphies": ["in"],
+      "complexite": "simple",
+      "origine": "programme"
+    },
+    {
+      "id": "pm05",
+      "mot": "cagnou",
+      "graphies": ["gn", "ou"],
+      "complexite": "complexe",
+      "origine": "programme"
+    },
+    {
+      "id": "pm06",
+      "mot": "flaption",
+      "graphies": ["tion"],
+      "complexite": "complexe",
+      "origine": "ecrit"
+    },
+    {
+      "id": "pm07",
+      "mot": "trumpon",
+      "graphies": ["um"],
+      "complexite": "complexe",
+      "origine": "ecrit"
+    },
+    {
+      "id": "pm08",
+      "mot": "pharmou",
+      "graphies": ["ph"],
+      "complexite": "complexe",
+      "origine": "ecrit"
+    },
+    {
+      "id": "pm09",
+      "mot": "girou",
+      "graphies": ["g", "ou"],
+      "complexite": "complexe",
+      "origine": "ecrit"
+    },
+    {
+      "id": "pm10",
+      "mot": "poinche",
+      "graphies": ["oin", "ch"],
+      "complexite": "complexe",
+      "origine": "ecrit"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# rang: 33
+# Le chat
+
+Le chat est un animal de la maison.
+Il a une belle robe brune.
+Il aime le lait et le poisson.
+Le chat dort beaucoup.
+Le jour, il dort sur une chaise.
+La nuit, il sort dans le jardin.
+Il aime la campagne et la montagne.
+Il lave sa robe avec sa langue.
+Il a des griffes.
+Il monte sur l'échelle.
+Il aime la compagnie de la reine.
+Le chat est un bon compagnon.

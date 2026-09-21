@@ -1,0 +1,45 @@
+{
+  "name": "ludolire",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ludo'Lire — apprendre à lire en jouant. Écoles maternelle et élémentaire Frères Lumières, Montmagny.",
+  "license": "UNLICENSED",
+  "main": "expo-router/entry",
+  "engines": {
+    "node": ">=22.0.0 <23.0.0"
+  },
+  "scripts": {
+    "start": "expo start",
+    "start:clear": "expo start --clear",
+    "ios": "expo start --ios",
+    "android": "expo start --android",
+    "typecheck": "tsc --noEmit",
+    "contenu": "python outils/generer-contenu-app.py",
+    "contenu:verifier": "node scripts/verifier-contenu.mjs",
+    "check:workflows": "node scripts/check-workflows.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "export:ios": "expo export --platform ios",
+    "verify": "npm run check:workflows && npm run contenu:verifier && npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.2",
+    "expo": "~57.0.23",
+    "expo-constants": "~57.0.18",
+    "expo-linking": "~57.0.10",
+    "expo-router": "~57.0.21",
+    "expo-splash-screen": "~57.0.9",
+    "expo-status-bar": "~57.0.1",
+    "expo-system-ui": "~57.0.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.3",
+    "@types/react": "~19.2.2",
+    "typescript": "~6.0.3",
+    "yaml": "^2.9.1"
+  }
+}

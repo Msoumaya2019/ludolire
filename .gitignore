@@ -1,0 +1,54 @@
+# dépendances
+node_modules/
+# Dossiers de secours laissés par la réparation d'une installation interrompue :
+# on RENOMME un paquet à moitié écrit au lieu de le supprimer, donc ils
+# apparaissent en cours de route et ne doivent jamais entrer dans le dépôt.
+node_modules.old/
+node_modules/*.old/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Natif — `ios/` et `android/` ne sont JAMAIS versionnés. Le flux les recrée par
+# `expo prebuild --clean` ; versionnés, ils porteraient une configuration de
+# signature et produiraient un conflit à chaque mise à jour d'Expo.
+/ios
+/android
+.kotlin/
+
+# Metro
+.metro-health-check*
+
+# signature — aucun de ces fichiers n'a sa place dans un dépôt public
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# débogage
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# système
+.DS_Store
+Thumbs.db
+
+# artefacts de compilation
+*.ipa
+*.apk
+*.aab
+Payload/
+
+# TypeScript
+*.tsbuildinfo
+
+# Journal de travail de l'assistant : hors du code livré, et sans intérêt pour
+# quiconque clone le dépôt.
+.workbuddy-ai/

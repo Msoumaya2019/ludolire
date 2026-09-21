@@ -1,0 +1,11 @@
+# rang: 4
+# Le coin de la reine
+
+Le chat a un coin dans la maison.
+La reine a un point sur la main.
+Le chat a besoin de la reine.
+La reine a besoin du chat.
+Le chat a rejoint la reine.
+Le soir, la reine a un point de plus.
+Le chat a un point aussi.
+Le chat a joint le point.

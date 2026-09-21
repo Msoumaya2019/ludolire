@@ -1,0 +1,9 @@
+# rang: 16
+# type: recit
+# titre: L'agneau de la reine
+
+La reine a un agneau.
+L'agneau aime la montagne.
+Un lundi, il a rejoint la maison.
+La reine rit.
+La reine aime son agneau.

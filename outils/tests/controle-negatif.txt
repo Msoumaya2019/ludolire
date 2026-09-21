@@ -1,0 +1,4 @@
+# Contrôle négatif — ce texte DOIT être refusé au rang 10
+
+Papa a un château.
+Les lamas dorment.

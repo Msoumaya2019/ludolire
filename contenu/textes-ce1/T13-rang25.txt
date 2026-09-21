@@ -1,0 +1,14 @@
+# rang: 25
+# Le poisson de la reine
+
+La reine a un poisson rose.
+Le poisson est dans une valise.
+La valise est dans la maison.
+Le chat aime le poisson.
+Le chat a une question sur le poisson.
+La reine a une réponse.
+Le chat a une potion.
+La potion a une action sur le chat.
+Le poisson est dans la maison.
+La reine aime le poisson rose.
+Le chat aime la reine.

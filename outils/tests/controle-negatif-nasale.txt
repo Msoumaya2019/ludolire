@@ -1,0 +1,6 @@
+# Contrôle négatif nasale finale — ce texte DOIT être refusé au rang 20.
+# « bon » et « son » se terminent par la voyelle nasale /ɔ̃/, transcrite « on ».
+# Cette CGP n'est enseignée qu'au rang 21. Un contrôle qui segmente « son » en
+# s | o | n accepte le mot à tort : c'est le sens d'erreur le plus dangereux.
+
+Le bon son.

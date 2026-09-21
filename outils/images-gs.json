@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "titre": "Illustrations de la tranche GS",
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "role": "Source de vérité unique du brief de dessin des illustrations. Le libellé de l'illustration reste dans mots-gs.json ; ce fichier dit COMMENT la dessiner pour qu'elle ne soit pas ambiguë.",
+    "pourquoi_deux_fichiers": "mots-gs.json porte le mot et son libellé (« un lit d'enfant »). Ce fichier porte le brief de dessin (« un lit d'enfant, VIDE, vu de côté, sans dormeur »). Le libellé dit quel mot on vise ; le brief dit ce qui doit être sur l'image pour qu'aucun autre mot ne puisse être nommé à sa place. Séparés, ils ne peuvent pas diverger en silence : le contrôle compare l'un à l'autre.",
+    "ce_qui_manque": "Les fichiers d'image eux-mêmes. Cet environnement ne dispose d'aucun outil de génération d'image : la connexion au service de génération a répondu qu'aucun identifiant n'était délivré, et l'outil de génération d'image n'existe pas dans cette configuration. Ce fichier est donc le livrable de spécification, et il est complet : il permet à une personne — ou à un outil disponible ailleurs — de produire les 44 images sans avoir à décider quoi que ce soit."
+  },
+
+  "cadrage": {
+    "ce_que_l_image_doit_faire": "Nommer le mot sans le secours d'aucun texte. Un enfant de GS ne lit pas : si l'image ne suffit pas, l'exercice n'est pas difficile, il est impossible.",
+    "ce_que_l_image_ne_doit_pas_faire": "Donner la réponse par un autre chemin. Une image qui contient le mot écrit, ou une lettre, ou un indice sonore, contourne l'exercice au lieu de le servir.",
+    "regles": [
+      "UN SEUL OBJET par image. Pas de scène, pas de décor chargé : une scène invite à nommer la scène, pas l'objet. La seule exception admise est un élément qui LEVE une ambiguïté (le ciel étoilé derrière la lune), et il doit être justifié dans le brief.",
+      "Objet entier, jamais coupé. Un objet partiel change de nom (un nez coupé n'est plus un nez).",
+      "Aucun texte, aucune lettre, aucun chiffre, aucun logo dans l'image.",
+      "Aucun personnage dont le nom n'est pas le mot visé. Dessiner une jupe sur une fillette fait dire « fillette ».",
+      "Le même objet doit être dessiné de la même façon dans toute la série : deux dessins d'une pomme dans deux exercices différents, c'est deux mots possibles pour l'enfant.",
+      "Pas de dégradé, pas d'ombre portée, pas de perspective : un aplat et un contour se reconnaissent plus vite et se traduisent mieux en icône.",
+      "Contour épais et régulier. C'est ce qui rend l'objet lisible sur un petit écran et en plein soleil.",
+      "Un objet se nomme par ses traits distinctifs, pas par son contour ni par sa vue. Un nez dessiné lisse et effilé se lit comme un doigt, qu'il soit de face ou de profil : ce sont la base large, les narines et les ailes qui font le mot. Avant de valider un dessin, nommer à voix haute le trait qui permet de le reconnaître — puis vérifier qu'il est bien là."
+    ],
+    "technique": {
+      "format_master": "SVG, un fichier par mot",
+      "export": "PNG à 1x, 2x et 3x, fond transparent",
+      "taille_logique": "512 × 512 points",
+      "occupation_du_cadre": "le sujet tient dans 80 % du cadre, centré, avec une marge régulière",
+      "epaisseur_du_contour": "4 points à 512, constante sur toute la série",
+      "palette": "palette fermée et déclarée, un seul jeu pour toute la série. Les couleurs doivent rester distinctes en niveaux de gris et pour les principaux types de daltonisme — un enfant daltonien doit pouvoir nommer l'objet.",
+      "poids_cible": "moins de 12 ko par SVG exporté, pour que les 44 images tiennent dans un chargement unique"
+    },
+    "licence": {
+      "pourquoi_c_est_une_contrainte_technique": "L'application est publiée sur les stores en catégorie enfant, et le dépôt est public. Une image dont on ne peut pas démontrer l'origine est un risque de retrait et un risque juridique, pas seulement une question de goût.",
+      "ce_qu_il_faut": "Un auteur identifié, et un écrit qui cède les droits d'exploitation. Pour une commande à un illustrateur : un contrat avec cession de droits, conservé hors du dépôt public. Pour une production interne : la mention de l'auteur dans LICENCE-IMAGES.md.",
+      "ce_qu_il_ne_faut_pas": "Une image de banque sans licence explicite ; une image reconnaissable comme un personnage protégé ; une image dont l'origine ne peut pas être documentée — y compris une image produite par un outil automatique dont on ne peut pas nommer les conditions d'utilisation.",
+      "ou_c_est_range": "contenu/LICENCE-IMAGES.md, versionné avec les images, sans contrat nominatif (le contrat reste hors dépôt)"
+    },
+    "nommage": {
+      "motif": "ill_<slug>.svg",
+      "slug": "le mot en minuscules, sans accent et sans caractère hors a-z et 0-9 (zèbre donne zebre, gâteau donne gateau, école donne ecole)",
+      "pourquoi_ascii": "un nom de fichier accentué traverse mal les chaînes d'outils : il change d'octets selon l'encodage du shell, et une référence d'image qui ne correspond plus est une image qui ne s'affiche pas. Le slug est calculé, jamais tapé à la main."
+    }
+  },
+
+  "items": [
+    { "mot": "papa", "objet": "un homme adulte debout, cheveux courts, barbe courte", "interdit": ["un enfant", "un bébé", "deux personnes"], "risque": [{ "avec": "maman", "pourquoi": "les deux sont des adultes ; sans trait distinctif fixé, rien ne dit lequel est lequel", "parade": "un repère unique est FIXÉ pour toute la série et appliqué partout. Le repère retenu (barbe courte pour papa, cheveux attachés pour maman) est une convention, donc un stéréotype : c'est une décision de contenu, à valider par le porteur du projet, pas un choix technique" }] },
+    { "mot": "maman", "objet": "une femme adulte debout, cheveux attachés", "interdit": ["un enfant", "un bébé", "deux personnes"], "risque": [{ "avec": "papa", "pourquoi": "même raison, symétrique", "parade": "le même repère unique, appliqué partout" }] },
+    { "mot": "bébé", "objet": "un bébé assis, très petit, en grenouillère", "interdit": ["un enfant qui marche", "un adulte qui le porte"], "risque": null },
+    { "mot": "dodo", "objet": "un enfant endormi sous une couverture, yeux fermés, dans un lit d'enfant", "interdit": ["un lit vide", "un adulte"], "risque": [{ "avec": "lit", "pourquoi": "`dodo` et `lit` désignent le même objet ; deux dessins de lit donnent deux réponses possibles pour une seule image", "parade": "`dodo` est l'ACTION — un enfant endormi — et `lit` est l'OBJET, vide et fait. Les deux images ne doivent jamais être montrées dans la même série" }] },
+    { "mot": "lit", "objet": "un lit vide, fait, vu de côté, sans dormeur", "interdit": ["un dormeur", "une couverture froissée"], "risque": [{ "avec": "dodo", "pourquoi": "même objet", "parade": "l'absence de dormeur est ce qui distingue `lit` ; elle doit être visible, pas seulement vraie" }] },
+    { "mot": "vélo", "objet": "un vélo vu de côté, cadre fin, pédalier et pédales visibles", "interdit": ["un moteur", "un cycliste"], "risque": [{ "avec": "moto", "pourquoi": "deux véhicules à deux roues ; une silhouette seule ne les sépare pas", "parade": "`vélo` montre le pédalier et la chaîne, `moto` montre le bloc moteur et un cadre épais. Le détail qui sépare doit être gros, pas un détail de spécialiste" }] },
+    { "mot": "moto", "objet": "une moto vue de côté, bloc moteur épais et visible", "interdit": ["des pédales", "un pilote"], "risque": [{ "avec": "vélo", "pourquoi": "même raison, symétrique", "parade": "le bloc moteur, dessiné gros" }] },
+    { "mot": "café", "objet": "une tasse de café pleine, brune, sur une soucoupe, vue de face", "interdit": ["une cafetière", "une personne", "une cuillère", "de la mousse"], "risque": [{ "avec": null, "hors_banque": "une tasse, un bol, un chocolat chaud", "pourquoi": "ce qui se nomme est le breuvage, mais ce qui se voit est le contenant : un enfant peut dire « tasse ». Le brief lui-même décrivait l'objet comme « une tasse », ce qui montre que le glissement est naturel", "parade": "aucune parade graphique — une tasse de café reste une tasse. Le dessin est donc retenu tel quel, et c'est le mot qui cédera si la relecture montre qu'un enfant de GS nomme le contenant : on retire le mot de la banque d'images, on ne redessine pas" }] },
+    { "mot": "gâteau", "objet": "un gâteau rond à étages, avec des bougies allumées", "interdit": ["un texte sur le gâteau"], "risque": null },
+    { "mot": "lune", "objet": "la lune en disque plein, avec des cratères, dans un ciel étoilé", "interdit": ["un croissant de lune"], "risque": [{ "avec": "banane", "pourquoi": "un croissant de lune et une banane ont la même forme ; c'est la confusion la plus probable de toute la série", "parade": "la lune est dessinée en DISQUE PLEIN avec des cratères, jamais en croissant. C'est une contrainte de forme, pas de goût : le croissant est interdit" }] },
+    { "mot": "jupe", "objet": "une jupe seule, à plat, vue de face", "interdit": ["une personne qui la porte", "un cintre"], "risque": null },
+    { "mot": "pomme", "objet": "une pomme rouge vue de face, pédoncule et feuille verte", "interdit": ["un couteau", "une pomme coupée"], "risque": [{ "avec": "tomate", "pourquoi": "toutes deux rondes et rouges", "parade": "la feuille verte et le pédoncule fin pour la pomme ; le calice vert en étoile, large et posé sur le dessus, pour la tomate" }, { "avec": "cerise", "pourquoi": "même famille de couleur", "parade": "la cerise n'est jamais seule : elle est par paire, avec deux queues" }] },
+    { "mot": "tomate", "objet": "une tomate rouge vue de face, calice vert en étoile bien visible sur le dessus", "interdit": ["une tomate coupée", "un plan de tomate"], "risque": [{ "avec": "pomme", "pourquoi": "même raison, symétrique", "parade": "le calice en étoile, large, est le trait qui sépare" }] },
+    { "mot": "cerise", "objet": "deux cerises rouges réunies par leurs queues, une feuille", "interdit": ["une cerise seule", "un gâteau"], "risque": [{ "avec": "pomme", "pourquoi": "même couleur", "parade": "la paire et les queues" }] },
+    { "mot": "zèbre", "objet": "un zèbre entier vu de côté, rayures noires et blanches sur tout le corps", "interdit": ["un cheval sans rayures", "une selle"], "risque": [{ "avec": "cheval", "pourquoi": "un zèbre est un cheval rayé ; la silhouette ne les sépare pas", "parade": "les rayures couvrent le corps ENTIER, y compris l'encolure et les pattes. Des rayures partielles donnent un cheval" }] },
+    { "mot": "cheval", "objet": "un cheval entier vu de côté, robe unie brune, sans rayures", "interdit": ["des rayures", "un cavalier"], "risque": [{ "avec": "zèbre", "pourquoi": "même raison, symétrique", "parade": "la robe est unie, et l'image ne contient aucune rayure" }] },
+    { "mot": "lapin", "objet": "un lapin entier vu de côté, longues oreilles dressées", "interdit": ["un chapeau", "un panier"], "risque": null },
+    { "mot": "canard", "objet": "un canard entier vu de côté, bec plat jaune, sur l'eau", "interdit": ["une mare chargée", "un autre oiseau"], "risque": null },
+    { "mot": "mouton", "objet": "un mouton entier vu de côté, toison blanche bouclée", "interdit": ["des cornes", "une tondeuse"], "risque": null },
+    { "mot": "koala", "objet": "un koala entier assis sur une branche, grandes oreilles rondes", "interdit": ["un ours", "un arbre entier"], "risque": null },
+    { "mot": "girafe", "objet": "une girafe entière vue de côté, très long cou, taches", "interdit": ["un arbre qui masque le cou"], "risque": null },
+    { "mot": "éléphant", "objet": "un éléphant entier vu de côté, trompe visible, grandes oreilles", "interdit": ["un autre animal"], "risque": null },
+    { "mot": "crocodile", "objet": "un crocodile entier vu de côté, long museau, dents visibles", "interdit": ["un autre reptile"], "risque": null },
+    { "mot": "loup", "objet": "un loup entier vu de côté, gris, museau pointu, queue touffue", "interdit": ["un collier", "une laisse"], "risque": [{ "avec": "chat", "pourquoi": "un loup et un grand chat ont des silhouettes proches une fois réduits à une icône", "parade": "le loup est gris et grand, la queue est longue et touffue ; le chat est petit et sa queue est fine. Aucun chien dans la banque, donc aucun troisième candidat" }] },
+    { "mot": "chat", "objet": "un chat entier vu de côté, petit, moustaches visibles, queue fine", "interdit": ["des rayures de zèbre", "un collier"], "risque": [{ "avec": "loup", "pourquoi": "même raison, symétrique", "parade": "la taille et l'épaisseur de la queue" }, { "avec": "rat", "pourquoi": "deux petits mammifères à queue", "parade": "le chat a des moustaches longues et des oreilles triangulaires ; le rat a un museau pointu et une queue sans poils, plus longue que son corps" }] },
+    { "mot": "rat", "objet": "un rat entier vu de côté, museau pointu, longue queue sans poils", "interdit": ["des moustaches longues", "un fromage"], "risque": [{ "avec": "chat", "pourquoi": "même raison, symétrique", "parade": "la queue sans poils, plus longue que le corps, est le trait qui sépare" }] },
+    { "mot": "maison", "objet": "une petite maison, toit à deux pentes, cheminée, une porte et une fenêtre", "interdit": ["une horloge", "une cour de récréation", "un drapeau"], "risque": [{ "avec": "école", "pourquoi": "deux bâtiments ; un bâtiment seul ne dit pas lequel", "parade": "la maison est PETITE, isolée, avec un toit à deux pentes et une cheminée ; l'école est un bâtiment LONG, à plusieurs fenêtres, avec une horloge et une cour. La taille et le nombre de fenêtres portent la différence" }] },
+    { "mot": "école", "objet": "un bâtiment long à plusieurs fenêtres, une horloge sur la façade, une cour devant", "interdit": ["une cheminée", "un toit à deux pentes isolé"], "risque": [{ "avec": "maison", "pourquoi": "même raison, symétrique", "parade": "la longueur, l'horloge et la cour" }] },
+    { "mot": "valise", "objet": "une valise rigide rectangulaire, poignée sur le dessus, deux fermoirs", "interdit": ["des bretelles", "une personne"], "risque": [{ "avec": "cartable", "pourquoi": "deux contenants à poignée", "parade": "la valise est rigide, à angles droits, avec des fermoirs ; le cartable est souple, avec un rabat et deux bretelles" }, { "avec": "sac", "pourquoi": "deux contenants", "parade": "la valise est fermée par des fermoirs ; le sac est un cabas ouvert à deux anses" }] },
+    { "mot": "cartable", "objet": "un cartable d'écolier, rabat fermé, deux bretelles visibles, des cahiers qui dépassent", "interdit": ["une valise", "un enfant qui le porte"], "risque": [{ "avec": "sac", "pourquoi": "deux contenants souples", "parade": "le cartable a un rabat et DEUX BRETELLES ; le sac a deux anses et reste ouvert" }, { "avec": "valise", "pourquoi": "deux contenants à poignée", "parade": "le cartable est souple avec un rabat ; la valise est rigide à angles droits avec des fermoirs" }] },
+    { "mot": "sac", "objet": "un cabas ouvert à deux anses, vide, posé", "interdit": ["des bretelles", "des cahiers"], "risque": [{ "avec": "cartable", "pourquoi": "même raison, symétrique", "parade": "les anses au lieu des bretelles, et l'ouverture béante" }, { "avec": "valise", "pourquoi": "deux contenants à poignée", "parade": "le sac est souple et ouvert ; la valise est rigide et fermée par des fermoirs" }] },
+    { "mot": "téléphone", "objet": "un téléphone mobile vu de face, écran éteint, sans personne", "interdit": ["une main", "un visage", "une icône sur l'écran"], "risque": null },
+    { "mot": "parapluie", "objet": "un parapluie OUVERT vu de côté, manche recourbé", "interdit": ["un parapluie fermé", "une personne"], "risque": [{ "avec": null, "hors_banque": "une canne", "pourquoi": "un parapluie fermé ressemble à une canne : l'enfant ne nommerait alors pas le mot visé, même si `canne` n'est pas dans la banque", "parade": "le parapluie est toujours ouvert et déployé" }] },
+    { "mot": "avion", "objet": "un avion entier vu de côté, ailes et hublots visibles", "interdit": ["un aéroport", "des passagers"], "risque": null },
+    { "mot": "bateau", "objet": "un bateau entier vu de côté, coque et voile, sur l'eau", "interdit": ["un port", "un marin"], "risque": null },
+    { "mot": "soleil", "objet": "un soleil en disque jaune avec des rayons réguliers", "interdit": ["des lunettes de soleil", "un visage souriant"], "risque": null },
+    { "mot": "fleur", "objet": "une fleur à cinq pétales, tige et deux feuilles", "interdit": ["un vase", "un bouquet"], "risque": null },
+    { "mot": "banane", "objet": "une banane jaune, courbée, avec sa tige brune", "interdit": ["un croissant de lune", "un singe"], "risque": [{ "avec": "lune", "pourquoi": "même forme", "parade": "la banane est JAUNE avec une tige brune ; la lune est un disque plein, jamais un croissant" }] },
+    { "mot": "ananas", "objet": "un ananas entier, couronne de feuilles sur le dessus, motif en losanges", "interdit": ["un ananas coupé", "un verre"], "risque": null },
+    { "mot": "bonbon", "objet": "un bonbon emballé, les deux papillotes torsadées visibles", "interdit": ["un bonbon sans emballage"], "risque": null },
+    { "mot": "chocolat", "objet": "une tablette de chocolat, un carré détaché à côté", "interdit": ["une boisson", "une tablette sans carré détaché"], "risque": null },
+    { "mot": "pyjama", "objet": "un pyjama complet — haut et pantalon — posé à plat", "interdit": ["un enfant qui le porte", "un lit"], "risque": null },
+    { "mot": "nez", "objet": "un nez seul, vu de face : base large, deux narines, ailes en lobes, columelle", "interdit": ["un visage entier", "des yeux", "une main", "un doigt"], "risque": [{ "avec": null, "hors_banque": "un visage, une tête, un doigt, une corne", "pourquoi": "un nez dessiné sur un visage fait nommer « visage ». Et un nez dessiné lisse, effilé et arrondi au bout se lit comme un doigt — deux versions successives l'ont produit, l'une de face, l'autre de profil", "parade": "le nez est seul, sans aucun autre trait du visage, et porte ses trois traits distinctifs : base large, deux narines, ailes en lobes. C'est la silhouette qui fait le mot, pas la vue — un nez de profil dépourvu de ces traits a donné une corne, puis une voile" }] },
+    { "mot": "main", "objet": "une main ouverte, paume visible, cinq doigts écartés", "interdit": ["un bras", "un poignet avec manche"], "risque": null }
+  ]
+}

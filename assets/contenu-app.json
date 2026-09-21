@@ -1,0 +1,2014 @@
+{
+  "meta": {
+    "titre": "Ludo'Lire",
+    "sous_titre": "Apprendre à lire en jouant",
+    "etablissement": "Écoles maternelle et élémentaire Frères Lumières — Montmagny",
+    "version": "0.1.0",
+    "role": "Contenu embarqué dans l'application, fabriqué par outils/generer-contenu-app.py.",
+    "source": "Les corpus de outils/ et les textes de contenu/ restent la source unique.",
+    "audio": "Aucun son n'est enregistré à ce jour. Les activités qui reposent sur la voix ne sont pas encore jouables, et l'application le dit.",
+    "empreinte": "97668bdf9b636299"
+  },
+  "niveaux": [
+    {
+      "id": "gs",
+      "nom": "Grande section",
+      "court": "GS",
+      "sous_titre": "Écouter, jouer avec les syllabes, entrer dans l'écrit",
+      "couleur": "#2E9E6B",
+      "textes": [
+        {
+          "id": "T01-rang10",
+          "titre": "La lune",
+          "rang": null,
+          "genre": null,
+          "lignes": [
+            "Le lama a une lune.",
+            "La lune a une liane.",
+            "Lina a un lama.",
+            "Le lama a mal."
+          ]
+        },
+        {
+          "id": "T02-rang16",
+          "titre": "Le cheval",
+          "rang": null,
+          "genre": null,
+          "lignes": [
+            "Le cheval a une patte.",
+            "La patte a mal.",
+            "Papa a une patate et une tomate.",
+            "Le cheval a la patate et la tomate."
+          ]
+        },
+        {
+          "id": "T03-rang23",
+          "titre": "Le mouton et le canard",
+          "rang": null,
+          "genre": null,
+          "lignes": [
+            "Le mouton a une cloche.",
+            "Le canard a une toupie.",
+            "Le mouton et le canard ont une école."
+          ]
+        }
+      ],
+      "jeu_syllabes": [
+        {
+          "id": "J01",
+          "mot": "banane",
+          "syllabes": [
+            "ba",
+            "na",
+            "ne"
+          ],
+          "trou": 1,
+          "cartes": [
+            "na",
+            "ma",
+            "ta"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J02",
+          "mot": "tomate",
+          "syllabes": [
+            "to",
+            "ma",
+            "te"
+          ],
+          "trou": 1,
+          "cartes": [
+            "ma",
+            "pa",
+            "ba"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J03",
+          "mot": "papa",
+          "syllabes": [
+            "pa",
+            "pa"
+          ],
+          "trou": 1,
+          "cartes": [
+            "pa",
+            "ba",
+            "ma"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J04",
+          "mot": "vélo",
+          "syllabes": [
+            "vé",
+            "lo"
+          ],
+          "trou": 1,
+          "cartes": [
+            "lo",
+            "no",
+            "ro"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J05",
+          "mot": "café",
+          "syllabes": [
+            "ca",
+            "fé"
+          ],
+          "trou": 1,
+          "cartes": [
+            "fé",
+            "vé",
+            "fè"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J06",
+          "mot": "gâteau",
+          "syllabes": [
+            "gâ",
+            "teau"
+          ],
+          "trou": 1,
+          "cartes": [
+            "teau",
+            "deau",
+            "neau"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J07",
+          "mot": "jupe",
+          "syllabes": [
+            "ju",
+            "pe"
+          ],
+          "trou": 0,
+          "cartes": [
+            "ju",
+            "chu",
+            "zu"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J08",
+          "mot": "pomme",
+          "syllabes": [
+            "pom",
+            "me"
+          ],
+          "trou": 1,
+          "cartes": [
+            "me",
+            "be",
+            "ne"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J09",
+          "mot": "zèbre",
+          "syllabes": [
+            "zè",
+            "bre"
+          ],
+          "trou": 0,
+          "cartes": [
+            "zè",
+            "sè",
+            "jè"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J10",
+          "mot": "lapin",
+          "syllabes": [
+            "la",
+            "pin"
+          ],
+          "trou": 0,
+          "cartes": [
+            "la",
+            "na",
+            "ra"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J11",
+          "mot": "maison",
+          "syllabes": [
+            "mai",
+            "son"
+          ],
+          "trou": 0,
+          "cartes": [
+            "mai",
+            "pai",
+            "bai"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J12",
+          "mot": "canard",
+          "syllabes": [
+            "ca",
+            "nard"
+          ],
+          "trou": 1,
+          "cartes": [
+            "nard",
+            "mard",
+            "tard"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J13",
+          "mot": "mouton",
+          "syllabes": [
+            "mou",
+            "ton"
+          ],
+          "trou": 0,
+          "cartes": [
+            "mou",
+            "pou",
+            "nou"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J14",
+          "mot": "cheval",
+          "syllabes": [
+            "che",
+            "val"
+          ],
+          "trou": 0,
+          "cartes": [
+            "che",
+            "je",
+            "se"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J15",
+          "mot": "bonbon",
+          "syllabes": [
+            "bon",
+            "bon"
+          ],
+          "trou": 0,
+          "cartes": [
+            "bon",
+            "pon",
+            "mon"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J16",
+          "mot": "avion",
+          "syllabes": [
+            "a",
+            "vion"
+          ],
+          "trou": 1,
+          "cartes": [
+            "vion",
+            "fion",
+            "vuon"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J17",
+          "mot": "soleil",
+          "syllabes": [
+            "so",
+            "leil"
+          ],
+          "trou": 0,
+          "cartes": [
+            "so",
+            "zo",
+            "cho"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J18",
+          "mot": "valise",
+          "syllabes": [
+            "va",
+            "li",
+            "se"
+          ],
+          "trou": 2,
+          "cartes": [
+            "se",
+            "ze",
+            "che"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J19",
+          "mot": "cerise",
+          "syllabes": [
+            "ce",
+            "ri",
+            "se"
+          ],
+          "trou": 2,
+          "cartes": [
+            "se",
+            "ze",
+            "che"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J20",
+          "mot": "girafe",
+          "syllabes": [
+            "gi",
+            "ra",
+            "fe"
+          ],
+          "trou": 1,
+          "cartes": [
+            "ra",
+            "la",
+            "rè"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J21",
+          "mot": "koala",
+          "syllabes": [
+            "ko",
+            "a",
+            "la"
+          ],
+          "trou": 2,
+          "cartes": [
+            "la",
+            "na",
+            "ra"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J22",
+          "mot": "pyjama",
+          "syllabes": [
+            "py",
+            "ja",
+            "ma"
+          ],
+          "trou": 2,
+          "cartes": [
+            "ma",
+            "pa",
+            "ba"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J23",
+          "mot": "cartable",
+          "syllabes": [
+            "car",
+            "ta",
+            "ble"
+          ],
+          "trou": 1,
+          "cartes": [
+            "ta",
+            "da",
+            "na"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J24",
+          "mot": "chocolat",
+          "syllabes": [
+            "cho",
+            "co",
+            "lat"
+          ],
+          "trou": 0,
+          "cartes": [
+            "cho",
+            "jo",
+            "so"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J25",
+          "mot": "éléphant",
+          "syllabes": [
+            "é",
+            "lé",
+            "phant"
+          ],
+          "trou": 1,
+          "cartes": [
+            "lé",
+            "né",
+            "ré"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J26",
+          "mot": "parapluie",
+          "syllabes": [
+            "pa",
+            "ra",
+            "pluie"
+          ],
+          "trou": 0,
+          "cartes": [
+            "pa",
+            "ba",
+            "ma"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J27",
+          "mot": "crocodile",
+          "syllabes": [
+            "cro",
+            "co",
+            "di",
+            "le"
+          ],
+          "trou": 2,
+          "cartes": [
+            "di",
+            "ti",
+            "ni"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J28",
+          "mot": "téléphone",
+          "syllabes": [
+            "té",
+            "lé",
+            "pho",
+            "ne"
+          ],
+          "trou": 3,
+          "cartes": [
+            "ne",
+            "me",
+            "te"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J29",
+          "mot": "école",
+          "syllabes": [
+            "é",
+            "co",
+            "le"
+          ],
+          "trou": 2,
+          "cartes": [
+            "le",
+            "ne",
+            "re"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "J30",
+          "mot": "ananas",
+          "syllabes": [
+            "a",
+            "na",
+            "nas"
+          ],
+          "trou": 2,
+          "cartes": [
+            "nas",
+            "mas",
+            "tas"
+          ],
+          "rendu": "oral",
+          "sert": 13
+        },
+        {
+          "id": "K01",
+          "mot": "lune",
+          "syllabes": [
+            "lu",
+            "ne"
+          ],
+          "trou": 0,
+          "cartes": [
+            "lu",
+            "nu",
+            "ru"
+          ],
+          "rendu": "ecrit",
+          "sert": 23
+        },
+        {
+          "id": "K02",
+          "mot": "lama",
+          "syllabes": [
+            "la",
+            "ma"
+          ],
+          "trou": 0,
+          "cartes": [
+            "la",
+            "na",
+            "ra"
+          ],
+          "rendu": "ecrit",
+          "sert": 23
+        },
+        {
+          "id": "K03",
+          "mot": "mule",
+          "syllabes": [
+            "mu",
+            "le"
+          ],
+          "trou": 1,
+          "cartes": [
+            "le",
+            "ne",
+            "lé"
+          ],
+          "rendu": "ecrit",
+          "sert": 23
+        },
+        {
+          "id": "K04",
+          "mot": "rame",
+          "syllabes": [
+            "ra",
+            "me"
+          ],
+          "trou": 1,
+          "cartes": [
+            "me",
+            "ne",
+            "mé"
+          ],
+          "rendu": "ecrit",
+          "sert": 23
+        },
+        {
+          "id": "K05",
+          "mot": "lime",
+          "syllabes": [
+            "li",
+            "me"
+          ],
+          "trou": 0,
+          "cartes": [
+            "li",
+            "ni",
+            "lu"
+          ],
+          "rendu": "ecrit",
+          "sert": 23
+        },
+        {
+          "id": "K06",
+          "mot": "lilas",
+          "syllabes": [
+            "li",
+            "las"
+          ],
+          "trou": 1,
+          "cartes": [
+            "las",
+            "nas",
+            "ras"
+          ],
+          "rendu": "ecrit",
+          "sert": 23
+        },
+        {
+          "id": "K07",
+          "mot": "tapis",
+          "syllabes": [
+            "ta",
+            "pis"
+          ],
+          "trou": 0,
+          "cartes": [
+            "ta",
+            "na",
+            "tè"
+          ],
+          "rendu": "ecrit",
+          "sert": 14
+        },
+        {
+          "id": "K08",
+          "mot": "dodu",
+          "syllabes": [
+            "do",
+            "du"
+          ],
+          "trou": 0,
+          "cartes": [
+            "do",
+            "to",
+            "no"
+          ],
+          "rendu": "ecrit",
+          "sert": 17
+        },
+        {
+          "id": "K09",
+          "mot": "papa",
+          "syllabes": [
+            "pa",
+            "pa"
+          ],
+          "trou": 0,
+          "cartes": [
+            "pa",
+            "ba",
+            "ma"
+          ],
+          "rendu": "ecrit",
+          "sert": 18
+        },
+        {
+          "id": "K10",
+          "mot": "bébé",
+          "syllabes": [
+            "bé",
+            "bé"
+          ],
+          "trou": 0,
+          "cartes": [
+            "bé",
+            "pé",
+            "mé"
+          ],
+          "rendu": "ecrit",
+          "sert": 18
+        },
+        {
+          "id": "K11",
+          "mot": "mouton",
+          "syllabes": [
+            "mou",
+            "ton"
+          ],
+          "trou": 0,
+          "cartes": [
+            "mou",
+            "pou",
+            "nou"
+          ],
+          "rendu": "ecrit",
+          "sert": 21
+        },
+        {
+          "id": "K12",
+          "mot": "poisson",
+          "syllabes": [
+            "pois",
+            "son"
+          ],
+          "trou": 1,
+          "cartes": [
+            "son",
+            "chon",
+            "san"
+          ],
+          "rendu": "ecrit",
+          "sert": 21
+        }
+      ],
+      "unites": [
+        {
+          "rang": 1,
+          "periode": 1,
+          "domaine": "AUD",
+          "objectif": "Discriminer et identifier des sons familiers, localiser la source",
+          "action": "toucher la zone d'où vient le son"
+        },
+        {
+          "rang": 2,
+          "periode": 1,
+          "domaine": "AUD",
+          "objectif": "Reconnaître les sons de la langue les plus fréquents dans une suite",
+          "action": "lever la main quand le son connu revient"
+        },
+        {
+          "rang": 3,
+          "periode": 1,
+          "domaine": "AUD",
+          "objectif": "Comparer, apparier et reproduire des sons",
+          "action": "apparier deux boîtes identiques"
+        },
+        {
+          "rang": 4,
+          "periode": 1,
+          "domaine": "AUD",
+          "objectif": "Discriminer et identifier les sons de la langue, les localiser dans une suite",
+          "action": "placer un jeton sur l'image"
+        },
+        {
+          "rang": 5,
+          "periode": 1,
+          "domaine": "AUD",
+          "objectif": "Reproduire des sons",
+          "action": "imiter le son entendu"
+        },
+        {
+          "rang": 6,
+          "periode": 1,
+          "domaine": "AUD",
+          "objectif": "Reproduire des intonations",
+          "action": "suivre la sirène avec la main, de bas en haut"
+        },
+        {
+          "rang": 7,
+          "periode": 1,
+          "domaine": "AUD",
+          "objectif": "Commencer à percevoir les distinctions entre des mots proches phonologiquement",
+          "action": "désigner l'image du mot entendu"
+        },
+        {
+          "rang": 8,
+          "periode": 1,
+          "domaine": "SYL",
+          "objectif": "Prononcer son prénom, puis une comptine, en scandant les syllabes",
+          "action": "frapper dans ses mains en disant son prénom"
+        },
+        {
+          "rang": 9,
+          "periode": 1,
+          "domaine": "SYL",
+          "objectif": "Frapper les syllabes d'un mot",
+          "action": "frapper les syllabes sur ses cuisses"
+        },
+        {
+          "rang": 10,
+          "periode": 2,
+          "domaine": "SYL",
+          "objectif": "Scander les syllabes d'un mot",
+          "action": "frapper une fois par syllabe"
+        },
+        {
+          "rang": 11,
+          "periode": 2,
+          "domaine": "SYL",
+          "objectif": "Dénombrer les syllabes de mots familiers, à l'oral et sans support écrit",
+          "action": "poser un jeton par syllabe"
+        },
+        {
+          "rang": 12,
+          "periode": 2,
+          "domaine": "SYL",
+          "objectif": "Comparer les mots selon le nombre de syllabes et les classer",
+          "action": "ranger du plus court au plus long"
+        },
+        {
+          "rang": 13,
+          "periode": 2,
+          "domaine": "SYL",
+          "objectif": "Discriminer une syllabe cible dans une suite de syllabes énoncées",
+          "action": "lever la main quand la syllabe cible revient"
+        },
+        {
+          "rang": 14,
+          "periode": 2,
+          "domaine": "SYL",
+          "objectif": "Ajouter, supprimer, permuter, répéter, fusionner, substituer les syllabes d'un mot dit à l'oral",
+          "action": "dire le mot transformé"
+        },
+        {
+          "rang": 15,
+          "periode": 2,
+          "domaine": "SYL",
+          "objectif": "Dire des comptines courtes comprenant des phonèmes proches",
+          "action": "réciter la comptine avec le groupe"
+        },
+        {
+          "rang": 16,
+          "periode": 2,
+          "domaine": "PHO",
+          "objectif": "Distinguer et produire correctement les nasales",
+          "action": "trier des images selon la nasale entendue"
+        },
+        {
+          "rang": 17,
+          "periode": 2,
+          "domaine": "ART",
+          "objectif": "Articuler distinctement des couples de consonnes proches",
+          "action": "répéter la paire après le modèle"
+        },
+        {
+          "rang": 18,
+          "periode": 2,
+          "domaine": "ART",
+          "objectif": "Prononcer correctement des paires distinctives",
+          "action": "désigner l'image du mot entendu"
+        },
+        {
+          "rang": 19,
+          "periode": 3,
+          "domaine": "ART",
+          "objectif": "Articuler distinctement des couples de consonnes proches",
+          "action": "répéter la paire après le modèle"
+        },
+        {
+          "rang": 20,
+          "periode": 3,
+          "domaine": "ART",
+          "objectif": "Prononcer correctement des paires distinctives et des mots à phonèmes proches",
+          "action": "désigner l'image du mot entendu"
+        },
+        {
+          "rang": 21,
+          "periode": 3,
+          "domaine": "LET",
+          "objectif": "Retrouver l'étiquette de son prénom écrit en capitales parmi d'autres",
+          "action": "toucher son étiquette"
+        },
+        {
+          "rang": 22,
+          "periode": 3,
+          "domaine": "LET",
+          "objectif": "Reconnaître et nommer certaines lettres de son prénom écrit en capitales",
+          "action": "nommer la lettre désignée"
+        },
+        {
+          "rang": 23,
+          "periode": 3,
+          "domaine": "LET",
+          "objectif": "Nommer les lettres de son prénom et quelques lettres de mots connus",
+          "action": "nommer la lettre désignée"
+        },
+        {
+          "rang": 24,
+          "periode": 3,
+          "domaine": "LET",
+          "objectif": "Connaître la correspondance entre les lettres scriptes majuscules et minuscules et les lettres cursives minuscules",
+          "action": "apparier deux étiquettes de la même lettre"
+        },
+        {
+          "rang": 25,
+          "periode": 3,
+          "domaine": "LET",
+          "objectif": "Épeler son prénom ou un mot connu afin qu'un tiers puisse le composer",
+          "action": "dire les lettres dans l'ordre"
+        },
+        {
+          "rang": 26,
+          "periode": 3,
+          "domaine": "LET",
+          "objectif": "Composer un mot connu en commençant par la première lettre et en respectant l'ordre des lettres",
+          "action": "déplacer les lettres dans l'ordre"
+        },
+        {
+          "rang": 27,
+          "periode": 3,
+          "domaine": "ALP",
+          "objectif": "Utiliser le nom de quelques lettres connues pour représenter les sons entendus",
+          "action": "toucher la lettre qui fait le son entendu"
+        },
+        {
+          "rang": 28,
+          "periode": 4,
+          "domaine": "AUD",
+          "objectif": "Discriminer et identifier les sons de la langue, les localiser dans une suite et les mémoriser",
+          "action": "refaire la suite d'images dans l'ordre"
+        },
+        {
+          "rang": 29,
+          "periode": 4,
+          "domaine": "AUD",
+          "objectif": "Différencier les sons proches",
+          "action": "trier des images selon le son entendu"
+        },
+        {
+          "rang": 30,
+          "periode": 4,
+          "domaine": "AUD",
+          "objectif": "Discriminer et identifier les mots auditivement proches",
+          "action": "désigner l'image du mot entendu"
+        },
+        {
+          "rang": 31,
+          "periode": 4,
+          "domaine": "AUD",
+          "objectif": "Augmenter sa mémoire auditive et sa capacité de concentration",
+          "action": "refaire la suite dans l'ordre"
+        },
+        {
+          "rang": 32,
+          "periode": 4,
+          "domaine": "SYL",
+          "objectif": "Fusionner les syllabes d'attaque et la syllabe finale de deux mots pour obtenir un pseudo-mot",
+          "action": "dire le pseudo-mot obtenu"
+        },
+        {
+          "rang": 33,
+          "periode": 4,
+          "domaine": "SYL",
+          "objectif": "Supprimer, ajouter, remplacer, inverser, substituer, fusionner les syllabes d'un mot",
+          "action": "dire le mot transformé"
+        },
+        {
+          "rang": 34,
+          "periode": 4,
+          "domaine": "AR",
+          "objectif": "Repérer et produire des rimes et des assonances",
+          "action": "apparier deux images qui riment"
+        },
+        {
+          "rang": 35,
+          "periode": 4,
+          "domaine": "PHO",
+          "objectif": "Trouver un phonème cible dans une liste de mots",
+          "action": "lever la main quand on entend /f/"
+        },
+        {
+          "rang": 36,
+          "periode": 4,
+          "domaine": "PHO",
+          "objectif": "Trouver l'intrus à l'initiale",
+          "action": "désigner l'intrus"
+        },
+        {
+          "rang": 37,
+          "periode": 5,
+          "domaine": "PHO",
+          "objectif": "Localiser un phonème dans un mot",
+          "action": "placer un jeton au début ou à la fin"
+        },
+        {
+          "rang": 38,
+          "periode": 5,
+          "domaine": "ART",
+          "objectif": "Prononcer correctement des couples de consonnes proches",
+          "action": "répéter la paire après le modèle"
+        },
+        {
+          "rang": 39,
+          "periode": 5,
+          "domaine": "ART",
+          "objectif": "Prononcer correctement les doubles consonnes",
+          "action": "répéter après le modèle"
+        },
+        {
+          "rang": 40,
+          "periode": 5,
+          "domaine": "LET",
+          "objectif": "Reconnaître et nommer toutes les lettres d'un mot écrit dans les trois graphies",
+          "action": "nommer chaque lettre désignée"
+        },
+        {
+          "rang": 41,
+          "periode": 5,
+          "domaine": "LET",
+          "objectif": "Connaître les différentes graphies d'une même lettre",
+          "action": "apparier les trois graphies d'une même lettre"
+        },
+        {
+          "rang": 42,
+          "periode": 5,
+          "domaine": "LET",
+          "objectif": "Connaître le nom des lettres de l'alphabet",
+          "action": "nommer la lettre désignée"
+        },
+        {
+          "rang": 43,
+          "periode": 5,
+          "domaine": "LET",
+          "objectif": "Épeler les lettres d'un mot connu afin qu'un tiers puisse l'écrire",
+          "action": "dire les lettres dans l'ordre"
+        },
+        {
+          "rang": 44,
+          "periode": 5,
+          "domaine": "ALP",
+          "objectif": "Prolonger les phonèmes pour retrouver les lettres auxquelles ils correspondent",
+          "action": "prolonger le phonème avec la main"
+        },
+        {
+          "rang": 45,
+          "periode": 5,
+          "domaine": "ALP",
+          "objectif": "Connaître la valeur sonore des lettres",
+          "action": "toucher la lettre qui fait le son entendu"
+        }
+      ],
+      "correspondances": []
+    },
+    {
+      "id": "cp",
+      "nom": "Cours préparatoire",
+      "court": "CP",
+      "sous_titre": "Les sons et leurs lettres, une par une",
+      "couleur": "#D9822B",
+      "textes": [],
+      "jeu_syllabes": [],
+      "unites": [],
+      "correspondances": [
+        {
+          "rang": 1,
+          "semaine": 1,
+          "phoneme": "/a/",
+          "graphies": [
+            "a"
+          ]
+        },
+        {
+          "rang": 2,
+          "semaine": 1,
+          "phoneme": "/i/",
+          "graphies": [
+            "i"
+          ]
+        },
+        {
+          "rang": 3,
+          "semaine": 2,
+          "phoneme": "/o/",
+          "graphies": [
+            "o"
+          ]
+        },
+        {
+          "rang": 4,
+          "semaine": 2,
+          "phoneme": "/y/",
+          "graphies": [
+            "u"
+          ]
+        },
+        {
+          "rang": 5,
+          "semaine": 3,
+          "phoneme": "/ə/",
+          "graphies": [
+            "e"
+          ]
+        },
+        {
+          "rang": 6,
+          "semaine": 3,
+          "phoneme": "/e/",
+          "graphies": [
+            "é"
+          ]
+        },
+        {
+          "rang": 7,
+          "semaine": 4,
+          "phoneme": "/l/",
+          "graphies": [
+            "l"
+          ]
+        },
+        {
+          "rang": 8,
+          "semaine": 4,
+          "phoneme": "/m/",
+          "graphies": [
+            "m"
+          ]
+        },
+        {
+          "rang": 9,
+          "semaine": 5,
+          "phoneme": "/ʁ/",
+          "graphies": [
+            "r"
+          ]
+        },
+        {
+          "rang": 10,
+          "semaine": 5,
+          "phoneme": "/n/",
+          "graphies": [
+            "n"
+          ]
+        },
+        {
+          "rang": 11,
+          "semaine": 6,
+          "phoneme": "/s/",
+          "graphies": [
+            "s"
+          ]
+        },
+        {
+          "rang": 12,
+          "semaine": 6,
+          "phoneme": "/v/",
+          "graphies": [
+            "v"
+          ]
+        },
+        {
+          "rang": 13,
+          "semaine": 7,
+          "phoneme": "/p/",
+          "graphies": [
+            "p"
+          ]
+        },
+        {
+          "rang": 14,
+          "semaine": 7,
+          "phoneme": "/t/",
+          "graphies": [
+            "t"
+          ]
+        },
+        {
+          "rang": 15,
+          "semaine": 8,
+          "phoneme": "/f/",
+          "graphies": [
+            "f"
+          ]
+        },
+        {
+          "rang": 16,
+          "semaine": 8,
+          "phoneme": "/ʃ/",
+          "graphies": [
+            "ch"
+          ]
+        },
+        {
+          "rang": 17,
+          "semaine": 9,
+          "phoneme": "/d/",
+          "graphies": [
+            "d"
+          ]
+        },
+        {
+          "rang": 18,
+          "semaine": 9,
+          "phoneme": "/b/",
+          "graphies": [
+            "b"
+          ]
+        },
+        {
+          "rang": 19,
+          "semaine": 10,
+          "phoneme": "/u/",
+          "graphies": [
+            "ou"
+          ]
+        },
+        {
+          "rang": 20,
+          "semaine": 10,
+          "phoneme": "/wa/",
+          "graphies": [
+            "oi"
+          ]
+        },
+        {
+          "rang": 21,
+          "semaine": 11,
+          "phoneme": "/ɔ̃/",
+          "graphies": [
+            "on",
+            "om"
+          ]
+        },
+        {
+          "rang": 22,
+          "semaine": 11,
+          "phoneme": "/ɑ̃/",
+          "graphies": [
+            "an",
+            "am"
+          ]
+        },
+        {
+          "rang": 23,
+          "semaine": 12,
+          "phoneme": "/k/",
+          "graphies": [
+            "c",
+            "qu"
+          ]
+        },
+        {
+          "rang": 24,
+          "semaine": 12,
+          "phoneme": "/g/",
+          "graphies": [
+            "g",
+            "gu"
+          ]
+        },
+        {
+          "rang": 25,
+          "semaine": 13,
+          "phoneme": "/ʒ/",
+          "graphies": [
+            "j",
+            "ge"
+          ]
+        },
+        {
+          "rang": 26,
+          "semaine": 13,
+          "phoneme": "/z/",
+          "graphies": [
+            "s",
+            "z"
+          ]
+        },
+        {
+          "rang": 27,
+          "semaine": 14,
+          "phoneme": "/ɛ̃/",
+          "graphies": [
+            "in",
+            "im"
+          ]
+        },
+        {
+          "rang": 28,
+          "semaine": 14,
+          "phoneme": "/ɛ̃/",
+          "graphies": [
+            "ain",
+            "ein"
+          ]
+        },
+        {
+          "rang": 29,
+          "semaine": 15,
+          "phoneme": "/ø/",
+          "graphies": [
+            "eu",
+            "œu"
+          ]
+        },
+        {
+          "rang": 30,
+          "semaine": 15,
+          "phoneme": "/o/",
+          "graphies": [
+            "au",
+            "eau"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ce1",
+      "nom": "Cours élémentaire 1re année",
+      "court": "CE1",
+      "sous_titre": "Décoder, comprendre, lire tout seul",
+      "couleur": "#2554D6",
+      "textes": [
+        {
+          "id": "T01-rang01",
+          "titre": "Le chat",
+          "rang": 1,
+          "genre": null,
+          "lignes": [
+            "Le chat a une souris.",
+            "La souris a une noix.",
+            "Le chat a la noix.",
+            "La souris rit.",
+            "Le chat a ri aussi.",
+            "La souris a sa noix."
+          ]
+        },
+        {
+          "id": "T02-rang02",
+          "titre": "La fête",
+          "rang": 2,
+          "genre": null,
+          "lignes": [
+            "La fête est dans la maison.",
+            "Maman a une craie.",
+            "Papa a une belle reine.",
+            "La reine aime la craie.",
+            "Le père rit.",
+            "La mère aime la reine.",
+            "Maman a une belle tête."
+          ]
+        },
+        {
+          "id": "T03-rang03",
+          "titre": "Le vent",
+          "rang": 3,
+          "genre": null,
+          "lignes": [
+            "Le vent entre dans la maison.",
+            "Le vent emporte la craie.",
+            "Maman a dix pains.",
+            "Elle aime le vent.",
+            "Le vent est entré.",
+            "Papa entend le vent.",
+            "Le vent emporte la reine.",
+            "Maman rit encore."
+          ]
+        },
+        {
+          "id": "T04-rang04",
+          "titre": "Le coin de la reine",
+          "rang": 4,
+          "genre": null,
+          "lignes": [
+            "Le chat a un coin dans la maison.",
+            "La reine a un point sur la main.",
+            "Le chat a besoin de la reine.",
+            "La reine a besoin du chat.",
+            "Le chat a rejoint la reine.",
+            "Le soir, la reine a un point de plus.",
+            "Le chat a un point aussi.",
+            "Le chat a joint le point."
+          ]
+        },
+        {
+          "id": "T05-rang08",
+          "titre": "La maison de la reine",
+          "rang": 8,
+          "genre": null,
+          "lignes": [
+            "La reine a une belle maison.",
+            "Dans la maison, la reine a une table et un lit.",
+            "Le chat a besoin de la reine.",
+            "La reine a besoin du chat.",
+            "Le soir, le chat a rejoint la reine.",
+            "La reine a un point sur la main.",
+            "Le chat a un point aussi."
+          ]
+        },
+        {
+          "id": "T06-rang09",
+          "titre": "La montagne",
+          "rang": 9,
+          "genre": null,
+          "lignes": [
+            "La reine aime la montagne.",
+            "La montagne a une belle vigne.",
+            "Un agneau est dans la vigne.",
+            "La reine a un signe sur la main.",
+            "L'agneau a besoin de la reine.",
+            "La reine et l'agneau vont à la montagne.",
+            "Le soir, l'agneau a rejoint la reine.",
+            "La reine aime la campagne aussi."
+          ]
+        },
+        {
+          "id": "T07-rang11",
+          "titre": "L'éléphant et le téléphone",
+          "rang": 11,
+          "genre": null,
+          "lignes": [
+            "Papa a une photo.",
+            "Sur la photo, un éléphant a un téléphone.",
+            "Le téléphone est dans la maison.",
+            "Maman aime l'éléphant.",
+            "L'éléphant aime le téléphone.",
+            "Le soir, l'éléphant a rejoint la maison.",
+            "Papa a une phrase sur la photo.",
+            "La phrase a un point.",
+            "Maman rit encore."
+          ]
+        },
+        {
+          "id": "T08-rang13",
+          "titre": "Le lundi brun",
+          "rang": 13,
+          "genre": null,
+          "lignes": [
+            "Lundi, la reine a une robe brune.",
+            "Aucun chat n'est dans la maison.",
+            "Chacun a une craie.",
+            "La reine a un point brun sur la main.",
+            "Le lundi, papa a une photo.",
+            "Aucun agneau n'est dans la vigne.",
+            "Chacun aime le lundi.",
+            "La reine a un chat brun.",
+            "Le chat a un point sur la main.",
+            "Aucun chat n'aime la craie."
+          ]
+        },
+        {
+          "id": "T09-rang16",
+          "titre": "Le chat de la reine",
+          "rang": 16,
+          "genre": null,
+          "lignes": [
+            "La reine a un chat brun.",
+            "Le chat aime la montagne.",
+            "Le lundi, la reine et le chat vont à la montagne.",
+            "Sur la montagne, un agneau est dans la vigne.",
+            "L'agneau a un point sur la main.",
+            "Le soir, la reine a rejoint la maison.",
+            "Le chat a besoin de la reine.",
+            "La reine aime le chat brun."
+          ]
+        },
+        {
+          "id": "T10-rang17",
+          "titre": "La station",
+          "rang": 17,
+          "genre": null,
+          "lignes": [
+            "La reine a une station sur la montagne.",
+            "Dans la station, il y a une potion.",
+            "La potion a une action sur le chat.",
+            "Papa a une question sur la potion.",
+            "Papa a une direction sur la photo.",
+            "La station est dans une belle nation.",
+            "Le chat a une question.",
+            "Papa a une réponse."
+          ]
+        },
+        {
+          "id": "T11-rang19",
+          "titre": "Merci la reine",
+          "rang": 19,
+          "genre": null,
+          "lignes": [
+            "La reine a un citron.",
+            "Papa a une place.",
+            "Ici, la reine a un cinéma.",
+            "Merci, papa.",
+            "La reine a une face douce.",
+            "Papa a une trace sur la craie.",
+            "La reine a une puce.",
+            "La puce a une place sur la main.",
+            "Ici, il y a un cinéma.",
+            "Le citron est sur la table.",
+            "Papa a un citron aussi.",
+            "Merci, la reine."
+          ]
+        },
+        {
+          "id": "T12-rang21",
+          "titre": "La valise de la reine",
+          "rang": 21,
+          "genre": null,
+          "lignes": [
+            "La reine a une valise.",
+            "Dans la valise, il y a une chemise.",
+            "La chemise est rose.",
+            "Papa a une chaise.",
+            "Sur la chaise, il y a un oiseau.",
+            "L'oiseau aime la musique.",
+            "Maman a une tasse.",
+            "Le chat a une valise aussi.",
+            "Dans la valise du chat, il y a un poisson.",
+            "Le poisson est rose.",
+            "Papa rit encore."
+          ]
+        },
+        {
+          "id": "T13-rang25",
+          "titre": "Le poisson de la reine",
+          "rang": 25,
+          "genre": null,
+          "lignes": [
+            "La reine a un poisson rose.",
+            "Le poisson est dans une valise.",
+            "La valise est dans la maison.",
+            "Le chat aime le poisson.",
+            "Le chat a une question sur le poisson.",
+            "La reine a une réponse.",
+            "Le chat a une potion.",
+            "La potion a une action sur le chat.",
+            "Le poisson est dans la maison.",
+            "La reine aime le poisson rose.",
+            "Le chat aime la reine."
+          ]
+        },
+        {
+          "id": "T14-rang28",
+          "titre": "La pomme",
+          "rang": 28,
+          "genre": null,
+          "lignes": [
+            "La reine a une belle pomme.",
+            "Elle a une échelle aussi.",
+            "Le chat arrive sur l'échelle.",
+            "Ils arrivent ensemble sur la pomme.",
+            "La pomme est sur la table.",
+            "Elle est rouge et douce.",
+            "Le chat aime la pomme.",
+            "La reine aime la pomme aussi.",
+            "Papa arrive avec une pomme.",
+            "Le chat appelle la reine.",
+            "Elle arrive.",
+            "Ils aiment la pomme."
+          ]
+        },
+        {
+          "id": "T15-rang30",
+          "titre": "Monsieur le chat",
+          "rang": 30,
+          "genre": null,
+          "lignes": [
+            "Monsieur le chat a un œil brun.",
+            "La femme de monsieur le chat a une valise.",
+            "Dans la valise, il y a un poisson.",
+            "Le second chat est dans la maison.",
+            "Le fils de la reine aime le poisson.",
+            "Monsieur le chat appelle la reine.",
+            "La reine arrive avec une pomme.",
+            "Le chat aime la pomme rouge.",
+            "Le fils a une question.",
+            "Monsieur le chat a une réponse.",
+            "La femme rit encore."
+          ]
+        },
+        {
+          "id": "T16-rang32",
+          "titre": "La recette de la reine",
+          "rang": 32,
+          "genre": null,
+          "lignes": [
+            "Pour la recette, il faut une pomme.",
+            "Il faut aussi une tasse de lait.",
+            "Papa coupe la pomme.",
+            "Il met la pomme dans la tasse.",
+            "Il ajoute le lait.",
+            "Il mélange avec une cuillère.",
+            "Il attend un moment.",
+            "Ensuite, il appelle la reine.",
+            "La reine arrive.",
+            "Elle aime la recette.",
+            "Elle mange la pomme.",
+            "Papa est content.",
+            "Maman rit."
+          ]
+        },
+        {
+          "id": "T17-rang33",
+          "titre": "Le chat",
+          "rang": 33,
+          "genre": null,
+          "lignes": [
+            "Le chat est un animal de la maison.",
+            "Il a une belle robe brune.",
+            "Il aime le lait et le poisson.",
+            "Le chat dort beaucoup.",
+            "Le jour, il dort sur une chaise.",
+            "La nuit, il sort dans le jardin.",
+            "Il aime la campagne et la montagne.",
+            "Il lave sa robe avec sa langue.",
+            "Il a des griffes.",
+            "Il monte sur l'échelle.",
+            "Il aime la compagnie de la reine.",
+            "Le chat est un bon compagnon."
+          ]
+        },
+        {
+          "id": "T18-rang38",
+          "titre": "La pomme d'or",
+          "rang": 38,
+          "genre": null,
+          "lignes": [
+            "La reine a un chat brun.",
+            "Le chat aime les pommes.",
+            "Un matin, il arrive dans le jardin.",
+            "Dans le jardin, il y a un pommier.",
+            "Sur le pommier, une pomme d'or.",
+            "Le chat monte sur une échelle.",
+            "Il appelle la reine.",
+            "Elle arrive avec une valise.",
+            "Elle a une question.",
+            "Le chat a une réponse.",
+            "Ils mangent la pomme ensemble.",
+            "Le soir, ils dorment dans la maison.",
+            "La reine aime son chat brun."
+          ]
+        },
+        {
+          "id": "C01-rang16",
+          "titre": "L'agneau de la reine",
+          "rang": 16,
+          "genre": "recit",
+          "lignes": [
+            "La reine a un agneau.",
+            "L'agneau aime la montagne.",
+            "Un lundi, il a rejoint la maison.",
+            "La reine rit.",
+            "La reine aime son agneau."
+          ]
+        },
+        {
+          "id": "C02-rang16",
+          "titre": "L'air qui va",
+          "rang": 16,
+          "genre": "informatif",
+          "lignes": [
+            "Le vent est de l'air qui va.",
+            "Quand le vent est fort, il emporte la craie.",
+            "Sans le vent, les bateaux ne vont pas."
+          ]
+        },
+        {
+          "id": "C03-rang27",
+          "titre": "Les chats",
+          "rang": 27,
+          "genre": "informatif",
+          "lignes": [
+            "Les chats aiment la maison.",
+            "Ils dorment le jour.",
+            "Ils mangent le soir.",
+            "La reine les aime."
+          ]
+        },
+        {
+          "id": "C04-rang41",
+          "titre": "Une échelle, une pomme",
+          "rang": 41,
+          "genre": "recit",
+          "lignes": [
+            "Le chat a vu une pomme.",
+            "Il a grimpé sur une échelle.",
+            "La reine a ri.",
+            "Ils ont mangé la pomme."
+          ]
+        },
+        {
+          "id": "C05-rang41",
+          "titre": "Le téléphone de papa",
+          "rang": 41,
+          "genre": "recit",
+          "lignes": [
+            "Papa a un téléphone.",
+            "Il le pose sur la table.",
+            "Papa a une question.",
+            "Maman a une réponse."
+          ]
+        }
+      ],
+      "jeu_syllabes": [],
+      "unites": [
+        {
+          "rang": 1,
+          "periode": 1,
+          "domaine": "IDM",
+          "objectif": "Automatiser le décodage des 30 CGP apprises au CP",
+          "action": "lire un mot et toucher son image parmi quatre"
+        },
+        {
+          "rang": 2,
+          "periode": 1,
+          "domaine": "IDM",
+          "objectif": "Lire /ɛ/ dans ses quatre graphies : ai, ei, è, ê",
+          "action": "toucher, dans un mot, la graphie du son entendu"
+        },
+        {
+          "rang": 3,
+          "periode": 1,
+          "domaine": "IDM",
+          "objectif": "Lire en et em, deuxième graphie de /ɑ̃/",
+          "action": "trier des mots selon la graphie de la nasale entendue"
+        },
+        {
+          "rang": 4,
+          "periode": 1,
+          "domaine": "IDM",
+          "objectif": "Lire oin — /wɛ̃/",
+          "action": "toucher l'image du mot entendu"
+        },
+        {
+          "rang": 5,
+          "periode": 1,
+          "domaine": "CTX",
+          "objectif": "Dégager le sens global d'un texte lu seul",
+          "action": "toucher, parmi trois, le résumé qui convient au texte"
+        },
+        {
+          "rang": 6,
+          "periode": 1,
+          "domaine": "CTX",
+          "objectif": "Donner un titre au texte",
+          "action": "choisir le titre parmi trois, dont deux qui conviennent presque"
+        },
+        {
+          "rang": 7,
+          "periode": 1,
+          "domaine": "CTX",
+          "objectif": "Justifier une réponse par un retour au texte",
+          "action": "toucher, dans le texte, la phrase qui prouve la réponse"
+        },
+        {
+          "rang": 8,
+          "periode": 1,
+          "domaine": "LVH",
+          "objectif": "Repérer les groupes de mots qui doivent être lus ensemble",
+          "action": "toucher, dans le texte, les mots à lire d'un seul souffle"
+        },
+        {
+          "rang": 9,
+          "periode": 2,
+          "domaine": "IDM",
+          "objectif": "Lire gn — /ɲ/",
+          "action": "toucher, parmi trois, le mot qui contient le son entendu"
+        },
+        {
+          "rang": 10,
+          "periode": 2,
+          "domaine": "IDM",
+          "objectif": "Lire ill et y — /j/ et /ij/",
+          "action": "apparier les graphies d'un même son"
+        },
+        {
+          "rang": 11,
+          "periode": 2,
+          "domaine": "IDM",
+          "objectif": "Lire ph — /f/",
+          "action": "toucher, parmi trois, le mot où /f/ s'écrit ph"
+        },
+        {
+          "rang": 12,
+          "periode": 2,
+          "domaine": "IDM",
+          "objectif": "Distinguer eu ouvert /œ/ de eu fermé /ø/",
+          "action": "trier des mots selon la voyelle entendue"
+        },
+        {
+          "rang": 13,
+          "periode": 2,
+          "domaine": "IDM",
+          "objectif": "Lire un — /œ̃/",
+          "action": "toucher l'image du mot entendu"
+        },
+        {
+          "rang": 14,
+          "periode": 2,
+          "domaine": "CTX",
+          "objectif": "Restituer les enchaînements logiques et chronologiques d'un récit",
+          "action": "remettre des images dans l'ordre du récit"
+        },
+        {
+          "rang": 15,
+          "periode": 2,
+          "domaine": "CTX",
+          "objectif": "Expliciter les émotions des personnages",
+          "action": "toucher l'émotion du personnage, puis la phrase qui la montre"
+        },
+        {
+          "rang": 16,
+          "periode": 2,
+          "domaine": "DVL",
+          "objectif": "Différencier le type narratif du type informatif",
+          "action": "toucher, entre deux textes courts, celui qui raconte"
+        },
+        {
+          "rang": 17,
+          "periode": 3,
+          "domaine": "IDM",
+          "objectif": "Lire tion — /sjɔ̃/",
+          "action": "toucher la fin du mot entendu"
+        },
+        {
+          "rang": 18,
+          "periode": 3,
+          "domaine": "IDM",
+          "objectif": "Lire ail, eil, euil, ouille — les voyelles suivies de /j/",
+          "action": "apparier deux mots qui riment"
+        },
+        {
+          "rang": 19,
+          "periode": 3,
+          "domaine": "IDM",
+          "objectif": "Connaître les valeurs positionnelles de c — /s/ et /k/",
+          "action": "trier des mots selon la valeur de la lettre"
+        },
+        {
+          "rang": 20,
+          "periode": 3,
+          "domaine": "IDM",
+          "objectif": "Connaître les valeurs positionnelles de g — /ʒ/ et /g/",
+          "action": "trier des mots selon la valeur de la lettre"
+        },
+        {
+          "rang": 21,
+          "periode": 3,
+          "domaine": "IDM",
+          "objectif": "Lire s entre deux voyelles — /z/ — et ss — /s/",
+          "action": "toucher, parmi trois, le mot où l'on entend /z/"
+        },
+        {
+          "rang": 22,
+          "periode": 3,
+          "domaine": "CTX",
+          "objectif": "Se repérer dans la chaîne anaphorique",
+          "action": "toucher le personnage que désigne le pronom"
+        },
+        {
+          "rang": 23,
+          "periode": 3,
+          "domaine": "CTX",
+          "objectif": "Résoudre une ambiguïté en s'appuyant sur le sens du texte",
+          "action": "toucher, entre deux lectures possibles, celle que le texte impose"
+        },
+        {
+          "rang": 24,
+          "periode": 3,
+          "domaine": "CTX",
+          "objectif": "Élucider le sens d'un mot inconnu par le contexte ou la morphologie",
+          "action": "toucher, parmi trois, ce que le mot veut dire ici"
+        },
+        {
+          "rang": 25,
+          "periode": 3,
+          "domaine": "DVL",
+          "objectif": "Caractériser les personnages et reconnaître des types récurrents",
+          "action": "apparier un personnage à ses traits"
+        },
+        {
+          "rang": 26,
+          "periode": 4,
+          "domaine": "IDM",
+          "objectif": "Lire les lettres finales muettes lexicales",
+          "action": "toucher le mot entendu, dont la consonne finale ne s'entend pas"
+        },
+        {
+          "rang": 27,
+          "periode": 4,
+          "domaine": "IDM",
+          "objectif": "Lire les morphèmes grammaticaux et lexicaux muets",
+          "action": "toucher, dans une phrase, le mot qui porte la marque du pluriel"
+        },
+        {
+          "rang": 28,
+          "periode": 4,
+          "domaine": "IDM",
+          "objectif": "Lire les consonnes doubles",
+          "action": "toucher la consonne double dans le mot entendu"
+        },
+        {
+          "rang": 29,
+          "periode": 4,
+          "domaine": "IDM",
+          "objectif": "Identifier directement l'ensemble des mots courants",
+          "action": "toucher, dans une phrase affichée, le mot-outil entendu"
+        },
+        {
+          "rang": 30,
+          "periode": 4,
+          "domaine": "IDM",
+          "objectif": "Identifier les mots irréguliers fréquents",
+          "action": "toucher l'image du mot entendu"
+        },
+        {
+          "rang": 31,
+          "periode": 4,
+          "domaine": "CTX",
+          "objectif": "Comprendre ce qui est implicite — les inférences simples",
+          "action": "toucher, parmi trois, ce que le texte permet de conclure sans le dire"
+        },
+        {
+          "rang": 32,
+          "periode": 4,
+          "domaine": "CTX",
+          "objectif": "Lire et comprendre un texte prescriptif",
+          "action": "ordonner les étapes d'une recette dans l'ordre où le texte les donne"
+        },
+        {
+          "rang": 33,
+          "periode": 4,
+          "domaine": "CTX",
+          "objectif": "Lire et comprendre un texte informatif",
+          "action": "toucher l'information demandée dans le texte"
+        },
+        {
+          "rang": 34,
+          "periode": 4,
+          "domaine": "LVH",
+          "objectif": "Lire après préparation en réalisant les pauses adéquates",
+          "action": "aucun geste : l'enfant lit, un adulte valide"
+        },
+        {
+          "rang": 35,
+          "periode": 5,
+          "domaine": "IDM",
+          "objectif": "Décoder des pseudo-mots complexes",
+          "action": "toucher, parmi trois, la suite de lettres entendue"
+        },
+        {
+          "rang": 36,
+          "periode": 5,
+          "domaine": "IDM",
+          "objectif": "Établir des listes analogiques de mots",
+          "action": "apparier les mots qui partagent une graphie"
+        },
+        {
+          "rang": 37,
+          "periode": 5,
+          "domaine": "CTX",
+          "objectif": "Résumer le texte",
+          "action": "ordonner les images du récit, qui tiennent lieu de résumé"
+        },
+        {
+          "rang": 38,
+          "periode": 5,
+          "domaine": "CTX",
+          "objectif": "Lire et comprendre en autonomie un texte d'une quinzaine de lignes",
+          "action": "un texte entier, et les questions des unités 5 à 7, 14, 22 à 24, 31 et 33"
+        },
+        {
+          "rang": 39,
+          "periode": 5,
+          "domaine": "LVH",
+          "objectif": "Lire un texte adapté à son niveau avec une vitesse de 70 mots par minute",
+          "action": "l'application chronomètre, l'adulte valide la lecture"
+        },
+        {
+          "rang": 40,
+          "periode": 5,
+          "domaine": "LVH",
+          "objectif": "Lire en modifiant sa voix et sa cadence selon le sens",
+          "action": "aucun geste : l'enfant lit, un adulte valide"
+        },
+        {
+          "rang": 41,
+          "periode": 5,
+          "domaine": "DVL",
+          "objectif": "Relier ses lectures à son expérience et à ses autres lectures",
+          "action": "toucher, parmi trois, le texte qui ressemble à celui qu'on vient de lire"
+        },
+        {
+          "rang": 42,
+          "periode": 5,
+          "domaine": "DVL",
+          "objectif": "Aller vers les livres et être capable d'en choisir à titre personnel",
+          "action": "aucun : cela ne passe pas par un écran"
+        }
+      ],
+      "correspondances": []
+    }
+  ]
+}

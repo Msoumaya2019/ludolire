@@ -1,0 +1,11 @@
+# rang: 17
+# La station
+
+La reine a une station sur la montagne.
+Dans la station, il y a une potion.
+La potion a une action sur le chat.
+Papa a une question sur la potion.
+Papa a une direction sur la photo.
+La station est dans une belle nation.
+Le chat a une question.
+Papa a une réponse.

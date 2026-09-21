@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "titre": "Table de progression des CGP — tranche CP (v1 de Ludo'Lire)",
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "source_programme": "BO n° 41 du 31 octobre 2024, programme de français du cycle 2 (arrêté du 22 octobre 2024, application rentrée 2025-2026)",
+    "source_guide": "Eduscol, Pour enseigner la lecture et l'écriture au CP (guide fondé sur l'état de la recherche)",
+    "statut": "proposition à valider — l'ordre est notre choix, dans le cadre officiel",
+    "convention_unite": "Une unité d'enseignement = un phonème et la ou les graphies enseignées pour le produire. Le compte des unités est ce qui se compare aux paliers officiels (12 à 15 en fin de période 1, 25 à 30 au milieu de l'année).",
+    "cadence_officielle": "environ deux correspondances par semaine (texte du programme)",
+    "rappel_palier_periode_1": "12 à 15 CGP régulières, fréquentes et aisément prononçables",
+    "rappel_palier_milieu_annee": "25 à 30 CGP"
+  },
+
+  "strands": {
+    "muettes": [
+      { "rang": 3, "regle": "le e final ne se prononce pas", "exemples": ["lune", "rame", "mule"] },
+      { "rang": 11, "regle": "le s final marque le pluriel et ne se prononce pas", "exemples": ["lunes", "lames"] },
+      { "rang": 12, "regle": "t, d et x finaux muets", "exemples": ["chat", "grand", "deux"] }
+    ],
+    "accents": [
+      { "rang": 3, "regle": "é est enseigné comme une CGP à part entière" },
+      { "rang": 6, "regle": "les accents grave et circonflexe sur a, e, i, o, u ne changent pas le phonème et sont admis", "exemples": ["à", "pâte", "île"] }
+    ],
+    "consonnes_doubles": [
+      { "rang": 6, "regle": "ss entre deux voyelles vaut /s/", "exemples": ["aussi", "poisson"] },
+      { "rang": 14, "regle": "ll", "exemples": ["elle", "bille"] }
+    ]
+  },
+
+  "mots_outils_memorises": [
+    { "rang": 6, "mot": "et", "raison": "se lit /e/, irrégulier — mémorisé globalement" },
+    { "rang": 13, "mot": "est", "raison": "se lit /ɛ/, irrégulier — mémorisé globalement" },
+    { "rang": 14, "mot": "elle", "raison": "contient ll, non enseigné avant ce rang" },
+    { "rang": 14, "mot": "elles", "raison": "idem" }
+  ],
+
+  "unites": [
+    { "rang": 1, "semaine": 1, "unite": 1, "cgp": ["a"], "phoneme": "/a/", "graphies": ["a"], "critere": "régulier, très fréquent, prononçable" },
+    { "rang": 2, "semaine": 1, "unite": 2, "cgp": ["i"], "phoneme": "/i/", "graphies": ["i"], "critere": "régulier, très fréquent" },
+    { "rang": 3, "semaine": 2, "unite": 3, "cgp": ["o"], "phoneme": "/o/", "graphies": ["o"], "critere": "régulier, fréquent" },
+    { "rang": 4, "semaine": 2, "unite": 4, "cgp": ["u"], "phoneme": "/y/", "graphies": ["u"], "critere": "régulier, fréquent" },
+    { "rang": 5, "semaine": 3, "unite": 5, "cgp": ["e"], "phoneme": "/ə/", "graphies": ["e"], "critere": "fréquent — valeur instable, à enseigner tôt mais avec vigilance" },
+    { "rang": 6, "semaine": 3, "unite": 6, "cgp": ["e-aigu"], "phoneme": "/e/", "graphies": ["é"], "critere": "régulier, fréquent" },
+    { "rang": 7, "semaine": 4, "unite": 7, "cgp": ["l"], "phoneme": "/l/", "graphies": ["l"], "critere": "consonne continue, aisément prononçable isolément" },
+    { "rang": 8, "semaine": 4, "unite": 8, "cgp": ["m"], "phoneme": "/m/", "graphies": ["m"], "critere": "consonne continue, très fréquente" },
+    { "rang": 9, "semaine": 5, "unite": 9, "cgp": ["r"], "phoneme": "/ʁ/", "graphies": ["r"], "critere": "consonne continue, très fréquente" },
+    { "rang": 10, "semaine": 5, "unite": 10, "cgp": ["n"], "phoneme": "/n/", "graphies": ["n"], "critere": "consonne continue, fréquente" },
+    { "rang": 11, "semaine": 6, "unite": 11, "cgp": ["s-sourd"], "phoneme": "/s/", "graphies": ["s"], "critere": "consonne continue — valeur à surveiller entre deux voyelles" },
+    { "rang": 12, "semaine": 6, "unite": 12, "cgp": ["v"], "phoneme": "/v/", "graphies": ["v"], "critere": "consonne continue" },
+    { "rang": 13, "semaine": 7, "unite": 13, "cgp": ["p"], "phoneme": "/p/", "graphies": ["p"], "critere": "occlusive, fréquente — arrive après les continues" },
+    { "rang": 14, "semaine": 7, "unite": 14, "cgp": ["t"], "phoneme": "/t/", "graphies": ["t"], "critere": "occlusive, très fréquente" },
+    { "rang": 15, "semaine": 8, "unite": 15, "cgp": ["f"], "phoneme": "/f/", "graphies": ["f"], "critere": "consonne continue" },
+    { "rang": 16, "semaine": 8, "unite": 16, "cgp": ["ch"], "phoneme": "/ʃ/", "graphies": ["ch"], "critere": "graphème insécable, très fréquent" },
+    { "rang": 17, "semaine": 9, "unite": 17, "cgp": ["d"], "phoneme": "/d/", "graphies": ["d"], "critere": "occlusive, fréquente" },
+    { "rang": 18, "semaine": 9, "unite": 18, "cgp": ["b"], "phoneme": "/b/", "graphies": ["b"], "critere": "occlusive, fréquente" },
+    { "rang": 19, "semaine": 10, "unite": 19, "cgp": ["ou"], "phoneme": "/u/", "graphies": ["ou"], "critere": "graphème insécable, très fréquent — ouvre un grand nombre de mots" },
+    { "rang": 20, "semaine": 10, "unite": 20, "cgp": ["oi"], "phoneme": "/wa/", "graphies": ["oi"], "critere": "graphème insécable, fréquent" },
+    { "rang": 21, "semaine": 11, "unite": 21, "cgp": ["on"], "phoneme": "/ɔ̃/", "graphies": ["on", "om"], "critere": "voyelle nasale — om devant m, b, p" },
+    { "rang": 22, "semaine": 11, "unite": 22, "cgp": ["an"], "phoneme": "/ɑ̃/", "graphies": ["an", "am"], "critere": "voyelle nasale — am devant m, b, p" },
+    { "rang": 23, "semaine": 12, "unite": 23, "cgp": ["c-dur"], "phoneme": "/k/", "graphies": ["c", "qu"], "critere": "valeur régulière devant a, o, u — qu pour la même valeur" },
+    { "rang": 24, "semaine": 12, "unite": 24, "cgp": ["g-dur"], "phoneme": "/g/", "graphies": ["g", "gu"], "critere": "valeur régulière devant a, o, u — gu pour la même valeur" },
+    { "rang": 25, "semaine": 13, "unite": 25, "cgp": ["j"], "phoneme": "/ʒ/", "graphies": ["j", "ge"], "critere": "ge devant a, o, u" },
+    { "rang": 26, "semaine": 13, "unite": 26, "cgp": ["s-sonore"], "phoneme": "/z/", "graphies": ["s", "z"], "critere": "s entre deux voyelles" },
+    { "rang": 27, "semaine": 14, "unite": 27, "cgp": ["in"], "phoneme": "/ɛ̃/", "graphies": ["in", "im"], "critere": "voyelle nasale — im devant m, b, p" },
+    { "rang": 28, "semaine": 14, "unite": 28, "cgp": ["ain"], "phoneme": "/ɛ̃/", "graphies": ["ain", "ein"], "critere": "même phonème, autre graphie — la proximité avec in est le point de vigilance" },
+    { "rang": 29, "semaine": 15, "unite": 29, "cgp": ["eu"], "phoneme": "/ø/", "graphies": ["eu", "œu"], "critere": "fréquent" },
+    { "rang": 30, "semaine": 15, "unite": 30, "cgp": ["au"], "phoneme": "/o/", "graphies": ["au", "eau"], "critere": "fréquent — même phonème que o, déjà connu" }
+  ],
+
+  "hors_tranche": {
+    "note": "Ce qui suit n'est pas dans la tranche CP de la v1. Il est listé pour que la structure de contenu l'accueille sans réécriture.",
+    "cp_fin_annee": ["ai", "ei", "gn", "ph", "ill", "un", "tion", "lettres muettes lexicales", "mots irréguliers fréquents"],
+    "ce1": ["automatisation de toutes les CGP du CP", "sons proches en encodage et décodage", "mots irréguliers", "fluide de lecture"]
+  }
+}

@@ -1,0 +1,8 @@
+# rang: 27
+# type: informatif
+# titre: Les chats
+
+Les chats aiment la maison.
+Ils dorment le jour.
+Ils mangent le soir.
+La reine les aime.

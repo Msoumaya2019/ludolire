@@ -1,0 +1,867 @@
+{
+  "meta": {
+    "titre": "Le mot à trous — jeu de syllabes manquantes",
+    "version": "0.3.1",
+    "date": "2026-09-21",
+    "role": "Banque d'items du jeu de syllabes, avec les règles qui rendent chaque item éprouvable.",
+    "source_mots": "DEUX banques, une par rendu. Les items oraux (J) prennent leur mot dans outils/mots-gs.json ; les items écrits (K) le prennent dans outils/mots-cp.json. La découpe syllabique vient de la banque qui porte le mot, et de là seulement. La déclaration précédente ne nommait que la GS, alors que huit des douze items écrits — lama, mule, rame, lime, lilas, tapis, dodu, poisson — tirent leur mot du CP : elle contredisait `sert`, qui dit déjà que les items K portent un rang de CGP du CP.",
+    "principe": "L'enfant voit un mot dont une syllabe manque, et un choix de cartes en bas ; il choisit la carte et la place dans le trou. Le choix des cartes intruses est ce qui fait l'exercice : une intruse quelconque rend le jeu devinable, une intruse voisine l'oblige à discriminer.",
+    "sert": "Le champ `sert` porte le rang de l'unité GS pour les items oraux (J), et le rang de la CGP du CP pour les items écrits (K). Les deux échelles ne sont pas comparables : c'est une surcharge assumée du champ, et le contrôle vérifie chaque valeur contre la table qui lui correspond.",
+    "correction_0_3_0": "Les trente items oraux déclaraient servir les unités 17, 19 et 38, qui portent des objectifs d'articulation. Corrigé : ils servent l'unité 13. Le défaut est consigné dans outils/exercices-gs.json, section `corrections`, avec ce qui l'a rendu invisible.",
+    "correction_0_3_1": "meta.source_mots ne nommait que outils/mots-gs.json. Les items écrits (K) tirent leur mot de outils/mots-cp.json, et le contrôle du corpus lisait déjà les deux banques : c'est la déclaration qui était fausse. Ce qui l'a rendue invisible : un générateur qui suit la déclaration au lieu du contrôle perd huit items en silence — 42 items annoncés, 34 embarqués, et aucune erreur. Corrigé en nommant les deux banques et en liant chacune à son rendu."
+  },
+  "mecanique": {
+    "but": "Compléter un mot connu en choisissant la syllabe manquante parmi des syllabes voisines.",
+    "deroulement": [
+      "Le mot est présenté découpé en syllabes, une case par syllabe.",
+      "Une case est vide — le trou. Le mot est entendu, une fois, avec le trou.",
+      "En bas, les cartes : la bonne syllabe et deux intruses.",
+      "L'enfant fait glisser une carte dans le trou.",
+      "Le mot reconstitué est entendu. L'enfant entend donc lui-même si c'est le mot ou non — le retour ne dépend pas de la machine."
+    ],
+    "regle_des_intruses": "DEUX intruses par item, toutes deux VOISINES de la syllabe cachée, et chacune d'une des deux sortes. CONSONANTIQUE : elle partage la voyelle et la coda, et n'en diffère que par la consonne d'attaque, prise dans une paire de consonnes proches (m/n, p/b, p/m, b/m, f/v, t/d, t/n, d/n, s/z, l/n, l/r, ch/j, ch/s, j/z, c/g devant a-o-u, c/s et c/z devant e-i, g/j devant e-i). VOCALIQUE : elle partage l'attaque et la coda, et n'en diffère que par la voyelle, prise dans une paire de voyelles proches (a/è, a/o, i/u, o/ou, on/an, in/an, é/è, e/é, e/è). La paire est écrite en LETTRES — `c/g` pour le couple de sons /k/ et /g/ — parce que c'est la lettre que la carte porte et que le contrôle compare. Une intruse LOINTAINE, qui ne partage ni la voyelle ni la consonne, est interdite : elle s'écarte d'emblée et n'ajoute aucune difficulté. La banque est dérivée puis figée par outils/proposer-intruses.py ; le choix du trou gardé et le champ `sert` restent des décisions d'auteur, préservées à chaque dérivation.",
+    "regle_de_validation": "L'application ne note pas la prononciation. Elle vérifie que le mot reconstitué est le mot attendu, et le fait entendre. C'est le seul verdict possible sans micro, et il suffit : entendre « bamane » au lieu de « banane » est un retour plus parlant qu'un score.",
+    "ce_que_le_jeu_ne_verifie_pas": "L'articulation de la paire par l'enfant. Le jeu entraîne la DISCRIMINATION — entendre la différence — pas la production. La production se vérifie à l'oreille d'un adulte, hors application.",
+    "pourquoi_deux_intruses": "Une seule intruse laisse une chance sur deux de tomber juste sans rien discriminer — ce n'est pas un exercice, c'est un pile ou face. À deux intruses, la chance tombe à une sur trois, et surtout chaque mauvaise carte est une voisine : il faut entendre la différence, pas éliminer le bruit.",
+    "sert_les_unites": [
+      11,
+      13,
+      14,
+      30,
+      33
+    ],
+    "pourquoi_ces_unites": "Le jeu fait choisir une syllabe parmi deux voisines : il entraîne la DISCRIMINATION et la MANIPULATION de syllabes, jamais la production. Les unités qu'il sert sont donc celles qui portent ces objectifs — 11, dénombrer les syllabes, que les cases montrent ; 13, discriminer une syllabe cible ; 14 et 33, ajouter, supprimer ou substituer une syllabe ; 30, discriminer des mots auditivement proches. Les unités 17, 19 et 38, qui demandent d'ARTICULER des couples de consonnes proches, ne sont pas servies par ce jeu : aucune de ses cartes ne se prononce. Le champ `sert` des items oraux les désignait pourtant, parce qu'il avait été rempli en appariant les PAIRES du jeu aux paires citées par ces unités, et non en comparant les objectifs."
+  },
+  "rendus": [
+    {
+      "id": "oral",
+      "libelle": "Rendu oral",
+      "tranche": "GS",
+      "quand": "toute la tranche GS",
+      "carte": "une carte est un bouton sonore : elle ne porte rien à lire. L'appui fait entendre la syllabe.",
+      "mot": "le mot est identifié par SON IMAGE — une seule, celle du mot entier, prise dans le brief de `images-gs.json`. Sa découpe est montrée par des cases vides, une par syllabe, posées sous l'image. Les cases ne portent rien à lire : elles disent combien de syllabes, pas lesquelles. La case du trou est la seule qui reste vide après le remplissage.",
+      "pourquoi": "Un enfant de GS ne lit pas. Une carte écrite ne serait pas un exercice difficile, elle serait un exercice impossible. Et l'image ne peut pas être découpée en autant d'images que de syllabes : il n'y a pas d'image de « na ». C'est le MOT qu'on montre, pas la syllabe."
+    },
+    {
+      "id": "ecrit",
+      "libelle": "Rendu écrit",
+      "tranche": "CP",
+      "quand": "à partir du rang indiqué par l'item",
+      "carte": "une carte porte la syllabe écrite.",
+      "mot": "le mot est écrit, avec un blanc à la place de la syllabe manquante.",
+      "pourquoi": "Au CP, l'enfant décode. La carte écrite devient un exercice de lecture, et chaque carte est vérifiée contre la table des CGP au rang de l'item."
+    }
+  ],
+  "items": [
+    {
+      "id": "J01",
+      "rendu": "oral",
+      "mot": "banane",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "ma",
+          "paire": "m/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ta",
+          "paire": "t/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J02",
+      "rendu": "oral",
+      "mot": "tomate",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "pa",
+          "paire": "p/m",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ba",
+          "paire": "b/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J03",
+      "rendu": "oral",
+      "mot": "papa",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "ba",
+          "paire": "p/b",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ma",
+          "paire": "p/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J04",
+      "rendu": "oral",
+      "mot": "vélo",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "no",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ro",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J05",
+      "rendu": "oral",
+      "mot": "café",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "vé",
+          "paire": "f/v",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "fè",
+          "paire": "é/è",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J06",
+      "rendu": "oral",
+      "mot": "gâteau",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "deau",
+          "paire": "t/d",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "neau",
+          "paire": "t/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J07",
+      "rendu": "oral",
+      "mot": "jupe",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "chu",
+          "paire": "ch/j",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "zu",
+          "paire": "j/z",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J08",
+      "rendu": "oral",
+      "mot": "pomme",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "be",
+          "paire": "b/m",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ne",
+          "paire": "m/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J09",
+      "rendu": "oral",
+      "mot": "zèbre",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "sè",
+          "paire": "s/z",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "jè",
+          "paire": "j/z",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J10",
+      "rendu": "oral",
+      "mot": "lapin",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "na",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ra",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J11",
+      "rendu": "oral",
+      "mot": "maison",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "pai",
+          "paire": "p/m",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "bai",
+          "paire": "b/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J12",
+      "rendu": "oral",
+      "mot": "canard",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "mard",
+          "paire": "m/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "tard",
+          "paire": "t/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J13",
+      "rendu": "oral",
+      "mot": "mouton",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "pou",
+          "paire": "p/m",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "nou",
+          "paire": "m/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J14",
+      "rendu": "oral",
+      "mot": "cheval",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "je",
+          "paire": "ch/j",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "se",
+          "paire": "ch/s",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J15",
+      "rendu": "oral",
+      "mot": "bonbon",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "pon",
+          "paire": "p/b",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "mon",
+          "paire": "b/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J16",
+      "rendu": "oral",
+      "mot": "avion",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "fion",
+          "paire": "f/v",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "vuon",
+          "paire": "i/u",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J17",
+      "rendu": "oral",
+      "mot": "soleil",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "zo",
+          "paire": "s/z",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "cho",
+          "paire": "ch/s",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J18",
+      "rendu": "oral",
+      "mot": "valise",
+      "trou": 2,
+      "intruses": [
+        {
+          "syllabe": "ze",
+          "paire": "s/z",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "che",
+          "paire": "ch/s",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J19",
+      "rendu": "oral",
+      "mot": "cerise",
+      "trou": 2,
+      "intruses": [
+        {
+          "syllabe": "ze",
+          "paire": "s/z",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "che",
+          "paire": "ch/s",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J20",
+      "rendu": "oral",
+      "mot": "girafe",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "la",
+          "paire": "l/r",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "rè",
+          "paire": "a/è",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J21",
+      "rendu": "oral",
+      "mot": "koala",
+      "trou": 2,
+      "intruses": [
+        {
+          "syllabe": "na",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ra",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J22",
+      "rendu": "oral",
+      "mot": "pyjama",
+      "trou": 2,
+      "intruses": [
+        {
+          "syllabe": "pa",
+          "paire": "p/m",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ba",
+          "paire": "b/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J23",
+      "rendu": "oral",
+      "mot": "cartable",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "da",
+          "paire": "t/d",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "na",
+          "paire": "t/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J24",
+      "rendu": "oral",
+      "mot": "chocolat",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "jo",
+          "paire": "ch/j",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "so",
+          "paire": "ch/s",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J25",
+      "rendu": "oral",
+      "mot": "éléphant",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "né",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ré",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J26",
+      "rendu": "oral",
+      "mot": "parapluie",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "ba",
+          "paire": "p/b",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ma",
+          "paire": "p/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J27",
+      "rendu": "oral",
+      "mot": "crocodile",
+      "trou": 2,
+      "intruses": [
+        {
+          "syllabe": "ti",
+          "paire": "t/d",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ni",
+          "paire": "d/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J28",
+      "rendu": "oral",
+      "mot": "téléphone",
+      "trou": 3,
+      "intruses": [
+        {
+          "syllabe": "me",
+          "paire": "m/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "te",
+          "paire": "t/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J29",
+      "rendu": "oral",
+      "mot": "école",
+      "trou": 2,
+      "intruses": [
+        {
+          "syllabe": "ne",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "re",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "J30",
+      "rendu": "oral",
+      "mot": "ananas",
+      "trou": 2,
+      "intruses": [
+        {
+          "syllabe": "mas",
+          "paire": "m/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "tas",
+          "paire": "t/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 13
+    },
+    {
+      "id": "K01",
+      "rendu": "ecrit",
+      "rang": 10,
+      "mot": "lune",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "nu",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ru",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 23
+    },
+    {
+      "id": "K02",
+      "rendu": "ecrit",
+      "rang": 10,
+      "mot": "lama",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "na",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ra",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 23
+    },
+    {
+      "id": "K03",
+      "rendu": "ecrit",
+      "rang": 10,
+      "mot": "mule",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "ne",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "lé",
+          "paire": "e/é",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 23
+    },
+    {
+      "id": "K04",
+      "rendu": "ecrit",
+      "rang": 10,
+      "mot": "rame",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "ne",
+          "paire": "m/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "mé",
+          "paire": "e/é",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 23
+    },
+    {
+      "id": "K05",
+      "rendu": "ecrit",
+      "rang": 10,
+      "mot": "lime",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "ni",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "lu",
+          "paire": "i/u",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 23
+    },
+    {
+      "id": "K06",
+      "rendu": "ecrit",
+      "rang": 11,
+      "mot": "lilas",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "nas",
+          "paire": "l/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ras",
+          "paire": "l/r",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 23
+    },
+    {
+      "id": "K07",
+      "rendu": "ecrit",
+      "rang": 14,
+      "mot": "tapis",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "na",
+          "paire": "t/n",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "tè",
+          "paire": "a/è",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 14
+    },
+    {
+      "id": "K08",
+      "rendu": "ecrit",
+      "rang": 17,
+      "mot": "dodu",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "to",
+          "paire": "t/d",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "no",
+          "paire": "d/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 17
+    },
+    {
+      "id": "K09",
+      "rendu": "ecrit",
+      "rang": 18,
+      "mot": "papa",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "ba",
+          "paire": "p/b",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "ma",
+          "paire": "p/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 18
+    },
+    {
+      "id": "K10",
+      "rendu": "ecrit",
+      "rang": 18,
+      "mot": "bébé",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "pé",
+          "paire": "p/b",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "mé",
+          "paire": "b/m",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 18
+    },
+    {
+      "id": "K11",
+      "rendu": "ecrit",
+      "rang": 21,
+      "mot": "mouton",
+      "trou": 0,
+      "intruses": [
+        {
+          "syllabe": "pou",
+          "paire": "p/m",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "nou",
+          "paire": "m/n",
+          "sorte": "consonne"
+        }
+      ],
+      "sert": 21
+    },
+    {
+      "id": "K12",
+      "rendu": "ecrit",
+      "rang": 22,
+      "mot": "poisson",
+      "trou": 1,
+      "intruses": [
+        {
+          "syllabe": "chon",
+          "paire": "ch/s",
+          "sorte": "consonne"
+        },
+        {
+          "syllabe": "san",
+          "paire": "on/an",
+          "sorte": "voyelle"
+        }
+      ],
+      "sert": 21
+    }
+  ]
+}

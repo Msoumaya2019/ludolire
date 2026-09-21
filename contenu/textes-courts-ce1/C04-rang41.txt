@@ -1,0 +1,8 @@
+# rang: 41
+# type: recit
+# titre: Une échelle, une pomme
+
+Le chat a vu une pomme.
+Il a grimpé sur une échelle.
+La reine a ri.
+Ils ont mangé la pomme.

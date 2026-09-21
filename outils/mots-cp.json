@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "titre": "Banque de mots du CP",
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "role": "Mots employés par les exercices du CP, avec le rang à partir duquel ils sont déchiffrables.",
+    "difference_avec_la_banque_gs": "La banque GS (`outils/mots-gs.json`) est contrainte par la connaissance ORALE du mot : à la GS, on ne peut pas découper un mot qu'on n'a jamais dit. Cette banque-ci est contrainte par la DÉCHIFFRABILITÉ : le mot ne doit contenir que des CGP déjà enseignées. Un même mot peut figurer dans les deux — les contraintes sont différentes, pas les mots.",
+    "rang": "Le rang déclaré est le rang MINIMAL auquel le mot est déchiffrable, calculé par le contrôle. Un exercice peut employer le mot à un rang supérieur, jamais inférieur.",
+    "verification": "Chaque mot est éprouvé par `outils/verifier-corpus.py` contre `outils/cgp-cp.json` au rang déclaré : s'il n'est pas déchiffrable à ce rang, la banque est refusée."
+  },
+
+  "mots": [
+    { "mot": "lama", "syllabes": ["la", "ma"], "rang": 8 },
+    { "mot": "mule", "syllabes": ["mu", "le"], "rang": 8 },
+    { "mot": "lime", "syllabes": ["li", "me"], "rang": 8 },
+    { "mot": "lune", "syllabes": ["lu", "ne"], "rang": 10 },
+    { "mot": "rame", "syllabes": ["ra", "me"], "rang": 9 },
+    { "mot": "lilas", "syllabes": ["li", "las"], "rang": 11 },
+    { "mot": "papa", "syllabes": ["pa", "pa"], "rang": 13 },
+    { "mot": "tapis", "syllabes": ["ta", "pis"], "rang": 14 },
+    { "mot": "dodu", "syllabes": ["do", "du"], "rang": 17 },
+    { "mot": "bébé", "syllabes": ["bé", "bé"], "rang": 18 },
+    { "mot": "mouton", "syllabes": ["mou", "ton"], "rang": 21 },
+    { "mot": "poisson", "syllabes": ["pois", "son"], "rang": 21 }
+  ]
+}
