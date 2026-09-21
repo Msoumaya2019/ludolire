@@ -44,6 +44,7 @@ function Pile(): JSX.Element {
         <Stack.Screen name="lecture" options={{ title: 'Lire' }} />
         <Stack.Screen name="jeu" options={{ title: 'Le mot à trous' }} />
         <Stack.Screen name="unites" options={{ title: "Ce qu'on apprend" }} />
+        <Stack.Screen name="exercice" options={{ title: "S'entraîner" }} />
       </Stack>
     </>
   );

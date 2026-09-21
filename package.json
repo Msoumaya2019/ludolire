@@ -17,11 +17,13 @@
     "typecheck": "tsc --noEmit",
     "contenu": "python outils/generer-contenu-app.py",
     "contenu:verifier": "node scripts/verifier-contenu.mjs",
+    "formes:verifier": "python3 outils/verifier-formes.py",
+    "formes:eprouver": "python3 outils/tester-formes.py",
     "check:workflows": "node scripts/check-workflows.mjs",
     "routes:verifier": "node scripts/verifier-routes.mjs",
     "test": "node --test \"tests/*.test.mjs\"",
     "export:ios": "expo export --platform ios",
-    "verify": "npm run check:workflows && npm run routes:verifier && npm run contenu:verifier && npm run typecheck && npm test"
+    "verify": "npm run check:workflows && npm run routes:verifier && npm run contenu:verifier && npm run formes:verifier && npm run typecheck && npm test"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",

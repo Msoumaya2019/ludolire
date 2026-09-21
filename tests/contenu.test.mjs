@@ -44,6 +44,8 @@ test('témoin : le contenu réel est conforme', () => {
   assert.deepEqual(erreurs, []);
   assert.ok(detail.items > 0, 'aucun item de jeu dans le contenu');
   assert.ok(detail.textes > 0, 'aucun texte dans le contenu');
+  assert.ok(detail.exercices > 0, 'aucun exercice rendu dans le contenu');
+  assert.ok(detail.non_rendus > 0, 'aucune mécanique déclarée non rendue');
 });
 
 test("l'empreinte déclarée est celle du contenu", () => {
@@ -211,4 +213,145 @@ test('un contenu sans niveau est refusé', () => {
 
 test('un contenu sans meta est refusé', () => {
   attrape({ niveaux: [] }, 'meta manquant');
+});
+
+// ---------------------------------------------------------------------------
+// Les exercices
+//
+// Le niveau qui porte des exercices rendus est le seul qui exerce ces
+// contrôles : sur un niveau sans exercice, les cas ci-dessous passeraient à
+// vide, et un banc vert à vide ne prouve rien. On l'exige donc explicitement.
+// ---------------------------------------------------------------------------
+
+const AVEC_EXERCICES = REEL.niveaux.find((n) => n.exercices.length > 0);
+
+test('le témoin porte bien des exercices et des mécaniques non rendues', () => {
+  assert.ok(AVEC_EXERCICES, 'aucun niveau ne porte d’exercice : les cas suivants seraient vides');
+  assert.ok(AVEC_EXERCICES.exercices_exceptions.length > 0, 'aucune exception à éprouver');
+});
+
+/** Le premier exercice du niveau qui en porte. */
+function premierExercice(c) {
+  const n = c.niveaux.find((x) => x.exercices.length > 0);
+  return n.exercices[0];
+}
+
+test('chaque phrase de preuve se retrouve dans une ligne du niveau', () => {
+  // Cette propriété est vérifiée par le contrôle, mais on l'éprouve ici sur le
+  // contenu réel : c'est elle qui garantit que la preuve affichée après une
+  // bonne réponse est cherchable par l'enfant dans le texte qu'il vient de lire.
+  let vues = 0;
+  for (const n of REEL.niveaux) {
+    for (const e of n.exercices) {
+      for (const q of e.questions) {
+        if (typeof q.phrase_preuve !== 'string' || q.phrase_preuve.length === 0) continue;
+        vues += 1;
+        const trouvee = n.textes.some((t) => t.lignes.some((l) => l.includes(q.phrase_preuve)));
+        assert.ok(
+          trouvee,
+          `${e.id} : « ${q.phrase_preuve} » ne se trouve dans aucun texte du niveau`
+        );
+      }
+    }
+  }
+  assert.ok(vues > 0, 'aucune phrase de preuve dans le contenu : ce cas serait vide');
+});
+
+test('un exercice sans identifiant est refusé', () => {
+  const c = reempreindre(copie());
+  delete premierExercice(c).id;
+  attrape(c, 'un exercice sans identifiant');
+});
+
+test('un exercice sans question est refusé', () => {
+  const c = reempreindre(copie());
+  premierExercice(c).questions = [];
+  attrape(c, 'aucune question');
+});
+
+test('un exercice sans titre est refusé', () => {
+  const c = reempreindre(copie());
+  premierExercice(c).titre = '';
+  attrape(c, '« titre » manquant');
+});
+
+test('deux exercices du même identifiant sont refusés', () => {
+  const c = reempreindre(copie());
+  const n = c.niveaux.find((x) => x.exercices.length > 1);
+  n.exercices[1].id = n.exercices[0].id;
+  attrape(c, 'identifiant en double');
+});
+
+test('un exercice qui cite un texte absent du niveau est refusé', () => {
+  const c = reempreindre(copie());
+  premierExercice(c).texte = 'T99-rang99';
+  attrape(c, "qui n'est pas dans le niveau");
+});
+
+test('une bonne réponse aussi comptée parmi les intruses est refusée', () => {
+  const c = reempreindre(copie());
+  const q = premierExercice(c).questions[0];
+  q.intrus = [q.bonne, ...q.intrus];
+  attrape(c, 'est aussi comptée parmi les');
+});
+
+test('deux intruses identiques sont refusées', () => {
+  const c = reempreindre(copie());
+  const q = premierExercice(c).questions[0];
+  q.intrus = [q.intrus[0], q.intrus[0]];
+  attrape(c, 'deux intruses identiques');
+});
+
+test('une intruse vide est refusée', () => {
+  const c = reempreindre(copie());
+  const q = premierExercice(c).questions[0];
+  q.intrus = ['', q.intrus[0]];
+  attrape(c, 'une intruse est vide');
+});
+
+test('une phrase de preuve introuvable dans le niveau est refusée', () => {
+  const c = reempreindre(copie());
+  premierExercice(c).questions[0].phrase_preuve = 'Cette phrase n’est dans aucun texte.';
+  attrape(c, 'ne se trouve dans');
+});
+
+test('une phrase de preuve vide est refusée', () => {
+  const c = reempreindre(copie());
+  premierExercice(c).questions[0].phrase_preuve = '';
+  attrape(c, 'phrase_preuve est présente mais vide');
+});
+
+test('une mécanique non rendue sans raison est refusée', () => {
+  const c = reempreindre(copie());
+  const n = c.niveaux.find((x) => x.exercices_non_rendus.length > 0);
+  n.exercices_non_rendus[0].pourquoi = '';
+  attrape(c, 'aucune raison');
+});
+
+test('une mécanique non rendue qui ne compte aucun exercice est refusée', () => {
+  const c = reempreindre(copie());
+  const n = c.niveaux.find((x) => x.exercices_non_rendus.length > 0);
+  n.exercices_non_rendus[0].nombre = 0;
+  attrape(c, 'au moins un exercice écrit');
+});
+
+test('une mécanique à la fois rendue et non rendue est refusée', () => {
+  const c = reempreindre(copie());
+  const n = c.niveaux.find((x) => x.exercices.length > 0 && x.exercices_non_rendus.length > 0);
+  n.exercices_non_rendus[0].mecanique = n.exercices[0].mecanique;
+  attrape(c, 'les deux listes se contredisent');
+});
+
+test('une exception sans raison est refusée', () => {
+  const c = reempreindre(copie());
+  const n = c.niveaux.find((x) => x.exercices_exceptions.length > 0);
+  n.exercices_exceptions[0].raison = '';
+  attrape(c, "n'a pas de raison");
+});
+
+test('un exercice déclaré rendu ET non rendu est refusé', () => {
+  const c = reempreindre(copie());
+  const n = c.niveaux.find((x) => x.exercices.length > 0 && x.exercices_exceptions.length > 0);
+  n.exercices_exceptions[0].exercice = n.exercices[0].id;
+  attrape(c, "l'écran l'afficherait en le disant injouable");
 });

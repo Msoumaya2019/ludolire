@@ -19,6 +19,10 @@
  *     donc aussi ce que le contenu doit être : chaque item du jeu porte sa
  *     bonne réponse parmi ses cartes, aucune carte ne se répète, chaque texte
  *     a un titre et au moins une ligne, chaque niveau a un identifiant unique.
+ *     Et pour les exercices : chaque question porte une bonne réponse qui n'est
+ *     PAS aussi comptée parmi ses intruses, chaque exercice embarqué a au moins
+ *     une question, et le texte qu'il cite existe dans son niveau. Une mécanique
+ *     ne peut pas être à la fois rendue et déclarée non rendue.
  *
  * CE QU'IL NE PEUT PAS VÉRIFIER
  * -----------------------------
@@ -102,6 +106,10 @@ export function controler(contenu) {
   let items = 0;
   let unites = 0;
   let correspondances = 0;
+  let exercices = 0;
+  let questions = 0;
+  let nonRendus = 0;
+  let exceptions = 0;
 
   for (const n of contenu.niveaux) {
     const ou = `niveau ${n?.id ?? '?'}`;
@@ -118,13 +126,22 @@ export function controler(contenu) {
         erreurs.push(`${ou} : champ « ${champ} » manquant ou vide`);
       }
     }
-    for (const champ of ['textes', 'jeu_syllabes', 'unites', 'correspondances']) {
+    for (const champ of [
+      'textes',
+      'jeu_syllabes',
+      'unites',
+      'correspondances',
+      'exercices',
+      'exercices_non_rendus',
+      'exercices_exceptions',
+    ]) {
       if (!Array.isArray(n[champ])) {
         erreurs.push(`${ou} : champ « ${champ} » n'est pas une liste`);
       }
     }
 
     // --- Les textes ------------------------------------------------------
+    const idsTextes = new Set();
     for (const t of n.textes ?? []) {
       textes += 1;
       if (typeof t.titre !== 'string' || t.titre.length === 0) {
@@ -138,6 +155,7 @@ export function controler(contenu) {
           erreurs.push(`${ou} : le texte « ${t.id} » porte une ligne vide`);
         }
       }
+      if (typeof t.id === 'string' && t.id.length > 0) idsTextes.add(t.id);
     }
 
     // --- Le jeu des syllabes ---------------------------------------------
@@ -220,6 +238,170 @@ export function controler(contenu) {
         erreurs.push(`${ou} : la correspondance ${c.rang} n'a pas de phonème`);
       }
     }
+
+    // --- Les exercices rendus --------------------------------------------
+    //
+    // Un exercice embarqué est un exercice que l'application AFFICHE. Il porte
+    // donc tout ce que l'écran lit : un titre, un geste, et des questions avec
+    // leur bonne réponse et leurs intruses. Ce qui manque ici ne se voit pas à
+    // la compilation — l'écran s'ouvrirait simplement sur un choix vide, ou sur
+    // une carte gagnante dès le premier toucher.
+    const idsExercices = new Set();
+    const mecaniquesRendues = new Set();
+    const mecaniquesNonRendues = new Set();
+
+    for (const e of n.exercices ?? []) {
+      if (typeof e?.id !== 'string' || e.id.length === 0) {
+        erreurs.push(`${ou} : un exercice sans identifiant`);
+        continue;
+      }
+      exercices += 1;
+      const ouEx = `${ou} exercice ${e.id}`;
+
+      if (idsExercices.has(e.id)) {
+        erreurs.push(`${ouEx} : identifiant en double`);
+      }
+      idsExercices.add(e.id);
+
+      for (const champ of ['mecanique', 'titre', 'geste']) {
+        if (typeof e[champ] !== 'string' || e[champ].length === 0) {
+          erreurs.push(`${ouEx} : champ « ${champ} » manquant ou vide`);
+        }
+      }
+      if (typeof e.mecanique === 'string' && e.mecanique.length > 0) {
+        mecaniquesRendues.add(e.mecanique);
+      }
+      if (!Number.isInteger(e.unite) || e.unite < 1) {
+        erreurs.push(`${ouEx} : l'unité « ${e.unite} » n'est pas un rang`);
+      }
+
+      // La référence à un texte est une DÉPENDANCE, pas une décoration : si le
+      // texte n'est pas dans le niveau, l'écran n'affiche aucun texte et la
+      // question ne porte plus sur rien. Le nom du texte suffit à le vérifier
+      // ici, parce que la liste des textes du niveau est déjà lue plus haut.
+      if (e.texte !== null && e.texte !== undefined && !idsTextes.has(e.texte)) {
+        erreurs.push(
+          `${ouEx} : il cite le texte « ${e.texte} », qui n'est pas dans le niveau — ` +
+            "l'écran poserait sa question sans le texte"
+        );
+      }
+
+      if (!Array.isArray(e.questions) || e.questions.length === 0) {
+        erreurs.push(`${ouEx} : aucune question — l'exercice s'ouvrirait sur rien`);
+        continue;
+      }
+
+      for (const [i, q] of e.questions.entries()) {
+        questions += 1;
+        const ouQ = `${ouEx}, question ${i + 1}`;
+        for (const champ of ['question', 'bonne']) {
+          if (typeof q?.[champ] !== 'string' || q[champ].length === 0) {
+            erreurs.push(`${ouQ} : champ « ${champ} » manquant ou vide`);
+          }
+        }
+        if (!Array.isArray(q?.intrus) || q.intrus.length === 0) {
+          erreurs.push(`${ouQ} : aucune intruse — il n'y a pas de choix à faire`);
+          continue;
+        }
+        if (q.intrus.some((x) => typeof x !== 'string' || x.length === 0)) {
+          erreurs.push(`${ouQ} : une intruse est vide`);
+        }
+        if (new Set(q.intrus).size !== q.intrus.length) {
+          erreurs.push(`${ouQ} : deux intruses identiques dans [${q.intrus.join(', ')}]`);
+        }
+        // La bonne réponse parmi les intruses donnerait DEUX cartes identiques
+        // dont l'une est la réponse : l'enfant pourrait toucher la mauvaise et
+        // gagner, ou toucher la bonne et voir l'application la refuser.
+        if (q.intrus.includes(q.bonne)) {
+          erreurs.push(
+            `${ouQ} : la bonne réponse « ${q.bonne} » est aussi comptée parmi les ` +
+              'intruses — deux cartes porteraient le même texte'
+          );
+        }
+        if (q.phrase_preuve !== null && q.phrase_preuve !== undefined) {
+          if (typeof q.phrase_preuve !== 'string' || q.phrase_preuve.length === 0) {
+            erreurs.push(`${ouQ} : phrase_preuve est présente mais vide`);
+          } else {
+            // LA PHRASE DE PREUVE DOIT SE RETROUVER DANS LE TEXTE.
+            //
+            // L'écran l'affiche après une bonne réponse, entre guillemets, pour
+            // que l'enfant voie dans le texte ce qui justifie sa réponse. Une
+            // paraphrase ne se retrouve pas, et une preuve qu'on ne peut pas
+            // retrouver ne prouve rien — elle décore.
+            //
+            // Le contrôle a les deux sous la main : les textes du niveau et les
+            // exercices. C'est la seule raison pour laquelle il peut le dire.
+            const trouvee = (n.textes ?? []).some((t) =>
+              (t.lignes ?? []).some(
+                (l) => typeof l === 'string' && l.includes(q.phrase_preuve)
+              )
+            );
+            if (!trouvee) {
+              erreurs.push(
+                `${ouQ} : la phrase de preuve « ${q.phrase_preuve} » ne se trouve dans ` +
+                  "aucune ligne d'un texte du niveau — l'enfant ne pourrait pas la retrouver"
+              );
+            }
+          }
+        }
+      }
+    }
+
+    // --- Ce qui est écrit et non rendu -----------------------------------
+    for (const m of n.exercices_non_rendus ?? []) {
+      if (typeof m?.mecanique !== 'string' || m.mecanique.length === 0) {
+        erreurs.push(`${ou} : une mécanique non rendue sans nom`);
+        continue;
+      }
+      nonRendus += 1;
+      const ouM = `${ou} mécanique non rendue ${m.mecanique}`;
+      if (mecaniquesNonRendues.has(m.mecanique)) {
+        erreurs.push(`${ouM} : déclarée deux fois`);
+      }
+      mecaniquesNonRendues.add(m.mecanique);
+      if (!Number.isInteger(m.nombre) || m.nombre < 1) {
+        erreurs.push(
+          `${ouM} : elle compte ${m.nombre} exercice(s) — une mécanique déclarée non ` +
+            'rendue compte au moins un exercice écrit'
+        );
+      }
+      if (typeof m.pourquoi !== 'string' || m.pourquoi.length === 0) {
+        erreurs.push(
+          `${ouM} : aucune raison — « pas rendu » sans motif est indistinguable d'un oubli`
+        );
+      }
+    }
+
+    // La même mécanique ne peut pas être à la fois rendue et déclarée non
+    // rendue : l'écran montrerait un exercice jouable sous une étiquette qui dit
+    // le contraire, et c'est le genre de contradiction qu'aucun test d'écran ne
+    // voit.
+    for (const m of mecaniquesRendues) {
+      if (mecaniquesNonRendues.has(m)) {
+        erreurs.push(
+          `${ou} : la mécanique « ${m} » est rendue ET déclarée non rendue — ` +
+            'les deux listes se contredisent'
+        );
+      }
+    }
+
+    // --- Déclaré jouable, non rendu --------------------------------------
+    for (const x of n.exercices_exceptions ?? []) {
+      if (typeof x?.exercice !== 'string' || x.exercice.length === 0) {
+        erreurs.push(`${ou} : une exception sans exercice`);
+        continue;
+      }
+      exceptions += 1;
+      if (typeof x.raison !== 'string' || x.raison.length === 0) {
+        erreurs.push(`${ou} : l'exception « ${x.exercice} » n'a pas de raison`);
+      }
+      if (idsExercices.has(x.exercice)) {
+        erreurs.push(
+          `${ou} : « ${x.exercice} » est déclaré rendu ET déclaré non rendu — ` +
+            "l'écran l'afficherait en le disant injouable"
+        );
+      }
+    }
   }
 
   detail.niveaux = contenu.niveaux.length;
@@ -227,6 +409,10 @@ export function controler(contenu) {
   detail.items = items;
   detail.unites = unites;
   detail.correspondances = correspondances;
+  detail.exercices = exercices;
+  detail.questions = questions;
+  detail.non_rendus = nonRendus;
+  detail.exceptions = exceptions;
   return { erreurs, detail };
 }
 

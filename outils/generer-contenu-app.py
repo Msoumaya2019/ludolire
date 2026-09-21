@@ -16,7 +16,9 @@ CE QUI EST EMBARQUÉ, ET RIEN DE PLUS
   - les progressions GS et CE1, pour la liste de ce qu'on apprend ;
   - les textes de lecture, avec leur titre, leur rang et leur corps ;
   - le jeu des syllabes, avec la découpe de chaque mot ;
-  - les correspondances du CP, qui n'ont ni progression ni texte à ce jour.
+  - les correspondances du CP, qui n'ont ni progression ni texte à ce jour ;
+  - les exercices que l'application sait rendre, c'est-à-dire ceux dont la
+    mécanique reçoit une forme dans `outils/formes-exercices.json`.
 
 CE QUI N'EST PAS EMBARQUÉ, ET C'EST DÉCLARÉ
 -------------------------------------------
@@ -24,6 +26,11 @@ L'audio. Aucun son n'est enregistré à ce jour, donc rien n'est embarqué, et
 l'application le dit plutôt que de faire semblant. Les exercices de la banque
 qui reposent sur la voix ne sont donc pas jouables — c'est écrit dans le
 document de livraison, pas caché.
+
+Et les exercices que l'application ne sait pas encore rendre : ils sont
+COMPTÉS, groupés par mécanique avec la raison que la table porte, et le
+fichier embarqué les reprend pour que l'écran puisse les montrer. Un
+générateur qui écarte en silence annonce un nombre et en livre un autre.
 
 Usage :
     python outils/generer-contenu-app.py
@@ -185,7 +192,116 @@ def correspondances():
     ]
 
 
+def formes_declarees():
+    """La table des formes, lue telle quelle.
+
+    Elle dit quelle mécanique l'application rend, et pourquoi elle ne rend pas
+    les autres. Le générateur ne décide rien : il applique la table, et il
+    refuse si un exercice emploie une mécanique que la table ignore.
+    """
+    return charger("formes-exercices.json")
+
+
+def consignes_ce1():
+    """Le texte écrit de chaque consigne du CE1.
+
+    Ce texte est aussi le script de l'enregistrement à faire. Tant qu'aucun son
+    n'existe, c'est lui qui s'affiche : l'enfant du CE1 lit, donc la consigne
+    peut être écrite là où celle de la GS doit être dite.
+    """
+    return {c["id"]: c for c in charger("exercices-ce1.json").get("consignes", [])}
+
+
+def exercices():
+    """Les exercices que l'application sait rendre, et le compte des autres.
+
+    RIEN NE TOMBE EN SILENCE. C'est la leçon du jour où un générateur annonçait
+    42 items et en livrait 34 sans une erreur. On n'embarque donc pas seulement
+    ce qu'on sait rendre : on compte aussi ce qu'on écarte, groupé par mécanique
+    avec la raison que la table porte, pour que l'écran puisse le MONTRER au lieu
+    de laisser croire que ces exercices n'existent pas.
+    """
+    table = formes_declarees()
+    par_forme = {f["id"]: f for f in table["formes"]}
+    par_mecanique = {(m["niveau"], m["id"]): m for m in table["mecaniques"]}
+    exceptions = {
+        (x["niveau"], x["exercice"]): x["raison"]
+        for x in table.get("exceptions", [])
+    }
+    consignes = consignes_ce1()
+
+    resultat = {}
+    for niveau, nom in (("gs", "exercices-gs.json"),
+                        ("cp", "exercices-cp.json"),
+                        ("ce1", "exercices-ce1.json")):
+        # Le CP n'a pas encore de banque d'exercices. Ce n'est pas un oubli
+        # de lecture : c'est un fichier qui n'existe pas, et l'écran du CP
+        # n'annonce donc aucun exercice. Un niveau sans banque se dit vide,
+        # il ne se devine pas.
+        if not (OUTILS / nom).exists():
+            resultat[niveau] = {"embarques": [], "non_rendus": [], "exceptions": []}
+            continue
+        banque = charger(nom)
+        embarques, non_rendus, refuses = [], {}, []
+        for e in banque["exercices"]:
+            if e["verdict"] != "app":
+                continue
+            mid = e["mecanique"]
+            declaration = par_mecanique.get((niveau, mid))
+            if declaration is None:
+                raise SystemExit(
+                    f"REFUS — {niveau}/{e['id']} emploie la mécanique « {mid} », "
+                    "absente de outils/formes-exercices.json. Lancez "
+                    "outils/verifier-formes.py."
+                )
+            forme_id = declaration["forme"]
+            if not forme_id or not par_forme[forme_id]["embarque_les_exercices"]:
+                entree = non_rendus.setdefault(
+                    mid,
+                    {
+                        "mecanique": mid,
+                        "nombre": 0,
+                        "pourquoi": declaration["pourquoi"] or "rendue par un autre écran",
+                    },
+                )
+                entree["nombre"] += 1
+                continue
+            if (niveau, e["id"]) in exceptions:
+                refuses.append(
+                    {"exercice": e["id"], "raison": exceptions[(niveau, e["id"])]}
+                )
+                continue
+            consigne = consignes.get(e.get("consigne") or "")
+            embarques.append({
+                "id": e["id"],
+                "unite": e["unite"],
+                "mecanique": mid,
+                "titre": e["titre"],
+                "consigne": consigne.get("texte") if consigne else None,
+                "geste": e["geste"],
+                "duree_s": e["duree_s"],
+                "entraine": e["entraine"],
+                "texte": e.get("texte"),
+                "questions": [
+                    {
+                        "question": q["question"],
+                        "bonne": q["bonne"],
+                        "intrus": list(q.get("intrus") or []),
+                        "phrase_preuve": q.get("phrase_preuve"),
+                    }
+                    for q in e.get("questions") or []
+                ],
+            })
+        resultat[niveau] = {
+            "embarques": embarques,
+            "non_rendus": [non_rendus[k] for k in sorted(non_rendus)],
+            "exceptions": refuses,
+        }
+    return resultat
+
+
 def construire():
+    ex = exercices()
     d = {
         "meta": {
             "titre": "Ludo'Lire",
@@ -207,6 +323,9 @@ def construire():
                 "jeu_syllabes": jeu_syllabes(),
                 "unites": unites("progression-gs.json"),
                 "correspondances": [],
+                "exercices": ex["gs"]["embarques"],
+                "exercices_non_rendus": ex["gs"]["non_rendus"],
+                "exercices_exceptions": ex["gs"]["exceptions"],
             },
             {
                 "id": "cp",
@@ -218,6 +337,9 @@ def construire():
                 "jeu_syllabes": [],
                 "unites": [],
                 "correspondances": correspondances(),
+                "exercices": ex["cp"]["embarques"],
+                "exercices_non_rendus": ex["cp"]["non_rendus"],
+                "exercices_exceptions": ex["cp"]["exceptions"],
             },
             {
                 "id": "ce1",
@@ -229,6 +351,9 @@ def construire():
                 "jeu_syllabes": [],
                 "unites": unites("progression-ce1.json"),
                 "correspondances": [],
+                "exercices": ex["ce1"]["embarques"],
+                "exercices_non_rendus": ex["ce1"]["non_rendus"],
+                "exercices_exceptions": ex["ce1"]["exceptions"],
             },
         ],
     }
@@ -264,7 +389,9 @@ def main():
     for n in d["niveaux"]:
         print(f"  {n['court']:3} {n['nom']:34} "
               f"{len(n['textes']):3} textes  {len(n['jeu_syllabes']):3} items  "
-              f"{len(n['unites']):3} unités  {len(n['correspondances']):3} correspondances")
+              f"{len(n['unites']):3} unités  {len(n['correspondances']):3} correspondances  "
+              f"{len(n['exercices']):3} exercices rendus  "
+              f"{len(n['exercices_non_rendus']):3} mécaniques déclarées non rendues")
     return 0
 
 

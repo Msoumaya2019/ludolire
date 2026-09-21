@@ -7,7 +7,7 @@
     "role": "Contenu embarqué dans l'application, fabriqué par outils/generer-contenu-app.py.",
     "source": "Les corpus de outils/ et les textes de contenu/ restent la source unique.",
     "audio": "Aucun son n'est enregistré à ce jour. Les activités qui reposent sur la voix ne sont pas encore jouables, et l'application le dit.",
-    "empreinte": "97668bdf9b636299"
+    "empreinte": "66eedb20c496334b"
   },
   "niveaux": [
     {
@@ -1061,7 +1061,106 @@
           "action": "toucher la lettre qui fait le son entendu"
         }
       ],
-      "correspondances": []
+      "correspondances": [],
+      "exercices": [],
+      "exercices_non_rendus": [
+        {
+          "mecanique": "apparier_graphies",
+          "nombre": 2,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "apparier_rime",
+          "nombre": 1,
+          "pourquoi": "la rime s'entend : sans son, il n'y a pas de rime à apparier"
+        },
+        {
+          "mecanique": "apparier_sons",
+          "nombre": 1,
+          "pourquoi": "l'application doit produire trois sons joués deux fois : aucun son n'est enregistré"
+        },
+        {
+          "mecanique": "composer_syllabes",
+          "nombre": 3,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "deplacer_lettres",
+          "nombre": 1,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "designer_image",
+          "nombre": 4,
+          "pourquoi": "deux obstacles : les illustrations ne sont pas embarquées, et la consigne se donne par la voix"
+        },
+        {
+          "mecanique": "frapper_syllabes",
+          "nombre": 3,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "jeu_syllabes",
+          "nombre": 5,
+          "pourquoi": "rendue par un autre écran"
+        },
+        {
+          "mecanique": "lever_main",
+          "nombre": 3,
+          "pourquoi": "la consigne énonce une suite de phonèmes que l'enfant doit guetter : sans son, il n'y a rien à guetter"
+        },
+        {
+          "mecanique": "localiser_son",
+          "nombre": 1,
+          "pourquoi": "l'application doit PRODUIRE le son à localiser : aucun son n'est enregistré"
+        },
+        {
+          "mecanique": "poser_jeton",
+          "nombre": 2,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "position_son",
+          "nombre": 1,
+          "pourquoi": "la position d'un son dans un mot s'entend : sans son, la position n'existe pas"
+        },
+        {
+          "mecanique": "ranger_longueur",
+          "nombre": 1,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "remettre_ordre",
+          "nombre": 2,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "suivre_voix",
+          "nombre": 1,
+          "pourquoi": "l'exercice suit une voix qui lit : aucun son n'est enregistré"
+        },
+        {
+          "mecanique": "toucher_lettre",
+          "nombre": 7,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "toucher_lettres_ordre",
+          "nombre": 2,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        },
+        {
+          "mecanique": "trier_images",
+          "nombre": 2,
+          "pourquoi": "deux obstacles : les illustrations ne sont pas embarquées, et la consigne se donne par la voix"
+        },
+        {
+          "mecanique": "trouver_intrus",
+          "nombre": 1,
+          "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+        }
+      ],
+      "exercices_exceptions": []
     },
     {
       "id": "cp",
@@ -1323,7 +1422,10 @@
             "eau"
           ]
         }
-      ]
+      ],
+      "exercices": [],
+      "exercices_non_rendus": [],
+      "exercices_exceptions": []
     },
     {
       "id": "ce1",
@@ -2008,7 +2110,376 @@
           "action": "aucun : cela ne passe pas par un écran"
         }
       ],
-      "correspondances": []
+      "correspondances": [],
+      "exercices": [
+        {
+          "id": "E10",
+          "unite": 5,
+          "mecanique": "choisir_resume",
+          "titre": "De quoi parle le texte ?",
+          "consigne": "Touche le résumé qui dit ce que raconte le texte.",
+          "geste": "toucher, parmi trois, le résumé qui dit ce que raconte le texte",
+          "duree_s": 90,
+          "entraine": "tenir le texte entier en tête, et non sa première phrase",
+          "texte": "T01-rang01",
+          "questions": [
+            {
+              "question": "Quel résumé dit ce que raconte le texte ?",
+              "bonne": "Le chat prend la noix, et la souris rit.",
+              "intrus": [
+                "La souris prend la noix, et le chat rit.",
+                "Le chat a une souris, et la souris a un chat."
+              ],
+              "phrase_preuve": "Le chat a la noix."
+            }
+          ]
+        },
+        {
+          "id": "E20",
+          "unite": 15,
+          "mecanique": "toucher_emotion",
+          "titre": "Ce qu'elle ressent",
+          "consigne": "Touche ce que ressent le personnage.",
+          "geste": "toucher le mot qui dit ce que ressent le personnage à ce moment du texte",
+          "duree_s": 90,
+          "entraine": "lire un état intérieur dans ce que le texte raconte",
+          "texte": "T06-rang09",
+          "questions": [
+            {
+              "question": "Que veut la reine, dans ce texte ?",
+              "bonne": "être avec l'agneau et la montagne",
+              "intrus": [
+                "rejoindre le chat de la maison",
+                "trouver une craie dans la vigne"
+              ],
+              "phrase_preuve": "L'agneau a besoin de la reine."
+            }
+          ]
+        },
+        {
+          "id": "E28",
+          "unite": 23,
+          "mecanique": "lever_ambiguite",
+          "titre": "Le chat est-il là ?",
+          "consigne": "Touche le sens qui va avec le texte.",
+          "geste": "toucher, entre deux sens possibles, celui que le texte retient",
+          "duree_s": 90,
+          "entraine": "trancher entre deux phrases du texte qui semblent se contredire",
+          "texte": "T08-rang13",
+          "questions": [
+            {
+              "question": "La reine a-t-elle un chat ?",
+              "bonne": "Oui, elle a un chat brun.",
+              "intrus": [
+                "Non, aucun chat n'est dans la maison.",
+                "Non, le chat est dans la vigne."
+              ],
+              "phrase_preuve": "La reine a un chat brun."
+            }
+          ]
+        },
+        {
+          "id": "E29",
+          "unite": 24,
+          "mecanique": "deviner_mot",
+          "titre": "Que veut dire potion ?",
+          "consigne": "Touche ce que veut dire le mot en gras.",
+          "geste": "toucher, parmi trois, ce que veut dire le mot en gras, d'après le texte",
+          "duree_s": 90,
+          "entraine": "se servir du texte pour comprendre un mot qu'on ne connaît pas",
+          "texte": "T10-rang17",
+          "questions": [
+            {
+              "question": "Que veut dire « la potion », dans ce texte ?",
+              "bonne": "quelque chose qui a une action sur le chat",
+              "intrus": [
+                "une station sur la montagne",
+                "une question de papa"
+              ],
+              "phrase_preuve": "La potion a une action sur le chat."
+            }
+          ]
+        },
+        {
+          "id": "E33",
+          "unite": 27,
+          "mecanique": "choisir_forme",
+          "titre": "Le pluriel ou le singulier",
+          "consigne": "Touche la forme qui va dans la phrase.",
+          "geste": "toucher la forme du mot qui convient à la phrase",
+          "duree_s": 90,
+          "entraine": "accorder le verbe au sujet, sur une marque qu'on ne prononce pas",
+          "texte": null,
+          "questions": [
+            {
+              "question": "Les chats ___ la maison.",
+              "bonne": "aiment",
+              "intrus": [
+                "aime",
+                "aimes"
+              ],
+              "phrase_preuve": "Les chats aiment la maison."
+            },
+            {
+              "question": "Ils ___ le jour.",
+              "bonne": "dorment",
+              "intrus": [
+                "dort",
+                "dorme"
+              ],
+              "phrase_preuve": "Ils dorment le jour."
+            }
+          ]
+        },
+        {
+          "id": "E37",
+          "unite": 31,
+          "mecanique": "inferer",
+          "titre": "Ce que le texte ne dit pas",
+          "consigne": "Touche ce que le texte permet de comprendre, même si ce n'est pas écrit.",
+          "geste": "toucher la réponse qui se déduit du texte sans y être écrite",
+          "duree_s": 90,
+          "entraine": "conclure ce que le texte permet de comprendre sans l'écrire",
+          "texte": "T15-rang30",
+          "questions": [
+            {
+              "question": "Pourquoi monsieur le chat appelle-t-il la reine ?",
+              "bonne": "parce qu'elle apporte une pomme",
+              "intrus": [
+                "parce qu'elle a une question",
+                "parce qu'elle a une valise"
+              ],
+              "phrase_preuve": "La reine arrive avec une pomme."
+            }
+          ]
+        },
+        {
+          "id": "E46",
+          "unite": 38,
+          "mecanique": "choisir_resume",
+          "titre": "Le résumé de la pomme d'or",
+          "consigne": "Touche le résumé qui dit ce que raconte le texte.",
+          "geste": "toucher, parmi trois, le résumé qui dit ce que raconte le texte",
+          "duree_s": 180,
+          "entraine": "dégager le sens du texte entier, seul",
+          "texte": "T18-rang38",
+          "questions": [
+            {
+              "question": "Quel résumé dit ce que raconte le texte ?",
+              "bonne": "Le chat trouve une pomme d'or et appelle la reine pour la manger avec lui.",
+              "intrus": [
+                "La reine trouve une pomme d'or et la donne à son chat.",
+                "Le chat monte sur une échelle et prend la pomme pour lui seul."
+              ],
+              "phrase_preuve": "Il appelle la reine."
+            }
+          ]
+        },
+        {
+          "id": "E47",
+          "unite": 38,
+          "mecanique": "choisir_titre",
+          "titre": "Un titre pour la pomme d'or",
+          "consigne": "Touche le titre qui va avec le texte.",
+          "geste": "toucher, parmi trois, le titre qui convient au texte lu",
+          "duree_s": 120,
+          "entraine": "choisir ce qui dit le mieux le texte entier",
+          "texte": "T18-rang38",
+          "questions": [
+            {
+              "question": "Quel titre convient le mieux à ce texte ?",
+              "bonne": "La pomme d'or",
+              "intrus": [
+                "Le chat de la montagne",
+                "La valise de la reine"
+              ],
+              "phrase_preuve": "Sur le pommier, une pomme d'or."
+            }
+          ]
+        },
+        {
+          "id": "E49",
+          "unite": 38,
+          "mecanique": "inferer",
+          "titre": "Ce que le texte ne dit pas",
+          "consigne": "Touche ce que le texte permet de comprendre, même si ce n'est pas écrit.",
+          "geste": "toucher la réponse qui se déduit du texte sans y être écrite",
+          "duree_s": 120,
+          "entraine": "conclure ce que le texte permet de comprendre sans l'écrire",
+          "texte": "T18-rang38",
+          "questions": [
+            {
+              "question": "Pourquoi le chat appelle-t-il la reine ?",
+              "bonne": "parce qu'il veut partager la pomme avec elle",
+              "intrus": [
+                "parce qu'il ne peut pas monter sur l'échelle",
+                "parce qu'il a perdu sa valise"
+              ],
+              "phrase_preuve": "Ils mangent la pomme ensemble."
+            }
+          ]
+        },
+        {
+          "id": "E50",
+          "unite": 38,
+          "mecanique": "deviner_mot",
+          "titre": "Que veut dire pommier ?",
+          "consigne": "Touche ce que veut dire le mot en gras.",
+          "geste": "toucher, parmi trois, ce que veut dire le mot en gras, d'après le texte",
+          "duree_s": 120,
+          "entraine": "se servir de la forme du mot et du texte pour le comprendre",
+          "texte": "T18-rang38",
+          "questions": [
+            {
+              "question": "Que veut dire « le pommier », dans ce texte ?",
+              "bonne": "l'arbre où il y a une pomme",
+              "intrus": [
+                "la valise de la reine",
+                "le jardin de la maison"
+              ],
+              "phrase_preuve": "Dans le jardin, il y a un pommier."
+            }
+          ]
+        },
+        {
+          "id": "E52",
+          "unite": 38,
+          "mecanique": "toucher_emotion",
+          "titre": "Ce que la reine ressent",
+          "consigne": "Touche ce que ressent le personnage.",
+          "geste": "toucher le mot qui dit ce que ressent le personnage à ce moment du texte",
+          "duree_s": 120,
+          "entraine": "lire un sentiment dans ce que le texte dit du lien entre deux personnages",
+          "texte": "T18-rang38",
+          "questions": [
+            {
+              "question": "Que ressent la reine pour son chat, à la fin du texte ?",
+              "bonne": "de l'affection",
+              "intrus": [
+                "de la peur",
+                "de la colère"
+              ],
+              "phrase_preuve": "La reine aime son chat brun."
+            }
+          ]
+        }
+      ],
+      "exercices_non_rendus": [
+        {
+          "mecanique": "apparier_graphies",
+          "nombre": 2,
+          "pourquoi": "le geste demande de former des paires successives ; l'application ne sait pas encore tenir une sélection en deux temps"
+        },
+        {
+          "mecanique": "apparier_mot_image",
+          "nombre": 1,
+          "pourquoi": "même obstacle que lire_mot_image : la colonne d'images n'a pas de source dans le paquet"
+        },
+        {
+          "mecanique": "associer_personnage_trait",
+          "nombre": 1,
+          "pourquoi": "le geste demande d'associer deux à deux, pour chaque personnage ; même obstacle que apparier_graphies"
+        },
+        {
+          "mecanique": "classer_famille",
+          "nombre": 1,
+          "pourquoi": "même obstacle que trier_graphies : le rangement en familles n'est pas écrit"
+        },
+        {
+          "mecanique": "completer_mot",
+          "nombre": 1,
+          "pourquoi": "la mécanique est celle du mot à trous, déjà rendue par l'écran du jeu — mais à partir de la banque du jeu. Cet exercice porte ses propres mots et ne dit pas quel rang y est troué : il ne peut donc pas se substituer à la banque, ni être rendu tel quel"
+        },
+        {
+          "mecanique": "ecouter_et_choisir",
+          "nombre": 4,
+          "pourquoi": "le geste commence par « écouter le mot dit par la voix » : aucun son n'est enregistré"
+        },
+        {
+          "mecanique": "lire_et_choisir_son",
+          "nombre": 3,
+          "pourquoi": "le geste demande de toucher le mot où le son DEMANDÉ s'entend, et le son demandé est dit par la voix : aucun son n'est enregistré"
+        },
+        {
+          "mecanique": "lire_flash",
+          "nombre": 2,
+          "pourquoi": "le geste demande d'afficher le mot un court instant puis de le faire retrouver parmi quatre ; la banque porte bien dix mots, mais pas les trois leurres de chacun — le contenu des cartes n'est pas dans la donnée"
+        },
+        {
+          "mecanique": "lire_mot_image",
+          "nombre": 1,
+          "pourquoi": "les illustrations ne sont pas embarquées dans le paquet : le corpus des images existe, mais aucun chemin ne le fait entrer dans l'application"
+        },
+        {
+          "mecanique": "lire_pseudo_mot",
+          "nombre": 1,
+          "pourquoi": "le geste demande un choix binaire « oui » ou « non » sur dix suites ; la banque ne porte que les cinq mots, pas les cinq pseudo-mots qui doivent être mêlés — la moitié des items manque"
+        },
+        {
+          "mecanique": "marquer_groupes",
+          "nombre": 1,
+          "pourquoi": "le geste demande de toucher les endroits ENTRE deux mots ; cela demande une cible posée dans l'interstice, que l'application ne sait pas rendre"
+        },
+        {
+          "mecanique": "ordonner_recit",
+          "nombre": 4,
+          "pourquoi": "le geste demande de reconstruire un ORDRE ; la banque porte les étapes et leur ordre, mais l'application ne sait pas encore recevoir une suite de touchers et la juger"
+        },
+        {
+          "mecanique": "prelever_info",
+          "nombre": 1,
+          "pourquoi": "le geste demande de toucher une phrase dans le texte ; même fragmentation que toucher_phrase_preuve"
+        },
+        {
+          "mecanique": "suivre_consigne_ecrite",
+          "nombre": 1,
+          "pourquoi": "le geste promet d'exécuter la recette dans l'ordre ; la banque ne porte qu'une question à choix, qui n'en rendrait que la première étape. Rendre la question serait fidèle à la donnée et infidèle au geste, donc on ne rend rien et on le dit"
+        },
+        {
+          "mecanique": "toucher_graphie_dans_mot",
+          "nombre": 3,
+          "pourquoi": "le geste demande de toucher une PARTIE d'un mot affiché ; l'application ne sait pas encore rendre un mot en fragments touchables"
+        },
+        {
+          "mecanique": "toucher_mot_dans_phrase",
+          "nombre": 2,
+          "pourquoi": "le geste demande de toucher un mot DANS une phrase affichée ; l'application ne sait pas encore rendre une phrase en mots touchables"
+        },
+        {
+          "mecanique": "toucher_phrase_preuve",
+          "nombre": 1,
+          "pourquoi": "le geste demande de toucher une phrase DANS le texte affiché ; la même fragmentation que toucher_mot_dans_phrase, à l'échelle de la phrase"
+        },
+        {
+          "mecanique": "toucher_referent",
+          "nombre": 2,
+          "pourquoi": "le geste demande de toucher un mot dans le texte, plus haut que le pronom souligné ; il suppose le texte fragmenté et le pronom repéré dans le texte"
+        },
+        {
+          "mecanique": "trier_graphies",
+          "nombre": 5,
+          "pourquoi": "la forme « ranger chaque mot dans une colonne » n'est pas écrite : elle demande un glisser-déposer, une interaction qui n'existe pas encore dans l'application"
+        },
+        {
+          "mecanique": "trier_sons",
+          "nombre": 1,
+          "pourquoi": "même obstacle que trier_graphies : le rangement en colonnes n'est pas écrit"
+        }
+      ],
+      "exercices_exceptions": [
+        {
+          "exercice": "E11",
+          "raison": "la banque déclare cet exercice jouable, et sa mécanique est rendue — mais ses items n'ont jamais été écrits. Son champ `serie` décrit ce qu'il faudrait faire (« le texte affiché en entier », « une question, trois titres ») là où les autres exercices portent leurs `questions`. Ses deux intrus sont bien nommés, mais dans la prose du champ `inversion`, et ils sont lisibles à l'unité 6 (mesuré). Reste que le texte cité, T02-rang02, porte son propre titre dans sa première phrase : « La fête est dans la maison. ». Écrire ses items demanderait donc de choisir un autre texte ou une autre question — une décision pédagogique, pas une forme à coder. On ne la prend pas ici : on la déclare."
+        },
+        {
+          "exercice": "E21",
+          "raison": "la banque le déclare jouable, et sa mécanique reçoit une forme rendue — mais son matériau n'arrive pas à l'écran. Sa question est « Touche le texte qui raconte une histoire. », et ses trois cartes sont les TITRES de deux textes courts : « L'agneau de la reine », « L'air qui va », et « Ni l'un ni l'autre ». Or l'écran ne montre jamais un titre, et c'est délibéré : pour `choisir_titre`, le titre du texte EST la réponse. Les deux textes courts qu'il faut juger (C01-rang16, C02-rang16) sont pourtant bien embarqués — mesuré — mais l'exercice ne les nomme pas, et la forme ne sait afficher qu'un texte, et sans son titre. Le rendre demande donc une forme qui affiche des textes AVEC leurs titres : une interaction qui n'existe pas encore. On ne l'invente pas ici : on la déclare."
+        },
+        {
+          "exercice": "E55",
+          "raison": "même obstacle que E21, mesuré de la même façon. Sa question est « Quel texte ressemble le plus à celui que tu viens de lire ? », et ses trois cartes sont les titres de trois textes courts : « Une échelle, une pomme », « L'air qui va », « Le téléphone de papa ». Le texte long qu'il cite, T18-rang38, est bien embarqué et bien affiché — mais les trois textes courts qu'il faut comparer ne sont pas nommés par l'exercice, et l'écran ne montre jamais un titre. Les cinq textes courts du CE1 sont pourtant dans le paquet (mesuré) : ce qui manque est la forme qui les affiche avec leur titre, pas le matériau."
+        }
+      ]
     }
   ]
 }

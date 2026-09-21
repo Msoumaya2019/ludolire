@@ -1,0 +1,372 @@
+{
+  "meta": {
+    "titre": "Formes d'exercice — ce que l'application sait rendre",
+    "version": "0.1.0",
+    "date": "2026-09-22",
+    "role": "Déclare, pour chaque mécanique des deux banques d'exercices, la forme d'interaction que l'application emploie — ou la raison pour laquelle elle n'en emploie aucune. C'est une DÉCISION, pas une dérivation : la deviner en lisant la prose du champ `geste` ferait exactement ce que ce projet refuse, une promesse que rien ne vérifie.",
+    "source": "outils/exercices-gs.json, outils/exercices-ce1.json",
+    "regle": "Une mécanique employée par un exercice déclaré jouable et absente de cette table fait ÉCHOUER la fabrication. Une mécanique dont la forme est nulle doit dire pourquoi. Une forme qui exige des questions ne peut pas recevoir un exercice qui n'en porte pas. Et une exception doit dire de quel genre elle est : `champs_manquants` quand il manque à l'exercice ce que sa forme exige, `forme_inadaptee` quand l'exercice porte tout mais que la forme ne sait pas montrer ce qu'il juge. Les deux ne se confondent pas : la première est un trou dans la donnée et se mesure, la seconde est un jugement et s'écrit. Rien ne tombe en silence.",
+    "ce_que_la_table_ne_regle_pas": "Elle ne dit pas si l'exercice est BON, ni dans quel ordre les exercices d'une séance se suivent. Elle dit seulement par quelle interaction l'application le présente, et ce qui manque quand elle ne le présente pas."
+  },
+  "formes": [
+    {
+      "id": "carte_a_choisir",
+      "libelle": "Toucher la bonne carte",
+      "ce_que_l_enfant_fait": "lire la question, puis toucher la carte qui y répond",
+      "ce_que_l_application_fait": "affiche le texte quand l'exercice en cite un, puis la question, puis les cartes mélangées, et vérifie le toucher",
+      "exige": ["questions"],
+      "embarque_les_exercices": true,
+      "rendu_par": "/exercice"
+    },
+    {
+      "id": "mot_a_trou",
+      "libelle": "Compléter le mot à trous",
+      "ce_que_l_enfant_fait": "toucher la carte-syllabe qui manque au mot",
+      "ce_que_l_application_fait": "affiche le mot découpé, un trou, et les cartes mélangées, et vérifie la carte posée",
+      "exige": ["cartes", "trou"],
+      "embarque_les_exercices": false,
+      "rendu_par": "/jeu",
+      "remarque": "Cette forme est déjà rendue, mais à partir de la BANQUE DU JEU (`outils/jeu-syllabes.json`), et non des exercices qui déclarent la mécanique : la banque du jeu porte le rang du trou, les exercices ne le portent pas. Les exercices de cette mécanique ne sont donc pas embarqués — et c'est écrit ici plutôt que laissé à deviner."
+    }
+  ],
+  "exceptions": [
+    {
+      "niveau": "ce1",
+      "exercice": "E11",
+      "parce_que": "champs_manquants",
+      "raison": "la banque déclare cet exercice jouable, et sa mécanique est rendue — mais ses items n'ont jamais été écrits. Son champ `serie` décrit ce qu'il faudrait faire (« le texte affiché en entier », « une question, trois titres ») là où les autres exercices portent leurs `questions`. Ses deux intrus sont bien nommés, mais dans la prose du champ `inversion`, et ils sont lisibles à l'unité 6 (mesuré). Reste que le texte cité, T02-rang02, porte son propre titre dans sa première phrase : « La fête est dans la maison. ». Écrire ses items demanderait donc de choisir un autre texte ou une autre question — une décision pédagogique, pas une forme à coder. On ne la prend pas ici : on la déclare."
+    },
+    {
+      "niveau": "ce1",
+      "exercice": "E21",
+      "parce_que": "forme_inadaptee",
+      "raison": "la banque le déclare jouable, et sa mécanique reçoit une forme rendue — mais son matériau n'arrive pas à l'écran. Sa question est « Touche le texte qui raconte une histoire. », et ses trois cartes sont les TITRES de deux textes courts : « L'agneau de la reine », « L'air qui va », et « Ni l'un ni l'autre ». Or l'écran ne montre jamais un titre, et c'est délibéré : pour `choisir_titre`, le titre du texte EST la réponse. Les deux textes courts qu'il faut juger (C01-rang16, C02-rang16) sont pourtant bien embarqués — mesuré — mais l'exercice ne les nomme pas, et la forme ne sait afficher qu'un texte, et sans son titre. Le rendre demande donc une forme qui affiche des textes AVEC leurs titres : une interaction qui n'existe pas encore. On ne l'invente pas ici : on la déclare."
+    },
+    {
+      "niveau": "ce1",
+      "exercice": "E55",
+      "parce_que": "forme_inadaptee",
+      "raison": "même obstacle que E21, mesuré de la même façon. Sa question est « Quel texte ressemble le plus à celui que tu viens de lire ? », et ses trois cartes sont les titres de trois textes courts : « Une échelle, une pomme », « L'air qui va », « Le téléphone de papa ». Le texte long qu'il cite, T18-rang38, est bien embarqué et bien affiché — mais les trois textes courts qu'il faut comparer ne sont pas nommés par l'exercice, et l'écran ne montre jamais un titre. Les cinq textes courts du CE1 sont pourtant dans le paquet (mesuré) : ce qui manque est la forme qui les affiche avec leur titre, pas le matériau."
+    }
+  ],
+  "mecaniques": [
+    {
+      "niveau": "ce1",
+      "id": "choisir_resume",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "choisir_titre",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "deviner_mot",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "inferer",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "lever_ambiguite",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "distinguer_type",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "choisir_forme",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "toucher_emotion",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "apparier_textes",
+      "forme": "carte_a_choisir",
+      "pourquoi": null
+    },
+    {
+      "niveau": "ce1",
+      "id": "lire_mot_image",
+      "forme": null,
+      "pourquoi": "les illustrations ne sont pas embarquées dans le paquet : le corpus des images existe, mais aucun chemin ne le fait entrer dans l'application"
+    },
+    {
+      "niveau": "ce1",
+      "id": "apparier_mot_image",
+      "forme": null,
+      "pourquoi": "même obstacle que lire_mot_image : la colonne d'images n'a pas de source dans le paquet"
+    },
+    {
+      "niveau": "ce1",
+      "id": "trier_graphies",
+      "forme": null,
+      "pourquoi": "la forme « ranger chaque mot dans une colonne » n'est pas écrite : elle demande un glisser-déposer, une interaction qui n'existe pas encore dans l'application"
+    },
+    {
+      "niveau": "ce1",
+      "id": "trier_sons",
+      "forme": null,
+      "pourquoi": "même obstacle que trier_graphies : le rangement en colonnes n'est pas écrit"
+    },
+    {
+      "niveau": "ce1",
+      "id": "classer_famille",
+      "forme": null,
+      "pourquoi": "même obstacle que trier_graphies : le rangement en familles n'est pas écrit"
+    },
+    {
+      "niveau": "ce1",
+      "id": "completer_mot",
+      "forme": null,
+      "pourquoi": "la mécanique est celle du mot à trous, déjà rendue par l'écran du jeu — mais à partir de la banque du jeu. Cet exercice porte ses propres mots et ne dit pas quel rang y est troué : il ne peut donc pas se substituer à la banque, ni être rendu tel quel"
+    },
+    {
+      "niveau": "ce1",
+      "id": "toucher_graphie_dans_mot",
+      "forme": null,
+      "pourquoi": "le geste demande de toucher une PARTIE d'un mot affiché ; l'application ne sait pas encore rendre un mot en fragments touchables"
+    },
+    {
+      "niveau": "ce1",
+      "id": "toucher_mot_dans_phrase",
+      "forme": null,
+      "pourquoi": "le geste demande de toucher un mot DANS une phrase affichée ; l'application ne sait pas encore rendre une phrase en mots touchables"
+    },
+    {
+      "niveau": "ce1",
+      "id": "apparier_graphies",
+      "forme": null,
+      "pourquoi": "le geste demande de former des paires successives ; l'application ne sait pas encore tenir une sélection en deux temps"
+    },
+    {
+      "niveau": "ce1",
+      "id": "toucher_phrase_preuve",
+      "forme": null,
+      "pourquoi": "le geste demande de toucher une phrase DANS le texte affiché ; la même fragmentation que toucher_mot_dans_phrase, à l'échelle de la phrase"
+    },
+    {
+      "niveau": "ce1",
+      "id": "toucher_referent",
+      "forme": null,
+      "pourquoi": "le geste demande de toucher un mot dans le texte, plus haut que le pronom souligné ; il suppose le texte fragmenté et le pronom repéré dans le texte"
+    },
+    {
+      "niveau": "ce1",
+      "id": "prelever_info",
+      "forme": null,
+      "pourquoi": "le geste demande de toucher une phrase dans le texte ; même fragmentation que toucher_phrase_preuve"
+    },
+    {
+      "niveau": "ce1",
+      "id": "ordonner_recit",
+      "forme": null,
+      "pourquoi": "le geste demande de reconstruire un ORDRE ; la banque porte les étapes et leur ordre, mais l'application ne sait pas encore recevoir une suite de touchers et la juger"
+    },
+    {
+      "niveau": "ce1",
+      "id": "associer_personnage_trait",
+      "forme": null,
+      "pourquoi": "le geste demande d'associer deux à deux, pour chaque personnage ; même obstacle que apparier_graphies"
+    },
+    {
+      "niveau": "ce1",
+      "id": "marquer_groupes",
+      "forme": null,
+      "pourquoi": "le geste demande de toucher les endroits ENTRE deux mots ; cela demande une cible posée dans l'interstice, que l'application ne sait pas rendre"
+    },
+    {
+      "niveau": "ce1",
+      "id": "suivre_consigne_ecrite",
+      "forme": null,
+      "pourquoi": "le geste promet d'exécuter la recette dans l'ordre ; la banque ne porte qu'une question à choix, qui n'en rendrait que la première étape. Rendre la question serait fidèle à la donnée et infidèle au geste, donc on ne rend rien et on le dit"
+    },
+    {
+      "niveau": "ce1",
+      "id": "lire_flash",
+      "forme": null,
+      "pourquoi": "le geste demande d'afficher le mot un court instant puis de le faire retrouver parmi quatre ; la banque porte bien dix mots, mais pas les trois leurres de chacun — le contenu des cartes n'est pas dans la donnée"
+    },
+    {
+      "niveau": "ce1",
+      "id": "lire_pseudo_mot",
+      "forme": null,
+      "pourquoi": "le geste demande un choix binaire « oui » ou « non » sur dix suites ; la banque ne porte que les cinq mots, pas les cinq pseudo-mots qui doivent être mêlés — la moitié des items manque"
+    },
+    {
+      "niveau": "ce1",
+      "id": "lire_et_choisir_son",
+      "forme": null,
+      "pourquoi": "le geste demande de toucher le mot où le son DEMANDÉ s'entend, et le son demandé est dit par la voix : aucun son n'est enregistré"
+    },
+    {
+      "niveau": "ce1",
+      "id": "ecouter_et_choisir",
+      "forme": null,
+      "pourquoi": "le geste commence par « écouter le mot dit par la voix » : aucun son n'est enregistré"
+    },
+    {
+      "niveau": "ce1",
+      "id": "lire_a_voix_haute",
+      "forme": null,
+      "pourquoi": "l'application ne peut pas entendre. C'est la raison pour laquelle la banque déclare elle-même cet exercice hors app"
+    },
+    {
+      "niveau": "ce1",
+      "id": "lire_et_chronometrer",
+      "forme": null,
+      "pourquoi": "la vitesse de lecture ne se mesure pas sans micro"
+    },
+    {
+      "niveau": "ce1",
+      "id": "dire_sa_lecture",
+      "forme": null,
+      "pourquoi": "relier une lecture à sa propre expérience est un acte de parole, que l'application ne peut pas recevoir"
+    },
+    {
+      "niveau": "ce1",
+      "id": "choisir_son_livre",
+      "forme": null,
+      "pourquoi": "choisir un livre pour son plaisir ne se vérifie pas : il n'y a pas de bonne réponse"
+    },
+    {
+      "niveau": "gs",
+      "id": "localiser_son",
+      "forme": null,
+      "pourquoi": "l'application doit PRODUIRE le son à localiser : aucun son n'est enregistré"
+    },
+    {
+      "niveau": "gs",
+      "id": "apparier_sons",
+      "forme": null,
+      "pourquoi": "l'application doit produire trois sons joués deux fois : aucun son n'est enregistré"
+    },
+    {
+      "niveau": "gs",
+      "id": "suivre_voix",
+      "forme": null,
+      "pourquoi": "l'exercice suit une voix qui lit : aucun son n'est enregistré"
+    },
+    {
+      "niveau": "gs",
+      "id": "repeter_modele",
+      "forme": null,
+      "pourquoi": "l'application donne le modèle puis s'arrête : elle ne peut pas entendre la reproduction. La banque déclare elle-même cet exercice hors app"
+    },
+    {
+      "niveau": "gs",
+      "id": "designer_image",
+      "forme": null,
+      "pourquoi": "deux obstacles : les illustrations ne sont pas embarquées, et la consigne se donne par la voix"
+    },
+    {
+      "niveau": "gs",
+      "id": "trier_images",
+      "forme": null,
+      "pourquoi": "deux obstacles : les illustrations ne sont pas embarquées, et la consigne se donne par la voix"
+    },
+    {
+      "niveau": "gs",
+      "id": "jeu_syllabes",
+      "forme": "mot_a_trou",
+      "pourquoi": null
+    },
+    {
+      "niveau": "gs",
+      "id": "lever_main",
+      "forme": null,
+      "pourquoi": "la consigne énonce une suite de phonèmes que l'enfant doit guetter : sans son, il n'y a rien à guetter"
+    },
+    {
+      "niveau": "gs",
+      "id": "poser_jeton",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "frapper_syllabes",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "ranger_longueur",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "remettre_ordre",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "apparier_rime",
+      "forme": null,
+      "pourquoi": "la rime s'entend : sans son, il n'y a pas de rime à apparier"
+    },
+    {
+      "niveau": "gs",
+      "id": "trouver_intrus",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "position_son",
+      "forme": null,
+      "pourquoi": "la position d'un son dans un mot s'entend : sans son, la position n'existe pas"
+    },
+    {
+      "niveau": "gs",
+      "id": "toucher_lettre",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "apparier_graphies",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "toucher_lettres_ordre",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "deplacer_lettres",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    },
+    {
+      "niveau": "gs",
+      "id": "composer_syllabes",
+      "forme": null,
+      "pourquoi": "consigne orale, et aucun son n'est enregistré : l'enfant de GS ne lit pas encore la consigne"
+    }
+  ]
+}

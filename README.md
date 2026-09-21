@@ -36,12 +36,35 @@ contenu/                les textes de lecture et les documents du projet
   textes-courts-ce1/      les textes courts du CE1
 outils/                 les corpus (JSON) et les contrôles (Python)
   *.json                  les corpus : mots, progressions, exercices, images
+  formes-exercices.json   la DÉCISION : quelle interaction rend chaque mécanique
   verifier-*.py           les contrôles
   tester-*.py             les bancs de falsification des contrôles
   generer-contenu-app.py  fabrique le contenu embarqué dans l'application
 scripts/                les contrôles qui tournent sous Node, donc en intégration
 tests/                  les bancs de ces contrôles
 ```
+
+---
+
+## Une décision se range dans un fichier, pas dans une intention
+
+`outils/formes-exercices.json` dit, pour chacune des 53 mécaniques des deux
+banques d'exercices, **par quelle interaction l'application la rend** — ou
+pourquoi elle n'en rend aucune. Les 95 exercices déclarés jouables par les
+banques deviennent 11 réellement affichés, et les 81 autres sont comptés avec
+leur raison.
+
+C'est une décision, et non une déduction : la deviner en lisant la prose du champ
+`geste` ferait exactement ce que ce projet refuse, une promesse que rien ne
+vérifie. `outils/verifier-formes.py` tient donc trois choses ensemble — la table,
+les deux banques, et les écrans réellement présents dans `app/` — et refuse
+qu'une mécanique soit oubliée, qu'une forme nulle reste sans motif, ou qu'une
+forme dise être rendue par un écran qui n'existe pas.
+
+Une exception dit **de quel genre elle est**, parce que les deux ne se mesurent
+pas de la même façon : `champs_manquants` quand il manque à l'exercice ce que sa
+forme exige — un trou dans la donnée —, et `forme_inadaptee` quand l'exercice
+porte tout mais que la forme ne sait pas montrer ce qu'il juge.
 
 ---
 
@@ -69,15 +92,20 @@ installée, quel contenu elle embarque réellement.
 npm run verify
 ```
 
-Cette commande enchaîne cinq contrôles :
+Cette commande enchaîne six contrôles :
 
 | Contrôle | Ce qu'il vérifie |
 | --- | --- |
 | `check:workflows` | que les flux de travail GitHub sont bien formés, avant de les pousser |
 | `routes:verifier` | que chaque navigation mène à un écran qui existe, et que chaque écran est déclaré |
 | `contenu:verifier` | que le contenu embarqué est cohérent et que son empreinte correspond |
+| `formes:verifier` | que chaque mécanique des banques a une forme déclarée, et que l'écran qui la rend existe |
 | `typecheck` | que le TypeScript compile |
-| `test` | les quatre bancs — 59 cas : le contenu (23, dont 20 falsifications), les flux (17, dont 11 mutations), le mélange des cartes (8, dont 4 implémentations fausses) et les routes (11, dont un faux positif) |
+| `test` | les quatre bancs — 76 cas : le contenu (40, dont 35 falsifications), les flux (17, dont 11 mutations), le mélange des cartes (8, dont 4 implémentations fausses) et les routes (11, dont un faux positif) |
+
+`formes:verifier` est le seul contrôle **Python** de cette liste. Il est appelé
+par `python3` — le nom qui existe sur un exécuteur macOS comme sur cette machine
+— et il tourne dans l'intégration continue comme les autres.
 
 Le lanceur est appelé avec un **motif explicite** — `node --test
 "tests/*.test.mjs"` — et non sans argument. Sans argument, Node découvre les
@@ -100,6 +128,16 @@ Côté corpus, les contrôles du projet sont en Python :
 python outils/verifier-exercices.py
 python outils/verifier-textes-ce1.py --tous
 python outils/verifier-pseudo-mots.py
+python outils/verifier-formes.py
+```
+
+Leurs bancs de falsification ne tournent pas dans `npm run verify` — ils
+éprouvent les contrôles, ils ne gardent pas le dépôt. On les lance à la main,
+après avoir touché au contrôle correspondant :
+
+```bash
+python outils/tester-formes.py
+python outils/tester-controle.py
 ```
 
 ---
@@ -134,6 +172,9 @@ voie normale reste le magasin.
   mot pouvant être touché ;
 - **jouer** : le *mot à trous*, 42 mots dont une syllabe manque, avec des cartes
   à poser ;
+- **s'entraîner** : 11 exercices du CE1, dont la consigne s'affiche et dont la
+  réponse se donne en touchant une carte. Après une bonne réponse, la phrase du
+  texte qui la prouve est montrée ;
 - **parcourir** la progression du programme, étape par étape.
 
 **Elle ne fait pas encore :**
@@ -141,12 +182,17 @@ voie normale reste le magasin.
 - **aucun son.** Rien n'est enregistré à ce jour, et l'application le dit à
   l'écran plutôt que de proposer un bouton muet. Les activités du projet qui
   reposent sur la voix ne sont donc pas jouables — c'est le manque principal de
-  cette version ;
+  cette version. C'est aussi la raison pour laquelle **aucun exercice de la GS
+  n'est rendu** : la règle du projet est que la consigne se donne par la voix, et
+  un enfant de grande section ne lit pas encore une consigne écrite ;
+- **81 exercices écrits et non rendus**, répartis sur **39 mécaniques** — 19 pour
+  la GS, 20 pour le CE1. Ils ne sont pas cachés : l'écran du niveau les affiche,
+  groupés par mécanique, avec leur nombre d'exercices et leur raison. Trois
+  exercices déclarés jouables par la banque ne sont pas rendus non plus, et
+  l'écran le dit aussi ;
 - le CP n'a ni textes ni exercices : sa tranche n'est pas écrite. L'application
   affiche ce qui existe — ses 30 correspondances graphème-phonème — et rien de
-  plus ;
-- les 107 exercices des banques GS et CE1 ne sont pas encore rendus dans
-  l'application. Le jeu du mot à trous est le premier.
+  plus.
 
 ---
 

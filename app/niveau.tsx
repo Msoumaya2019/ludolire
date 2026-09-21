@@ -46,6 +46,20 @@ function Section({ titre, children }: { titre: string; children: React.ReactNode
   );
 }
 
+/**
+ * Une ligne qui ne se touche pas : elle dit un manque et sa raison.
+ *
+ * Elle n'a pas de chevron, et c'est voulu — un chevron promet un écran au bout.
+ */
+function Raison({ titre, detail }: { titre: string; detail: string }): JSX.Element {
+  return (
+    <View style={styles.raison}>
+      <Text style={styles.raisonTitre}>{titre}</Text>
+      <Text style={styles.raisonDetail}>{detail}</Text>
+    </View>
+  );
+}
+
 export default function EcranNiveau(): JSX.Element {
   const { niveau: id } = useLocalSearchParams<{ niveau?: string }>();
   const router = useRouter();
@@ -90,6 +104,50 @@ export default function EcranNiveau(): JSX.Element {
               detail={`${n.jeu_syllabes.length} mots — une syllabe manque`}
               onPress={() => router.push({ pathname: '/jeu', params: { niveau: n.id } })}
             />
+          </Section>
+        ) : null}
+
+        {n.exercices.length > 0 ? (
+          <Section titre="S'entraîner">
+            {n.exercices.map((e) => (
+              <Ligne
+                key={e.id}
+                titre={e.titre}
+                detail={`unité ${e.unite}`}
+                onPress={() =>
+                  router.push({
+                    pathname: '/exercice',
+                    params: { niveau: n.id, exercice: e.id },
+                  })
+                }
+              />
+            ))}
+          </Section>
+        ) : null}
+
+        {/* CE QUI EST ÉCRIT ET PAS ENCORE JOUABLE.
+            Ces mécaniques existent, leurs exercices sont écrits, et
+            l'application ne les rend pas. Les taire ferait croire que la banque
+            s'arrête à ce qu'on voit ; les montrer comme un manque est un état.
+            Les exercices de la GS sont ici pour une raison qui les dépasse tous :
+            leur consigne se donne par la voix, et aucun son n'est enregistré. */}
+        {n.exercices_non_rendus.length > 0 ? (
+          <Section titre="Écrit, pas encore jouable">
+            {n.exercices_non_rendus.map((m) => (
+              <Raison
+                key={m.mecanique}
+                titre={`${m.nombre} exercice${m.nombre > 1 ? 's' : ''} · ${m.mecanique}`}
+                detail={m.pourquoi}
+              />
+            ))}
+          </Section>
+        ) : null}
+
+        {n.exercices_exceptions.length > 0 ? (
+          <Section titre="Déclaré jouable, non rendu">
+            {n.exercices_exceptions.map((x) => (
+              <Raison key={x.exercice} titre={x.exercice} detail={x.raison} />
+            ))}
           </Section>
         ) : null}
 
@@ -199,6 +257,23 @@ const styles = StyleSheet.create({
   sonSemaine: {
     fontSize: taille.legende,
     color: couleurs.encreDouce,
+  },
+  raison: {
+    paddingVertical: espace.md,
+    paddingHorizontal: espace.md,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: couleurs.trait,
+  },
+  raisonTitre: {
+    fontSize: taille.courant,
+    color: couleurs.encre,
+    fontWeight: '600',
+  },
+  raisonDetail: {
+    fontSize: taille.legende,
+    color: couleurs.encreDouce,
+    marginTop: espace.xs,
+    lineHeight: 21,
   },
   vide: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   videTexte: { fontSize: taille.courant, color: couleurs.encreDouce },
